@@ -13,8 +13,8 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'cringe',
-            description: `To cringe at someone`,
-            category: 'reactions',
+            description: `Cringe at someone 😬`,
+            category: 'fun',
             usage: `${client.config.prefix}cringe [tag/quote users]`,
         })
     }
@@ -46,7 +46,7 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} Cringed at ${M.mentioned
+            `*@${M.sender.jid.split('@')[0]} cringed at ${M.mentioned
                 .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
