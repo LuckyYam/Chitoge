@@ -47,7 +47,7 @@ export default class Command extends BaseCommand {
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
             `*@${M.sender.jid.split('@')[0]} bonked ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
