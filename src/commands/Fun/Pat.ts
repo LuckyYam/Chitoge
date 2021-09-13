@@ -13,8 +13,8 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'pat',
-            description: 'pat someone',
-            category: 'reactions2',
+            description: 'Pat someone',
+            category: 'fun',
             usage: `${client.config.prefix}pat [tag|quote users]`,
         })
     }
@@ -46,7 +46,7 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} Patted ${M.mentioned
+            `*@${M.sender.jid.split('@')[0]} patted ${M.mentioned
                 .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
