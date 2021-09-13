@@ -49,6 +49,12 @@ Activate| Activates certain bot features in a group chat|
 |Subred| A random subreddit post based on the specified search would be fetched. (Sometimes nsfw posts can too be fetched so be careful)|
 |Steal| Steals the given sticker (This command is under development)|
 
+|Weeb| usage|
+|----|--------|
+|Loli| Sends you random anime loli image|
+|Neko| Sends you random anime neko image|
+|Waifu| Sends you random anime waifu image|
+
 |Dev| usage|
 |----|--------|
 |Disable| Disables the specified bot command from being used in a group chat|
