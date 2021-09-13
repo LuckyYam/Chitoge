@@ -9,9 +9,9 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'slash',
-            description: 'Slash someone!!',
+            description: 'Slash someone',
             category: 'fun',
-            usage: `${client.config.prefix}slash @whom_you_wanna_slash`
+            usage: `${client.config.prefix}slash [tag/quote users]`
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
