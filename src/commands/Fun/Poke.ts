@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'poke',
             description: 'Poke someone',
-            category: 'reactions2',
+            category: 'fun',
             usage: `${client.config.prefix}poke [tag/quote users]`,
         })
     }
@@ -46,8 +46,8 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} Poked ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+            `*@${M.sender.jid.split('@')[0]} poked ${M.mentioned
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
