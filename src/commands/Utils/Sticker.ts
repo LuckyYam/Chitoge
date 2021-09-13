@@ -62,8 +62,8 @@ export default class Command extends BaseCommand {
         })()
         const sticker = new Sticker(buffer, {
             categories,
-            pack: pack[1] || '👾 𝐇𝐚𝐧𝐝𝐜𝐫𝐚𝐟𝐭𝐞𝐝 𝐅𝐨𝐫 𝐘𝐨𝐮 ',
-            author: pack[2] || '𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩 𝐁𝐨𝐭𝐭𝐨 𝐊𝐚𝐨𝐢 👾',
+            pack: pack[1] || '🌟 Here you go ',
+            author: pack[2] || 'Chitoge 🌟',
             type: parsedArgs.flags.includes('--crop') || parsedArgs.flags.includes('--c') ? 'crop' : parsedArgs.flags.includes('--stretch') || parsedArgs.flags.includes('--s') ? 'default' : 'full'
         })
         await M.reply(await sticker.build(), MessageType.sticker, Mimetype.webp)
