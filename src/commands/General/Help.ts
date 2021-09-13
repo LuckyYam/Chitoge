@@ -2,6 +2,9 @@ import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
 import WAClient from '../../lib/WAClient'
 import { ICommand, IParsedArgs, ISimplifiedMessage } from '../../typings'
+import { MessageType } from '@adiwajshing/baileys'
+import request from '../../lib/request'
+
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
@@ -21,15 +24,14 @@ export default class Command extends BaseCommand {
             for (const command of commands) {
                 const info = this.handler.commands.get(command)
                 if (!command) continue
-                // if (!info?.config?.category || info.config.category === 'dev') continue
-                if (!info?.config?.category) continue
+                if (!info?.config?.category || info.config.category === 'dev') continue
                 if (Object.keys(categories).includes(info.config.category)) categories[info.config.category].push(info)
                 else {
                     categories[info.config.category] = []
                     categories[info.config.category].push(info)
                 }
             }
-            let text = `👾 *Kaoi's Command List* 👾\n\n`
+            let text = `🌟 *Chitoge's Command List* 🌟\n\n`
             const keys = Object.keys(categories)
             for (const key of keys)
                 text += `${this.emojis[keys.indexOf(key)]} *${this.client.util.capitalize(key)}*\n❐ \`\`\`${categories[
@@ -37,7 +39,7 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-            return void M.reply(
+            return void M.reply( 
                 `${text} 🗃️ *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*`
             )
         }
@@ -46,7 +48,7 @@ export default class Command extends BaseCommand {
         if (!command) return void M.reply(`No Command of Alias Found | "${key}"`)
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
         M.reply(
-            `🎫 *Command:* ${this.client.util.capitalize(command.config?.command)}\n🎗️ *Status:* ${
+            `🌟 *Command:* ${this.client.util.capitalize(command.config?.command)}\n🎗️ *Status:* ${
                 state ? 'Disabled' : 'Available'
             }\n🀄 *Category:* ${this.client.util.capitalize(command.config?.category || '')}${
                 command.config.aliases
@@ -58,5 +60,5 @@ export default class Command extends BaseCommand {
         )
     }
 
-    emojis = ['👨‍💻', '🌀', '🎴', '🔮', '👑', '🎈', '⚙️', '⚙️', '🍀']
+    emojis = ['🌀', '🎴', '🔮', '👑', '🎈', '⚙️', '🍀']
 }
