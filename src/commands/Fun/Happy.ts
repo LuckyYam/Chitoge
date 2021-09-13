@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'happy',
             description: 'Be happy with someone',
-            category: 'reactions',
+            category: 'fun',
             usage: `${client.config.prefix}happy [tag/quote users]`,
         })
     }
@@ -49,8 +49,8 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} is Happy ${noun} ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+            `*@${M.sender.jid.split('@')[0]} is happy ${noun} ${M.mentioned
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
