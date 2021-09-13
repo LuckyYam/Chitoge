@@ -13,8 +13,8 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'bonk',
-            description: 'Send people to horny jail',
-            category: 'reactions',
+            description: 'Well... You know it',
+            category: 'bonk',
             usage: `${client.config.prefix}bonk [tag/quote users]`,
         })
     }
