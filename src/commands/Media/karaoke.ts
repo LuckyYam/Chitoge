@@ -22,7 +22,7 @@ export default class Command extends BaseCommand {
         const term = joined.trim()
         const { videos } = await yts(term + ' karaoke song')
         if (!videos || videos.length <= 0) return void M.reply(`No Matching videos found for the term *${term}*`)
-        const text = `Via Kaoi👾 && Void`
+        const text = `Via Chitoge 🌟`
 
         this.client
             .sendMessage(M.from, text, MessageType.extendedText, {
@@ -30,13 +30,13 @@ export default class Command extends BaseCommand {
                 contextInfo: {
                     externalAdReply: {
                         title: `Search Term: ${term}`,
-                        body: `👾 Handcrafted for you by Kaoi 👾`,
+                        body: `🌟 Chitoge 🌟`,
                         mediaType: 2,
                         thumbnailUrl: videos[0].thumbnail,
                         mediaUrl: videos[0].url
                     }
                 }
             })
-            .catch((reason: any) => M.reply(`an error occupered, Reason: ${reason}`))
+            .catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
     }
 }
