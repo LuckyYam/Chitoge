@@ -25,7 +25,7 @@ export default class Command extends BaseCommand {
         if (!videos || videos.length <= 0) return void M.reply(`⚓ No Matching videos found for the term : *${term}*`)
         const audio = new YT(videos[0].url, 'audio')
         if (!audio.url) return
-        M.reply('👾 Sending...')
+        M.reply('🌟 Sending...')
         this.client
             .sendMessage(M.from, await audio.getBuffer(), MessageType.audio, {
                 quoted: M.WAMessage,
@@ -39,6 +39,6 @@ export default class Command extends BaseCommand {
                     }
                 }
             })
-            .catch((reason: Error) => M.reply(`❌ an error occupered, Reason: ${reason}`))
+            .catch((reason: Error) => M.reply(`✖ An error occurred, Reason: ${reason}`))
     }
 }
