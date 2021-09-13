@@ -1,5 +1,5 @@
 {
-    "name": "Kaoi",
+    "name": "Chitoge",
     "description": "Maintained Fork of Void",
     "keywords": [
       "bot",
@@ -13,7 +13,7 @@
     ],
     "website": "https://github.com/PrajjwalDatir/Kaoi#readme",
     "repository": "https://github.com/PrajjwalDatir/Kaoi.git",
-    "logo": "https://avatars.githubusercontent.com/u/46681482?v=4",
+    "logo": "https://c4.wallpaperflare.com/wallpaper/67/362/530/anime-nisekoi-chitoge-kirisaki-wallpaper-preview.jpg",
     "success_url": "/",
     "env": {
       "PREFIX": {
