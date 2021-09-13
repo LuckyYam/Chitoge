@@ -13,8 +13,8 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'lick',
-            description: 'just lewd things',
-            category: 'reactions2',
+            description: 'Lick someone',
+            category: 'fun',
             usage: `${client.config.prefix}lick [tag|quote users]`,
         })
     }
@@ -46,8 +46,8 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} Licked ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+            `*@${M.sender.jid.split('@')[0]} licked ${M.mentioned
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
