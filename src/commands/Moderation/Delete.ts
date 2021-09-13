@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
             command: 'delete',
             description: 'Deletes the quoted Message',
             aliases: ['del'],
-            category: 'general',
+            category: 'moderation',
             usage: `${client.config.prefix}delete`,
             adminOnly: true
         })
