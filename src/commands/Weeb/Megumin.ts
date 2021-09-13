@@ -12,7 +12,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'megumin-paper',
             description: 'Sends you random megumin image',
-            aliases: ['megumin-supermacy'],
+            aliases: ['megumin-simp'],
             category: 'weeb',
             usage: `${client.config.prefix}megumin-paper`
         })
