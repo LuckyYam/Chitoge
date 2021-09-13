@@ -13,9 +13,9 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'eat',
-            description: 'Eat Someone/Something',
-            category: 'reactions',
-            usage: `${client.config.prefix}eat`,
+            description: 'You like to eat someone',
+            category: 'fun',
+            usage: `${client.config.prefix}eat [tag/quote users]`,
         })
     }
     exec = promisify(exec)
@@ -47,7 +47,7 @@ export default class Command extends BaseCommand {
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
             `*@${M.sender.jid.split('@')[0]} is eating ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
