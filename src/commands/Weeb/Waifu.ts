@@ -11,7 +11,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'waifu',
-            description: 'sends you the waifu.',
+            description: 'Sends you random waifu image',
             aliases: ['waifu'],
             category: 'fun',
             usage: `${client.config.prefix}waifu`
@@ -33,7 +33,7 @@ export default class Command extends BaseCommand {
                     MessageType.image,
                     undefined,
                     undefined,
-                    `More than one waifu, will ruin your laifu.\n`,
+                    `Here you go 🌟\n`,
                     undefined
                 )
                 break
