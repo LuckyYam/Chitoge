@@ -13,8 +13,6 @@
 |YouTube audio| Downloads audio from YouTube|
 |YouTube search| Searches the given title from YouTube| 
 
-|Utils| usage | |-----|--------| |Sticker|  Contains sticker related Coomands |  #### Send hi to see if the bot is on or not.
-
 |General| usage |
 |----|--------|
 |Admins| Tags all the admins in a given group|
