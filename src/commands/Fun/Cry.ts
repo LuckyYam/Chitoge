@@ -13,7 +13,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'cry',
-            description: 'Crying makes you cry',
+            description: 'Someone made you cry',
             category: 'reactions',
             usage: `${client.config.prefix}cry [tag/quote users]`,
         })
@@ -52,7 +52,7 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} is Crying ${noun} ${M.mentioned
+            `*@${M.sender.jid.split('@')[0]} is crying because of ${M.mentioned
                 .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
