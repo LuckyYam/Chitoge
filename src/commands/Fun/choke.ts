@@ -9,9 +9,9 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'choke',
-            description: 'Choke someone!!',
+            description: 'Choke someone',
             category: 'fun',
-            usage: `${client.config.prefix}choke @whom_you_wanna_choke`
+            usage: `${client.config.prefix}choke [tag/quote users]`
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
