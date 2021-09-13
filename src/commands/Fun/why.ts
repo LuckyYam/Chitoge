@@ -8,10 +8,10 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'why',
-            description: 'random question.',
+            description: 'Gives you random question.',
             aliases: ['w'],
             category: 'fun',
-            usage: `${client.config.prefix}why`
+            usage: `${client.config.prefix}why`,
         })
     }
 
