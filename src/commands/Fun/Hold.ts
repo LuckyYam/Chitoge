@@ -12,10 +12,10 @@ import { promisify } from 'util'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'handhold',
+            command: 'hold',
             description: 'Hold hands with someone',
-            category: 'reactions',
-            usage: `${client.config.prefix}handhold [tag/quote users]`,
+            category: 'fun',
+            usage: `${client.config.prefix}hold [tag/quote users]`,
         })
     }
     exec = promisify(exec)
@@ -47,7 +47,7 @@ export default class Command extends BaseCommand {
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
             `*@${M.sender.jid.split('@')[0]} is holding hands with ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
