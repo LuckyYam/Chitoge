@@ -13,8 +13,8 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'ultrahug',
-            description: 'Give the Ultra Hug to someone special',
-            category: 'reactions2',
+            description: 'Gives Ultra Hug to someone special',
+            category: 'fun',
             usage: `${client.config.prefix}ultrahug [tag/quote users]`,
         })
     }
@@ -46,8 +46,8 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} gave Ultra Hug to ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+            `*@${M.sender.jid.split('@')[0]} gave ultra hug to ${M.mentioned
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
