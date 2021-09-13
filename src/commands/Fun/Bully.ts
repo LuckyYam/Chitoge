@@ -46,7 +46,7 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} Bullied ${M.mentioned
+            `*@${M.sender.jid.split('@')[0]} bullied ${M.mentioned
                 .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
