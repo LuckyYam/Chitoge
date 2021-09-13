@@ -13,9 +13,9 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'dance',
-            description: 'Dance. Dance. Dance.',
-            category: 'reactions',
-            usage: `${client.config.prefix}dance`,
+            description: 'Dance with someone',
+            category: 'fun',
+            usage: `${client.config.prefix}dance [tag/quote users]`,
         })
     }
     exec = promisify(exec)
@@ -46,8 +46,8 @@ export default class Command extends BaseCommand {
             MessageType.video,
             Mimetype.gif,
             [M.sender.jid, ...M.mentioned],
-            `*@${M.sender.jid.split('@')[0]} Danced with ${M.mentioned
-                .map((user) => (user === M.sender.jid ? 'Themselves' : `@${user.split('@')[0]}`))
+            `*@${M.sender.jid.split('@')[0]} danced with ${M.mentioned
+                .map((user) => (user === M.sender.jid ? 'themselves' : `@${user.split('@')[0]}`))
                 .join(', ')}*`
         )
     }
