@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
             command: 'everyone',
             description: 'Tags all users in group chat',
             aliases: ['all', 'tagall'],
-            category: 'general',
+            category: 'moderation',
             usage: `${client.config.prefix}everyone`,
             adminOnly: true
         })
