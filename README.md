@@ -1,5 +1,3 @@
-# Chitoge
-Maintained Fork Of Void. Void is A fully Object Oriented WhatsApp bot built with TypeScript
 <div align="center">
 <a href="https://ibb.co/wQ4GK21"><img src="https://c4.wallpaperflare.com/wallpaper/67/362/530/anime-nisekoi-chitoge-kirisaki-wallpaper-preview.jpg" alt="Chitoge" border="0"></a>
 
