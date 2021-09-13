@@ -10,7 +10,7 @@ import { MessageType } from '@adiwajshing/baileys'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'shinobu',
+            command: 'shinobu-paper',
             description: 'Sends you random shinobu image',
             aliases: ['shinobu-simp'],
             category: 'weeb',
