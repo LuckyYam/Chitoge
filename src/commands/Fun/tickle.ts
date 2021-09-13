@@ -9,9 +9,9 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'tickle',
-            description: 'Tickle someone!!',
+            description: 'Tickle someone',
             category: 'fun',
-            usage: `${client.config.prefix}tickle @whom_you_wanna_tickle`
+            usage: `${client.config.prefix}tickle [tag/quote users]`
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
