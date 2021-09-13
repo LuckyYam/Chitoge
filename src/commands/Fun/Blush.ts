@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'blush',
             description: 'Keep Blushing',
-            category: 'reactions',
+            category: 'fun',
             usage: `${client.config.prefix}blush [tag/quote users]`,
         })
     }
