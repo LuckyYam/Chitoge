@@ -7,7 +7,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'xp',
-            description: "Displays User's Xp 🌟",
+            description: "Displays User's Xp ⭐",
             category: 'general',
             usage: `${client.config.prefix}xp (@tag)`,
             aliases: ['exp']
