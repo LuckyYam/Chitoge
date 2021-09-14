@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'tickle',
             description: 'Tickle someone',
-            category: 'fun',
+            category: 'fun2',
             usage: `${client.config.prefix}tickle [tag/quote users]`
         })
     }
