@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
             command: 'fquote',
             description: 'Gives you random famous quote.',
             aliases: ['fq'],
-            category: 'fun',
+            category: 'fun2',
             usage: `${client.config.prefix}fquote`
         })
     }
