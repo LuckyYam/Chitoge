@@ -45,7 +45,9 @@ export default class Command extends BaseCommand {
             ),
             MessageType.video,
             Mimetype.gif,
-            `🌟 Here you go `
+            [M.sender.jid, ...M.mentioned],
+            `🌟 => (user === M.sender.jid ? 'Here you go' : `@${user.split('@')[0]}`))
+                .join(', ')}*`
         )
     }
 }
