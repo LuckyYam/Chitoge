@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'bully',
             description: 'Bully someone',
-            category: 'fun2',
+            category: 'fun-2',
             usage: `${client.config.prefix}bully [tag/quote users]`,
         })
     }
