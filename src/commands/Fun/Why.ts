@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
             command: 'why',
             description: 'Gives you random question.',
             aliases: ['w'],
-            category: 'fun2',
+            category: 'fun-2',
             usage: `${client.config.prefix}why`
         })
     }
