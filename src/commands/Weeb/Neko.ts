@@ -11,7 +11,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'neko',
-            description: 'Sends you random neko image',
+            description: 'Will Send you random neko image',
             aliases: ['neko'],
             category: 'weeb',
             usage: `${client.config.prefix}neko`
