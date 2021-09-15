@@ -11,7 +11,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'shinobu-paper',
-            description: 'Sends you random shinobu image',
+            description: 'Sends you random Shinobu Oshino (From Monogatari) image',
             aliases: ['shinobu-simp'],
             category: 'weeb',
             usage: `${client.config.prefix}shinobu-paper`
