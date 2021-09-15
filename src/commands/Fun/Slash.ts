@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'slash',
             description: 'Slash someone',
-            category: 'fun2',
+            category: 'fun-2',
             usage: `${client.config.prefix}slash [tag/quote users]`
         })
     }
