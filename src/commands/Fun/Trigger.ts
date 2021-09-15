@@ -4,8 +4,8 @@ import WAClient from '../../lib/WAClient'
 import { ISimplifiedMessage } from '../../typings'
 import Canvas from 'canvas'
 import GIFEncoder from 'gifencoder'
-import { Sticker } from 'wa-sticker-formatter/lib'
-import { MessageType } from '@adiwajshing/baileys'
+import { Sticker } from 'wa-sticker-formatter'
+// import { MessageType, Mimetype } from '@adiwajshing/baileys'
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
@@ -17,7 +17,6 @@ export default class Command extends BaseCommand {
             usage: `${client.config.prefix}trigger [image | @mention]`
         })
     }
-
     run = async (M: ISimplifiedMessage): Promise<void> => {
         const getImage = async (image: string | Buffer, timeout = 15) => {
             const img = await Canvas.loadImage(image)
@@ -57,19 +56,26 @@ export default class Command extends BaseCommand {
                 ? this.client.downloadMediaMessage(M.WAMessage)
                 : M.quoted?.message?.message?.imageMessage
                 ? this.client.downloadMediaMessage(M.quoted.message)
-                : M.mentioned[0]
-                ? this.client.getProfilePicture(M.mentioned[0])
-                : this.client.getProfilePicture(M.quoted?.sender || M.sender.jid))
+                : M.quoted?.sender
+                ? this.client.getProfilePicture(M.quoted.sender)
+                : this.client.getProfilePicture(M.sender.jid))
+            // console.log("here")
+            // console.log(image)
             const sticker = new Sticker(await getImage(image), {
                 pack: `Triggered`,
-                author: M.sender.username || `Chitoge`,
-                crop: false
+                author: M.sender.username || `Kaoi`,
+                type: 'full',
+                categories: ['💢']
             })
-            await sticker.build()
-            return void (await M.reply(await sticker.get(), MessageType.sticker))
+            // console.log(sticker)
+            // console.log("there")
+            if (!sticker) return void M.reply(`I couldn't find an image to trigger.`)
+            // console.log("where?")
+            return void M.reply(`*Trigger* feature is currently unavailable.`)
+            // return void (await M.reply(await sticker.build(), MessageType.sticker, Mimetype.webp))
         } catch (err) {
             console.log(err)
-            M.reply(`Couldn't fetch the required Image`)
+            M.reply(`Couldn't fetch the required Image.\n*Error* : ${err}`)
         }
     }
 }
