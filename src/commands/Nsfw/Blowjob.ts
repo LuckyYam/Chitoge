@@ -45,7 +45,6 @@ export default class Command extends BaseCommand {
             ),
             MessageType.video,
             Mimetype.gif,
-            [M.sender.jid, ...M.mentioned],
             `🌟 Here you go `
         )
     }
