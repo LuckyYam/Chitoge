@@ -1,53 +1,29 @@
 import { MessageType, Mimetype } from '@adiwajshing/baileys'
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
+import request from '../../lib/request'
 import WAClient from '../../lib/WAClient'
 import { ISimplifiedMessage } from '../../typings'
-import { tmpdir } from 'os'
-import { exec } from 'child_process'
-import { readFile, unlink, writeFile } from 'fs/promises'
-import { promisify } from 'util'
+import  axios  from 'axios'
 
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'blowjob',
-            description: 'Sends you random blowjob in the form of gif',
+            description: 'Will send u random blowjob',
             category: 'nsfw',
             usage: `${client.config.prefix}blowjob`,
+            
         })
     }
-    exec = promisify(exec)
 
-    GIFBufferToVideoBuffer = async (image: Buffer): Promise<Buffer> => {
-        const filename = `${tmpdir()}/${Math.random().toString(36)}`
-        await writeFile(`${filename}.gif`, image)
-        await this.exec(
-            `ffmpeg -f gif -i ${filename}.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ${filename}.mp4`
-        )
-        const buffer = await readFile(`${filename}.mp4`)
-        Promise.all([unlink(`${filename}.mp4`), unlink(`${filename}.gif`)])
-        return buffer
-    }
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        if (M.quoted?.sender) M.mentioned.push(M.quoted.sender)
-        if (!M.mentioned.length) M.mentioned.push(M.sender.jid)
-        M.reply(
-            await this.GIFBufferToVideoBuffer(
-                await this.client.getBuffer(
-                    (
-                        await this.client.fetch<{ url: string }>(
-                            `https://api.waifu.pics/nsfw/blowjob`
-                        )
-                    ).url
-                )
-            ),
-            MessageType.video,
-            Mimetype.gif,
-            undefined,
-            undefined,
-            `🌟 Here you go`
-        )
-    }
+        
+        const rnekol = ["blowjob"];
+        const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
+        const neko = await axios.get('https://api.pics.waifu/nsfw/' + rnekolc)
+
+return void M.reply(await request.buffer(neko.data.payload.url), MessageType.video, undefined, undefined,`*🌟 Here you go*`)
+}
 }
