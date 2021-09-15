@@ -48,7 +48,7 @@ export default class Command extends BaseCommand {
         if (!command) return void M.reply(`No Command of Alias Found | "${key}"`)
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
         M.reply(
-            `🌟 *Command:* ${this.client.util.capitalize(command.config?.command)}\n🎗️ *Status:* ${
+            `〽️ *Command:* ${this.client.util.capitalize(command.config?.command)}\n📉 *Status:* ${
                 state ? 'Disabled' : 'Available'
             }\n⛩ *Category:* ${this.client.util.capitalize(command.config?.category || '')}${
                 command.config.aliases
