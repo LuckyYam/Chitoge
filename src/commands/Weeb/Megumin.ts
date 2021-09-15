@@ -11,7 +11,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'megumin-paper',
-            description: 'Sends you random megumin image',
+            description: 'Sends you random Megumin (From Konosuba) image',
             aliases: ['megumin-simp'],
             category: 'weeb',
             usage: `${client.config.prefix}megumin-paper`
