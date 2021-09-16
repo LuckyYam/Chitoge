@@ -10,7 +10,7 @@ import { MessageType } from '@adiwajshing/baileys'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'nsfwneko',
+            command: 'nsfw-neko',
             description: 'Sends you random nsfw neko image',
             aliases: ['n-neko'],
             category: 'nsfw',
