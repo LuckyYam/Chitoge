@@ -30,7 +30,7 @@ export default class Command extends BaseCommand {
         let hug = n[Math.floor(Math.random() * n.length)]
         return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
             mimetype: Mimetype.gif,
-            caption: `*@${user2.split('@')[0]} got scared of @${user1.split('@')[0]}*`,
+            caption: `@${user2.split('@')[0]} got scared of @${user1.split('@')[0]}`,
             contextInfo: { mentionedJid: [user2, user1] }
         })
     }
