@@ -12,8 +12,9 @@ export default class MessageHandler {
     handleMessage = async (M: ISimplifiedMessage): Promise<void> => {
         if (M.WAMessage.key.fromMe || M.from.includes('status')) return void null
         const { args, groupMetadata, sender } = M
-        if (!M.groupMetadata && M.chat === 'dm') return void null;
-        if ((await this.client.getGroupData(M.from)).mod && M.groupMetadata?.admins?.includes(this.client.user.jid)) this.moderate(M)
+        if (!M.groupMetadata && M.chat === 'dm') return void null
+        if ((await this.client.getGroupData(M.from)).mod && M.groupMetadata?.admins?.includes(this.client.user.jid))
+            this.moderate(M)
         if (!args[0] || !args[0].startsWith(this.client.config.prefix))
             return void this.client.log(
                 `${chalk.blueBright('MSG')} from ${chalk.green(sender.username)} in ${chalk.cyanBright(
@@ -27,12 +28,12 @@ export default class MessageHandler {
                 sender.username
             )} in ${chalk.cyanBright(groupMetadata?.subject || 'DM')}`
         )
-        if (!command) return void M.reply('No such command, Baka! Have you never seen someone use the command *:help*.')
+        if (!command) return void M.reply('No Command Found! Try using one from the help list.')
         const user = await this.client.getUser(M.sender.jid)
         if (user.ban) return void M.reply("You're Banned from using commands.")
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
         if (state) return void M.reply(`✖ This command is disabled${state.reason ? ` for ${state.reason}` : ''}`)
-        if (!command.config?.dm && M.chat === 'dm') return void M.reply('✖ This command can only be used in groups')
+        if (!command.config?.dm && M.chat === 'dm') return void M.reply('This command can only be used in groups')
         if (command.config?.adminOnly && !M.sender.isAdmin)
             return void M.reply(`Only admins are allowed to use this command`)
         try {
