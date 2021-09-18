@@ -2,4 +2,4 @@ return void M.reply(await request.buffer('https://wallpapercave.com/uwp/uwp14010
 MessageType.image,
             undefined,
             undefined,
-            `*No such command! Bakaa*`
+            `*tatakae! tatakaun da yo!*`
