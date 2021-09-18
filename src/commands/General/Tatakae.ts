@@ -1,4 +1,5 @@
-Hello Buddy!
-<img src="https://c.tenor.com/WQuwsU8ClQwAAAAC/eren-jager-eren.gif" width="600"></br>
-
-Well. I'm Eren Yeager....
+return void M.reply(await request.buffer('https://wallpapercave.com/uwp/uwp1401012.png'),
+MessageType.image,
+            undefined,
+            undefined,
+            `*No such command! Bakaa*`
