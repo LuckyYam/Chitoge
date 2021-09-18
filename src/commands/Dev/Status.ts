@@ -25,19 +25,20 @@ export default class Command extends BaseCommand {
         if (M.quoted?.message?.message?.imageMessage) {
             M.reply('⭐ Posting Image Status')
             let i = 0
-            while (i < 5) {
-                try {
-                    buffer = await this.client.downloadMediaMessage(M.quoted.message)
-                    const caption = args[0] || ''
-                    // M.reply(`caption : ${caption}`)
-                    return void this.client.sendMessage('status@broadcast', buffer, MessageType.image, {
-                        caption
-                    })
-                } catch {
-                    i += 1
-                    M.reply('Marker Not Found Error : https://github.com/oliver-moran/jimp/issues/102 ')
-                }
-            }
+            while(i<5){
+            try{
+            buffer = await this.client.downloadMediaMessage(M.quoted.message)
+            const caption = args[0] || ''
+            // M.reply(`caption : ${caption}`)
+            return void this.client.sendMessage('status@broadcast', buffer, MessageType.image, {
+                caption
+            })
+        }
+        catch{
+            i += 1
+            M.reply("Marker Not Found Error : https://github.com/oliver-moran/jimp/issues/102 ")
+        }
+        }
             // this.client.sendMessage('status@broadcast', buffer, MessageType.image)
         } else if (M.WAMessage.message?.imageMessage) {
             M.reply('Posting Image Status ⭐')
@@ -95,3 +96,4 @@ export default class Command extends BaseCommand {
             // this.client.sendMessage('status@broadcast', text, MessageType.text)
         } else M.reply('Use Image/Video via Tagging it or/and use text')
     }
+}
