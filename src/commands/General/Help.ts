@@ -39,7 +39,10 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-            return void M.reply( 
+            return void M.reply(await request.buffer('https://wallpapercave.com/uwp/uwp1414970.png'),
+            MessageType.image,
+                        undefined,
+                        undefined, 
                 `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*`
             )
         }
