@@ -13,7 +13,7 @@ export default class Command extends BaseCommand {
             command: 'waifu',
             description: 'Sends you random waifu image',
             aliases: ['waifu'],
-            category: 'fun',
+            category: 'weeb',
             usage: `${client.config.prefix}waifu`
         })
     }
@@ -24,14 +24,16 @@ export default class Command extends BaseCommand {
         const buffer = await request.buffer(data.url).catch((e) => {
             return void M.reply(e.message)
         })
+        let counter = 0
         while (true) {
+            counter += 1
             try {
                 M.reply(
                     buffer || 'Could not fetch image. Please try again later',
                     MessageType.image,
                     undefined,
                     undefined,
-                    `🌟 Here you go\n`,
+                    `Here you go 🌟\n`,
                     undefined
                 )
                 break
