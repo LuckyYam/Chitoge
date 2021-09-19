@@ -1,7 +1,7 @@
 <div align="center">
 <a href="https://ibb.co/wQ4GK21"><img src="https://c4.wallpaperflare.com/wallpaper/67/362/530/anime-nisekoi-chitoge-kirisaki-wallpaper-preview.jpg" alt="Chitoge" border="0"></a>
 
-# **Announcement : Everyone is forking my repo but they ain't giving me a star 🥲
+# Announcement : Everyone is forking my repo but they ain't giving me a star 🥲
 
 # **Chitoge : The Next Level Void WhatsApp BOTTO**
 [![CodeFactor](https://www.codefactor.io/repository/github/prajjwaldatir/kaoi/badge)](https://www.codefactor.io/repository/github/prajjwaldatir/kaoi)
