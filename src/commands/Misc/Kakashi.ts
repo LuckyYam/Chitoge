@@ -20,11 +20,11 @@ export default class Command extends BaseCommand {
 
         
         
-return void M.reply(await request.buffer('https://i.pinimg.com/736x/ca/e7/8a/cae78ad7f8e6459ad20bde350e2eb78b.jpg'),
+return void M.reply(await request.buffer('https://freeaddon.com/wallpaper/kakashi/thumb444x250-07.jpg'),
 MessageType.image,
             undefined,
             undefined,
-            `🌟 *Chitoge* 🌟 \n\n🍀 *Description:* Maintained Fork of WhatsApp Botto Void\n\n🌐 *URL:* https://github.com/ShinNouzen/Chitoge#readme\n\n📂 *Repository:* https://github.com/ShinNouzen/Chitoge`
+            `✇ *Kakashi* ✇ \n\n🍀 *Description:* Maintained Fork of WhatsApp Botto Void\n\n🌐 *URL:* https://github.com/ShinNouzen/Chitoge#readme\n\n📂 *Repository:* https://github.com/ShinNouzen/Chitoge`
            
 
 )
