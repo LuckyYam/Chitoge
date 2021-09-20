@@ -1,10 +1,10 @@
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
 import WAClient from '../../lib/WAClient'
-import { ICommand, IParsedArgs, ISimplifiedMessage } from '../../typings'
-import { MessageType } from '@adiwajshing/baileys'
 import request from '../../lib/request'
+import { MessageType } from '@adiwajshing/baileys'
 
+import { ICommand, IParsedArgs, ISimplifiedMessage } from '../../typings'
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
@@ -13,6 +13,7 @@ export default class Command extends BaseCommand {
             description: 'Displays the help menu or shows the info of the command provided',
             category: 'general',
             usage: `${client.config.prefix}help (command_name)`,
+            dm: true,
             aliases: ['h']
         })
     }
@@ -39,7 +40,10 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-            return void M.reply( 
+            return void M.reply( await request.buffer('https://static.wikia.nocookie.net/loveinterest/images/a/a2/Chitoge_Key_Visual.png/revision/latest?cb=20140806185340'),  
+                                MessageType.image,            
+                                undefined,
+                                undefined,
                 `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*`
             )
         }
@@ -60,5 +64,5 @@ export default class Command extends BaseCommand {
         )
     }
 
-    emojis = ['♟', '♻️', '🌈', '🎵', '❄', '👑', '🚫', '♦️', '✨']
+    emojis = ['🌀', '♻️', '🌈', '🎵', '❄', '👑', '🚫', '♦️', '✨']
 }
