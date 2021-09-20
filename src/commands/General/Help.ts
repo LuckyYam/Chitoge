@@ -1,11 +1,10 @@
-  
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
 import WAClient from '../../lib/WAClient'
-import request from '../../lib/request'
-import { MessageType } from '@adiwajshing/baileys'
-
 import { ICommand, IParsedArgs, ISimplifiedMessage } from '../../typings'
+import { MessageType } from '@adiwajshing/baileys'
+import request from '../../lib/request'
+
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
@@ -14,7 +13,6 @@ export default class Command extends BaseCommand {
             description: 'Displays the help menu or shows the info of the command provided',
             category: 'general',
             usage: `${client.config.prefix}help (command_name)`,
-            dm: true,
             aliases: ['h']
         })
     }
@@ -33,7 +31,7 @@ export default class Command extends BaseCommand {
                     categories[info.config.category].push(info)
                 }
             }
-            let text = `✇𝐤𝐚𝐤𝐚𝐬𝐡𝐢'𝐬 𝐂𝐨𝐦𝐦𝐚𝐧𝐝 𝐋𝐢𝐬𝐭✇\n\n`
+            let text = `🌟 *Chitoge's Command List* 🌟\n\n`
             const keys = Object.keys(categories)
             for (const key of keys)
                 text += `${this.emojis[keys.indexOf(key)]} *${this.client.util.capitalize(key)}*\n❐ \`\`\`${categories[
@@ -41,10 +39,7 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-            return void M.reply( await request.buffer('https://static.wikia.nocookie.net/loveinterest/images/a/a2/Chitoge_Key_Visual.png/revision/latest?cb=20140806185340'),  
-                                MessageType.image,            
-                                undefined,
-                                undefined,
+            return void M.reply( 
                 `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*`
             )
         }
@@ -65,5 +60,5 @@ export default class Command extends BaseCommand {
         )
     }
 
-    emojis = ['🌀', '♻️', '🌈', '🎵', '❄', '👑', '🚫', '♦️', '✨']
+    emojis = ['♟', '♻️', '🌈', '🎵', '❄', '👑', '🚫', '♦️', '✨']
 }
