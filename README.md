@@ -20,7 +20,7 @@
 - Built with [Baileys](https://github.com/adiwajshing/baileys) (The Best WhatsApp Library Out There) 
 
 ## 💻 Deploy/Hosting Guide
-- Section Moved to [Void-Guides](https://github.com/Synthesized-Infinity/Void-Guides)
+- Section Moved to [Chitoge-Guides](https://github.com/ShinNouzen/Chitoge-Guides)
 ## 🍥 Features of the Repo
 - To view all features, click here➡️[Chitoge_featuresList.md](https://github.com/ShinNouzen/Chitoge/blob/main/Features.md)
 
