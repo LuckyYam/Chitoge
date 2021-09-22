@@ -16,11 +16,20 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
+        // from assets/images/chitoge-source.png
+        const image = this.client.assets.get('chitoge-source')
+        if (!image) return void null
         return void M.reply(
-            `🌟 *Chitoge* 🌟\n\n🍀 *Description:* Maintained Fork of WhatsApp Botto Void\n\n🌐 *URL:* https://github.com/ShinNouzen/Chitoge \n`
-        ).catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+            image,
+            MessageType.image,
+            undefined,
+            undefined,
+            `🌟 *Chitoge* 🌟\n\n🍀 *Description: Maintained Fork of WhatsApp Botto Void.*\n\n🌐 *URL: https://github.com/ShinNouzen/Chitoge*\n`
+        )
     }
 }
+          
+       
 
 
     
