@@ -16,7 +16,7 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // from assets/images/chitoge.png
         const image = this.client.assets.get('chitoge')
         if (!image) return void null
         return void M.reply(
