@@ -11,7 +11,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'waifu',
-            description: 'Sends you random waifu image',
+            description: 'Will send you random waifu image.',
             aliases: ['waifu'],
             category: 'weeb',
             usage: `${client.config.prefix}waifu`
@@ -24,9 +24,7 @@ export default class Command extends BaseCommand {
         const buffer = await request.buffer(data.url).catch((e) => {
             return void M.reply(e.message)
         })
-        let counter = 0
         while (true) {
-            counter += 1
             try {
                 M.reply(
                     buffer || 'Could not fetch image. Please try again later',
@@ -35,10 +33,16 @@ export default class Command extends BaseCommand {
                     undefined,
                     `Here you go 🌟\n`,
                     undefined
-                )
+                ).catch((e) => {
+                    console.log(`This Error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`)
+                    // console.log('Failed')
+                    M.reply(`Could not fetch image. Here's the URL: ${data.url}`)
+                })
                 break
             } catch (e) {
-                console.log(e)
+                // console.log('Failed2')
+                M.reply(`Could not fetch image. Here's the URL : ${data.url}`)
+                console.log(`This error occurs when an image is sent via M.reply()\n Parent Catch Block : \n${e}`)
             }
         }
         return void null
