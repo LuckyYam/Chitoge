@@ -1,7 +1,7 @@
 import { MessageType } from '@adiwajshing/baileys'
-import { join } from 'path'
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
+import request from '../../lib/request'
 import WAClient from '../../lib/WAClient'
 import { ISimplifiedMessage } from '../../typings'
 
@@ -11,39 +11,31 @@ export default class Command extends BaseCommand {
             command: 'chitoge',
             description: 'Displays the info',
             category: 'misc',
-            usage: `${client.config.prefix}chitoge`
+            usage: `${client.config.prefix}chitoge`,
         })
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        // from assets/images/chitoge-source.png
-        const image = this.client.assets.get('chitoge-source')
-        if (!image) return void null
-        return void M.reply(
-            image,
-            MessageType.image,
+        
+
+        
+        
+return void M.reply(await request.buffer('https://i.pinimg.com/736x/ca/e7/8a/cae78ad7f8e6459ad20bde350e2eb78b.jpg'),
+MessageType.image,
             undefined,
             undefined,
-            `🌟 *Chitoge* 🌟\n\n🍀 *Description: Maintained Fork of WhatsApp Botto Void.*\n\n🌐 *URL: https://github.com/ShinNouzen/Chitoge*\n`
-        )
+            `🌟 *Chitoge* 🌟 \n\n🍀 *Description:* Maintained Fork of WhatsApp Botto Void\n\n🌐 *URL:* https://github.com/ShinNouzen/Chitoge\n`
+           
+
+)
+
+
     }
+
+
+
+
+
+
+
 }
-          
-       
-
-
-    
-        
-           
-           
-            
-            
-        
-    
-
-    
-        
-           
-           
-           
-   
