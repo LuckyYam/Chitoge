@@ -27,14 +27,13 @@ MessageType.image,
 
                     
 )
-
-
+                break
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        return void null
     }
+}
 
-
-
-
-
-
-
-}                    
+                  
