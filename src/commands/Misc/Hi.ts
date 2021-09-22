@@ -23,6 +23,18 @@ return void M.reply(await request.buffer('https://wallpaperaccess.com/full/53049
 MessageType.image,
             undefined,
             undefined,
-            `I don't have time to have a conversation with someone like you. Use something from *:help* list if you want anything`
+            `I don't have time to have a conversation with someone like you. Use something from *:help* list if you want anything.`
+
+                    
+)
+
+
     }
-}
+
+
+
+
+
+
+
+}                    
