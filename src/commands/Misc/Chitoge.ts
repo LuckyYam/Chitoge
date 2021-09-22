@@ -16,11 +16,25 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        return void M.reply(await Request.buffer('https://i.pinimg.com/736x/ca/e7/8a/cae78ad7f8e6459ad20bde350e2eb78b.jpg'),
-MessageType.image,
-            undefined,
-            undefined,
+        return void M.reply(
             `🌟 *Chitoge* 🌟\n\n🍀 *Description:* Maintained Fork of WhatsApp Botto Void\n\n🌐 *URL:* https://github.com/ShinNouzen/Chitoge \n`
         ).catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
     }
 }
+
+
+    
+        
+           
+           
+            
+            
+        
+    
+
+    
+        
+           
+           
+           
+   
