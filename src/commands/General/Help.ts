@@ -40,7 +40,7 @@ export default class Command extends BaseCommand {
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
             return void M.reply(
-                this.client.assets.get('Chitoge') || ,
+                this.client.assets.get('Chitoge'),
                 MessageType.image,
                 undefined,
                 undefined, 
