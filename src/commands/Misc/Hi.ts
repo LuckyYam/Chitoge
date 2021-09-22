@@ -1,9 +1,9 @@
 import { MessageType } from '@adiwajshing/baileys'
+import { join } from 'path'
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
-import request from '../../lib/request'
 import WAClient from '../../lib/WAClient'
-import { ISimplifiedMessage } from '../../typings'
+import { IPackage, ISimplifiedMessage } from '../../typings'
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
@@ -11,29 +11,20 @@ export default class Command extends BaseCommand {
             command: 'hi',
             description: 'Well....',
             category: 'misc',
-            usage: `${client.config.prefix}hi`,
+            usage: `${client.config.prefix}hi`
         })
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        
-        
-        
-return void M.reply(await request.buffer('https://wallpaperaccess.com/full/5304903.jpg'),
-MessageType.image,
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const image = this.client.assets.get('HI')
+        if (!image) return void null
+        return void M.reply(
+            image,
+            MessageType.image,
             undefined,
             undefined,
-            `I don't have time to have a conversation with someone like you. Use something from *:help* list if you want anything.`
-
-                    
-)
-                break
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        return void null
+            `I don't have to have a conversation with someone like you. Use something from *:help* list if you want anything.`
+        )
     }
 }
-
-                  
