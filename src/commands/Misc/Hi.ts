@@ -3,13 +3,13 @@ import { join } from 'path'
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
 import WAClient from '../../lib/WAClient'
-import { IPackage, ISimplifiedMessage } from '../../typings'
+import { ISimplifiedMessage } from '../../typings'
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'hi',
-            description: 'Well....',
+            description: 'Say hi to the bot.',
             category: 'misc',
             usage: `${client.config.prefix}hi`
         })
@@ -24,7 +24,23 @@ export default class Command extends BaseCommand {
             MessageType.image,
             undefined,
             undefined,
-            `I don't have to have a conversation with someone like you. Use something from *:help* list if you want anything.`
+            `I don't have time to have a conversation with someone like you. Use something from *:help* list if you want anything.\n`
         )
     }
 }
+          
+       
+
+
+    
+        
+           
+           
+            
+            
+       
+        
+           
+           
+           
+   
