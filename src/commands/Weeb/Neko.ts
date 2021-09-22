@@ -10,35 +10,39 @@ import { MessageType } from '@adiwajshing/baileys'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'neko',
-            description: 'Will Send you random neko image',
-            aliases: ['neko'],
+            command: 'shinobu-paper',
+            description: 'Will send you random Shinobu Oshino (From Bakemonogatari Sereis) image.',
+            aliases: ['shinobu-simp'],
             category: 'weeb',
-            usage: `${client.config.prefix}neko`
+            usage: `${client.config.prefix}shinobu-paper`
         })
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        // fetch result of https://api.waifu.pics/sfw/neko from the API using axios
-        const { data } = await axios.get('https://api.waifu.pics/sfw/neko')
+        // fetch result of https://api.waifu.pics/sfw/shinobu from the API using axios
+        const { data } = await axios.get('https://api.waifu.pics/sfw/shinobu')
         const buffer = await request.buffer(data.url).catch((e) => {
             return void M.reply(e.message)
         })
-        let counter = 0
         while (true) {
-            counter += 1
             try {
                 M.reply(
                     buffer || 'Could not fetch image. Please try again later',
                     MessageType.image,
                     undefined,
                     undefined,
-                    `🌟 Well...\n`,
+                    `🌟 For Shinobu simp UwU\n`,
                     undefined
-                )
+                ).catch((e) => {
+                    console.log(`This error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`)
+                    // console.log('Failed')
+                    M.reply(`Could not fetch image. Here's the URL: ${data.url}`)
+                })
                 break
             } catch (e) {
-                console.log(e)
+                // console.log('Failed2')
+                M.reply(`Could not fetch image. Here's the URL : ${data.url}`)
+                console.log(`This error occurs when an image is sent via M.reply()\n Parent Catch Block : \n${e}`)
             }
         }
         return void null
