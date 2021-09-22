@@ -10,17 +10,17 @@ import { MessageType } from '@adiwajshing/baileys'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'shinobu-paper',
-            description: 'Will send you random Shinobu Oshino (From Bakemonogatari Sereis) image.',
-            aliases: ['shinobu-simp'],
+            command: 'neko',
+            description: 'Will send you random neko image.',
+            aliases: ['n'],
             category: 'weeb',
-            usage: `${client.config.prefix}shinobu-paper`
+            usage: `${client.config.prefix}neko`
         })
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        // fetch result of https://api.waifu.pics/sfw/shinobu from the API using axios
-        const { data } = await axios.get('https://api.waifu.pics/sfw/shinobu')
+        // fetch result of https://api.waifu.pics/sfw/neko from the API using axios
+        const { data } = await axios.get('https://api.waifu.pics/sfw/neko')
         const buffer = await request.buffer(data.url).catch((e) => {
             return void M.reply(e.message)
         })
@@ -31,7 +31,7 @@ export default class Command extends BaseCommand {
                     MessageType.image,
                     undefined,
                     undefined,
-                    `🌟 For Shinobu simp UwU\n`,
+                    `🌟 Well...\n`,
                     undefined
                 ).catch((e) => {
                     console.log(`This error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`)
