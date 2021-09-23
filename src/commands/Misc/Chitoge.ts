@@ -19,8 +19,8 @@ export default class Command extends BaseCommand {
         const n = [
             './assets/videos/chitoge/chitoge.mp4'
         ]
-        let hug = n[Math.floor(Math.random() * n.length)]
-        return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
+        let chitoge = n[Math.floor(Math.random() * n.length)]
+        return void this.client.sendMessage(M.from, { url: chitoge }, MessageType.video, {
             mimetype: Mimetype.gif,
             caption: `🌟 *Chitoge* 🌟\n\n🍀 *Description: Maintained Fork of WhatsApp Botto Void*\n\n🌐 *URL: https://github.com/ShinNouzen/Chitoge* \n` }
         )
