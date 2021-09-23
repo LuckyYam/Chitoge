@@ -17,7 +17,6 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         //from assets/images/chitoge-git.png
-        const pkg: IPackage = require(join(__dirname, '..', '..', '..', 'package.json'))
         const image = this.client.assets.get('chitoge-git')
         if (!image) return void null
         return void M.reply(
