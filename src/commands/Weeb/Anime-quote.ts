@@ -7,11 +7,11 @@ import axios from 'axios'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'anime-quote',
-            description: 'Will send you random anime quote',
-            aliases: ['ani-quote'],
+            command: 'anime-line',
+            description: 'Will send you random anime line said by a character.',
+            aliases: ['ani-line'],
             category: 'fun',
-            usage: `${client.config.prefix}anime-quote`
+            usage: `${client.config.prefix}anime-line`
         })
     }
 
@@ -20,7 +20,7 @@ export default class Command extends BaseCommand {
             .get(`https://animechan.vercel.app/api/random`)
             .then((response) => {
                 // console.log(response);
-                const text = `🍀 *Source:* ${response.data.anime}\n*💠 Charecter:* ${response.data.character}\n*🌀 Quote:* ${response.data.quote}`
+                const text = `*🎀 Line: ${response.data.quote}*\n*🎗 Said by: ${response.data.character}\n*📛 Source:* ${response.data.anime}`
                 M.reply(text)
             })
             .catch((err) => {
