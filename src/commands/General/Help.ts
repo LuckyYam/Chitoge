@@ -39,7 +39,7 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-            return void M.reply(await request.buffer, { url: https://c.tenor.com/ZnFB33aZoyMAAAAC/chitoge-kirisaki-nisekoi.gif }, MessageType.video, { 
+            return void M.reply(await request.buffer, { url: 'https://c.tenor.com/ZnFB33aZoyMAAAAC/chitoge-kirisaki-nisekoi.gif' }, MessageType.video, { 
                 mimetype: Mimetype.gif, 
                 caption: `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*` }
             )
