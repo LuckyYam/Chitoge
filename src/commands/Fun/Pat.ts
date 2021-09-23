@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'pat',
             description: 'Pat someone',
-            category: 'fun',
+            category: 'fun-2',
             usage: `${client.config.prefix}pat [tag|quote users]`,
         })
     }
