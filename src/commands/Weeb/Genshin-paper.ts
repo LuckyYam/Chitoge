@@ -35,12 +35,12 @@ export default class Command extends BaseCommand {
                 ).catch((e) => {
                     console.log(`This error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`)
                     // console.log('Failed')
-                    M.reply(`Could not fetch image. Here's the URL: ${data.url}`)
+                    M.reply(`Could not fetch image. Here's the URL: ${result.url}`)
                 })
                 break
             } catch (e) {
                 // console.log('Failed2')
-                M.reply(`Could not fetch image. Here's the URL : ${data.url}`)
+                M.reply(`Could not fetch image. Here's the URL : ${result.url}`)
                 console.log(`This error occurs when an image is sent via M.reply()\n Parent Catch Block : \n${e}`)
             }
         }
