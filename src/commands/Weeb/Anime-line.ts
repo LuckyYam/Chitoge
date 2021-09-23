@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
             command: 'anime-line',
             description: 'Will send you random anime line said by a character.',
             aliases: ['ani-line'],
-            category: 'fun',
+            category: 'weeb',
             usage: `${client.config.prefix}anime-line`
         })
     }
