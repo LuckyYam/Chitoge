@@ -17,7 +17,7 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         //from assets/images/chitoge-git.png
-        const image = this.client.assets.get('chitoge-git')
+        const image = this.client.assets.get('chitoge')
         if (!image) return void null
         return void M.reply(
             `🌟 *Chitoge* 🌟\n\n🍀 *Description: Maintained Fork of WhatsApp Botto Void*\n\n🌐 *URL: https://github.com/ShinNouzen/Chitoge* \n`
