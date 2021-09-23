@@ -9,18 +9,41 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'chitoge',
-            description: 'Displays the info',
+            description: 'Displays the info.',
             category: 'misc',
             usage: `${client.config.prefix}chitoge`
         })
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        //from assets/images/chitoge-git.png
-        const image = this.client.assets.get('chitoge')
+        // from assets/images/misc.png
+        const image = this.client.assets.get('misc')
         if (!image) return void null
         return void M.reply(
+            image,
+            MessageType.image,
+            undefined,
+            undefined,
             `🌟 *Chitoge* 🌟\n\n🍀 *Description: Maintained Fork of WhatsApp Botto Void*\n\n🌐 *URL: https://github.com/ShinNouzen/Chitoge* \n`
-        ).catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+        )
     }
 }
+          
+       
+
+
+    
+        
+           
+           
+            
+            
+        
+    
+
+    
+        
+           
+           
+           
+   
