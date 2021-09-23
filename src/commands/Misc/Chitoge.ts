@@ -1,4 +1,4 @@
-import { MessageType } from '@adiwajshing/baileys'
+import { MessageType, Mimetype } from '@adiwajshing/baileys'
 import { join } from 'path'
 import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
@@ -16,8 +16,13 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        return void M.reply(
-            `🌟 *Chitoge* 🌟\n\n🍀 *Description: Maintained Fork of WhatsApp Botto Void*\n\n🌐 *URL: https://github.com/ShinNouzen/Chitoge* \n`
+        const n = [
+            './assets/videos/chitoge/chitoge.mp4'
+        ]
+        let hug = n[Math.floor(Math.random() * n.length)]
+        return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
+            mimetype: Mimetype.gif,
+            caption: `🌟 *Chitoge* 🌟\n\n🍀 *Description: Maintained Fork of WhatsApp Botto Void*\n\n🌐 *URL: https://github.com/ShinNouzen/Chitoge* \n` }
         )
     }
 }
