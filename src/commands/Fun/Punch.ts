@@ -29,8 +29,8 @@ export default class Command extends BaseCommand {
             'https://c.tenor.com/44IcPjhMv5oAAAAd/punch-anime.gif'
             
         ]
-        let hug = n[Math.floor(Math.random() * n.length)]
-        return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
+        let punch = n[Math.floor(Math.random() * n.length)]
+        return void this.client.sendMessage(M.from, { url: punch }, MessageType.video, {
             mimetype: Mimetype.gif,
             caption: `@${user1.split('@')[0]} punched @${user2.split('@')[0]}`,
             contextInfo: { mentionedJid: [user1, user2] }
