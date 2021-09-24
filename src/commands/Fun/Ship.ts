@@ -16,8 +16,9 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        arg = body.trim().split(' ')
-            const per = Math.floor(Math.random() * 100)
+        const user1 = M.sender.jid
+        const user2 = M.mentioned[0]
+        const per = Math.floor(Math.random() * 100)
 
 if (per < 25) { 
 var sentence = `${per}% Worse than average 😔`
@@ -33,7 +34,7 @@ var sentence = `${per}% You two are fated to be together 💙`
         return void M.reply(
             `❣️ *Matchmaking...*
 ---------------------------------
-    *${arg[1]}  x  ${arg[2]}*
+    @${user1.split('@')[0]}  x  @${user2.split('@')[0]}
 ---------------------------------
     ${sentence}`
         ).catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
