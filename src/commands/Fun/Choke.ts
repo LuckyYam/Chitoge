@@ -31,8 +31,8 @@ export default class Command extends BaseCommand {
             'https://i.gifer.com/Lt4T.gif',
             'https://image.myanimelist.net/ui/DBvbJ4grTZuOgR3YyWCliY7znqMF1sehfeBTvW4pd3yUZF6Uy-1Ad36eR_Ho11Im1eEWqB8TQcM6mCjpd3LhLg'
         ]
-        let hug = n[Math.floor(Math.random() * n.length)]
-        return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
+        let choke = n[Math.floor(Math.random() * n.length)]
+        return void this.client.sendMessage(M.from, { url: choke }, MessageType.video, {
             mimetype: Mimetype.gif,
             caption: `@${user1.split('@')[0]} choked @${user2.split('@')[0]}`,
             contextInfo: { mentionedJid: [user1, user2] }
