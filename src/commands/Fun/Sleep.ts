@@ -27,8 +27,8 @@ export default class Command extends BaseCommand {
             'https://c.tenor.com/pL8FEIDQABUAAAAC/sleeping-anime.gif',
             'https://i.pinimg.com/originals/5b/cf/f3/5bcff30caa43ce5fd9dc0da6851fb5b4.gif'
         ]
-        let hug = n[Math.floor(Math.random() * n.length)]
-        return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
+        let sleep = n[Math.floor(Math.random() * n.length)]
+        return void this.client.sendMessage(M.from, { url: sleep }, MessageType.video, {
             mimetype: Mimetype.gif,
             caption: `@${user1.split('@')[0]} slept with @${user2.split('@')[0]}`,
             contextInfo: { mentionedJid: [user1, user2] }
