@@ -26,8 +26,8 @@ export default class Command extends BaseCommand {
             'https://i.gifer.com/R8ul.gif',
             'https://i.gifer.com/DLTG.gif'
         ]
-        let hug = n[Math.floor(Math.random() * n.length)]
-        return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
+        let slash = n[Math.floor(Math.random() * n.length)]
+        return void this.client.sendMessage(M.from, { url: slash }, MessageType.video, {
             mimetype: Mimetype.gif,
             caption: `@${user1.split('@')[0]} slashed @${user2.split('@')[0]}`,
             contextInfo: { mentionedJid: [user1, user2] }
