@@ -23,10 +23,10 @@ export default class Command extends BaseCommand {
         // let username1 = user1.replace('@s.whatsapp.net', '')
         // let username2 = user2.replace('@s.whatsapp.net', '')
         const n = [
-            './assets/videos/punch/punch1.mp4',
-            './assets/videos/punch/punch2.mp4',
-            './assets/videos/punch/punch3.mp4',
-            './assets/videos/punch/punch4.mp4'
+            'https://c.tenor.com/VrWzG0RWmRQAAAAC/anime-punch.gif',
+            'https://m.imgur.com/jznCcr2',
+            'https://m.imgur.com/AmQvKOV',
+            'https://c.tenor.com/44IcPjhMv5oAAAAd/punch-anime.gif'
             
         ]
         let hug = n[Math.floor(Math.random() * n.length)]
