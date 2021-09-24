@@ -22,9 +22,9 @@ export default class Command extends BaseCommand {
         // let username1 = user1.replace('@s.whatsapp.net', '')
         // let username2 = user2.replace('@s.whatsapp.net', '')
         const n = [
-            './assets/videos/slash/slash2.mp4',
-            './assets/videos/slash/slash1.mp4',
-            './assets/videos/slash/slash.mp4'
+            'https://c.tenor.com/V1xOIRDVMz4AAAAC/anime-slash.gif',
+            'https://i.gifer.com/R8ul.gif',
+            'https://i.gifer.com/DLTG.gif'
         ]
         let hug = n[Math.floor(Math.random() * n.length)]
         return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
