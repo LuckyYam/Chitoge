@@ -22,10 +22,14 @@ export default class Command extends BaseCommand {
         // let username1 = user1.replace('@s.whatsapp.net', '')
         // let username2 = user2.replace('@s.whatsapp.net', '')
         const n = [
-            './assets/videos/choke/choke2.mp4',
-            './assets/videos/choke/choke1.mp4',
-            './assets/videos/choke/choke.mp4',
-            './assets/videos/choke/choke3.mp4'
+            'https://c.tenor.com/ixaDEFhZJSsAAAAC/anime-choke.gif',
+            'https://c.tenor.com/USfsssJOQOUAAAAC/kurosue-anime.gif',
+            'https://c.tenor.com/GHXnJ26Mv9QAAAAd/bungou-stray-dogs-choke.gif',
+            'https://c.tenor.com/wwEeNH2M1qoAAAAC/anime-choke.gif',
+            'https://c.tenor.com/XLNHiaNsW20AAAAC/choke-anime.gif',
+            'https://c.tenor.com/I9bMxR0ETPMAAAAM/dying-anime.gif',
+            'https://i.gifer.com/Lt4T.gif',
+            'https://image.myanimelist.net/ui/DBvbJ4grTZuOgR3YyWCliY7znqMF1sehfeBTvW4pd3yUZF6Uy-1Ad36eR_Ho11Im1eEWqB8TQcM6mCjpd3LhLg'
         ]
         let hug = n[Math.floor(Math.random() * n.length)]
         return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
