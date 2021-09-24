@@ -27,8 +27,8 @@ export default class Command extends BaseCommand {
             'https://c.tenor.com/r1G0K33FM8IAAAAM/anime-scared.gif',
             'https://c.tenor.com/J0pSGU_uzTAAAAAM/scared-anime.gif'
         ]
-        let hug = n[Math.floor(Math.random() * n.length)]
-        return void this.client.sendMessage(M.from, { url: hug }, MessageType.video, {
+        let scare = n[Math.floor(Math.random() * n.length)]
+        return void this.client.sendMessage(M.from, { url: scare }, MessageType.video, {
             mimetype: Mimetype.gif,
             caption: `@${user2.split('@')[0]} got scared of @${user1.split('@')[0]}`,
             contextInfo: { mentionedJid: [user2, user1] }
