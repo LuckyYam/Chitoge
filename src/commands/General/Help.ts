@@ -2,7 +2,7 @@ import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
 import WAClient from '../../lib/WAClient'
 import { ICommand, IParsedArgs, ISimplifiedMessage } from '../../typings'
-import { MessageType, Mimetype } from '@adiwajshing/baileys'
+import { MessageType, MessageOptions, Mimetype } from '@adiwajshing/baileys'
 import request from '../../lib/request'
 
 
@@ -18,10 +18,30 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage, parsedArgs: IParsedArgs): Promise<void> => {
-            const n = [
-            './assets/videos/Chitoge/chitoge.mp4'
-        ]
-        let chitoge = n[Math.floor(Math.random() * n.length)]
+            const rows = [
+ {title: 'help', description: "🚀 *Command:* Help \n⛩ *Category:* General\n♦️ *Aliases:* H\n💎 *Usage:* ${this.client.config.prefix}help [command]\n\n📒 *Description:* Displays the help menu or shows the info of the command provided.", rowId:"rowid1"},
+ {title: 'admins', description: "🚀 *Command:* Admins \n⛩ *Category:* General\n💎 *Usage:* ${this.client.config.prefix}admins\n\n📒 *Description:* Tags all admins 🎖️", rowId:"rowid2"},
+ {title: 'google', description: "🚀 *Command:* Google \n⛩ *Category:* General\n♦️ *Aliases:* G, Search\n💎 *Usage:* ${this.client.config.prefix}google [title]\n\n📒 *Description:* ️Searches the given title in google.", rowId:"rowid3"},
+ {title: 'mods', description: "🚀 *Command:* Mods \n⛩ *Category:* General\n♦️ *Aliases:* Moderators, Mod, Owner\n💎 *Usage:* ${this.client.config.prefix}mod \n\n📒 *Description:* ️Displays the Moderator's contact info.", rowId:"rowid4"},
+ {title: 'profile', description: "🚀 *Command:* Profile \n⛩ *Category:* General\n♦️ *Aliases:* P\n💎 *Usage:* ${this.client.config.prefix}profile [Tag/Quote user]\n\n📒 *Description:* ️Displays user-profile 📜", rowId:"rowid5"},
+ {title: 'xp', description: "🚀 *Command:* Xp \n⛩ *Category:* General\n♦️ *Aliases:* Exp\n💎 *Usage:* ${this.client.config.prefix}xp [Tag/Quote user] \n\n📒 *Description:* ️Displays user's Xp ⭐", rowId:"rowid6"},
+ {title: 'xp', description: "🚀 *Command:* Xp \n⛩ *Category:* General\n♦️ *Aliases:* Exp\n💎 *Usage:* ${this.client.config.prefix}xp [Tag/Quote user] \n\n📒 *Description:* ️Displays user's Xp ⭐", rowId:"rowid7"},
+ {title: 'Bite', description: "🚀 *Command:* Bite\n⛩ *Category:* Fun\n💎 *Usage:* ${this.client.config.prefix}bite [Tag/Quote user] \n\n📒 *Description:* ️Bite Someone.", rowId:"rowid8"},
+ {title: 'Bonk', description: "🚀 *Command:* Bonk \n⛩ *Category:* Fun\n💎 *Usage:* ${this.client.config.prefix}bite [Tag/Quote user] \n\n📒 *Description:* ️Bonk Someone", rowId:"rowid9"},
+ {title: 'Chess', description: "🚀 *Command:* Chess \n⛩ *Category:* Fun\n💎 *Usage:* ${this.client.config.prefix}chess \n\n📒 *Description:* Play chess.", rowId:"rowid10"},
+ {title: 'Bonk', description: "🚀 *Command:* Bonk \n⛩ *Category:* Fun\n💎 *Usage:* ${this.client.config.prefix}bite [Tag/Quote user] \n\n📒 *Description:* ️Bonk Someone", rowId:"rowid11"}
+]
+            const buttons = [
+  {buttonId: 'id1', buttonText: {displayText: 'Test'}, type: 1},
+  {buttonId: 'id2', buttonText: {displayText: 'Well'}, type: 1}
+]
+            const buttonMessage = {
+    contentText: "Hi it's button message",
+    footerText: 'Hello World',
+    buttons: buttons,
+    headerType: 1
+}
+            
         if (!parsedArgs.joined) {
             const commands = this.handler.commands.keys()
             const categories: { [key: string]: ICommand[] } = {}
@@ -43,9 +63,8 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-            return void this.client.sendMessage(M.from, { url: chitoge }, MessageType.video, {
-            mimetype: Mimetype.gif,
-            caption: `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*` }
+            return void this.client.sendMessage(M.from, buttonMessage, MessageType.buttonsMessage
+                 `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*` }
             )
         }
         const key = parsedArgs.joined.toLowerCase()
