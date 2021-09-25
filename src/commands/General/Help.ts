@@ -2,7 +2,7 @@ import MessageHandler from '../../Handlers/MessageHandler'
 import BaseCommand from '../../lib/BaseCommand'
 import WAClient from '../../lib/WAClient'
 import { ICommand, IParsedArgs, ISimplifiedMessage } from '../../typings'
-import { MessageType, MessageOptions, Mimetype } from '@adiwajshing/baileys'
+import { MessageType, Mimetype } from '@adiwajshing/baileys'
 import request from '../../lib/request'
 
 
@@ -18,8 +18,10 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage, parsedArgs: IParsedArgs): Promise<void> => {
-     
-            
+            const n = [
+            './assets/videos/Chitoge/chitoge.mp4'
+        ]
+        let chitoge = n[Math.floor(Math.random() * n.length)]
         if (!parsedArgs.joined) {
             const commands = this.handler.commands.keys()
             const categories: { [key: string]: ICommand[] } = {}
@@ -41,19 +43,27 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-             const buttons = [
-  {buttonId: 'id1', buttonText: {displayText: 'Button 1'}, type: 1},
-  {buttonId: 'id2', buttonText: {displayText: 'Button 2'}, type: 1}
-]
+            return void this.client.sendMessage(M.from, { url: chitoge }, MessageType.video, {
+            mimetype: Mimetype.gif,
+            caption: `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*` }
+            )
+        }
+        const key = parsedArgs.joined.toLowerCase()
+        const command = this.handler.commands.get(key) || this.handler.aliases.get(key)
+        if (!command) return void M.reply(`No Command of Alias Found | "${key}"`)
+        const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
+        M.reply(
+            `🚀 *Command:* ${this.client.util.capitalize(command.config?.command)}\n📉 *Status:* ${
+                state ? 'Disabled' : 'Available'
+            }\n⛩ *Category:* ${this.client.util.capitalize(command.config?.category || '')}${
+                command.config.aliases
+                    ? `\n♦️ *Aliases:* ${command.config.aliases.map(this.client.util.capitalize).join(', ')}`
+                    : ''
+            }\n🎐 *Group Only:* ${this.client.util.capitalize(
+                JSON.stringify(!command.config.dm ?? true)
+            )}\n💎 *Usage:* ${command.config?.usage || ''}\n\n📒 *Description:* ${command.config?.description || ''}`
+        )
+    }
 
-const buttonMessage = {
-    contentText: "Hi it's button message",
-    footerText: 'Hello World',
-    buttons: buttons,
-    headerType: 1
+    emojis = ['♟', '♻️', '🌈', '🎵', '❄', '👑', '🚫', '♦️', '✨']
 }
-
-            return void this.client.sendMessage(M.from, buttonMessage, MessageType.buttonsMessage),
-                 `${text} 📝 *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*` }
-              }
-            
