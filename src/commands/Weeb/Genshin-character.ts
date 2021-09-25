@@ -28,7 +28,7 @@ export default class Command extends BaseCommand {
                 let result = ``
                 let index = 1
                 for (const item of res.data?.items) {
-                    result += `🌟 *Name: ${res.data.name}*\n💠 *Vision: ${res.data.vision}*\n🎋 *Nation: ${res.data.nation}\n📛 *Affiliation: ${res.data.affiliation}*\n♦️ *Rarity: ${res.data.rarity}* 🌟\n❄ *Constellation: ${res.data.constellation}\n🎁 *Birthday: ${res.data.birthday}\n📒 *Description: ${res.data.description}  `
+                    result += `🌟 *Name: ${data.name}*\n💠 *Vision: ${data.vision}*\n🎋 *Nation: ${data.nation}\n📛 *Affiliation: ${data.affiliation}*\n♦️ *Rarity: ${data.rarity}* 🌟\n❄ *Constellation: ${data.constellation}\n🎁 *Birthday: ${data.birthday}\n📒 *Description: ${data.description}  `
                     index++
                 }
                 // return void M.reply(`🔍 Command Used : Result for *${term} character*\n\n\n ${result}`)
