@@ -20,6 +20,10 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         // fetch result of https://api.waifu.pics/nsfw/neko from the API using axios
+        if (res.nsfw && !(await this.client.getGroupData(M.from)).nsfw)
+            return void M.reply(
+                `Cannot Display NSFW content before enabling. Use ${this.client.config.prefix}activate nsfw to activate nsfw`
+            )
         const { data } = await axios.get('https://api.waifu.pics/nsfw/neko')
         const buffer = await request.buffer(data.url).catch((e) => {
             return void M.reply(e.message)
