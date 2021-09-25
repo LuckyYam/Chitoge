@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         const n = [
-            'https://static.tumblr.com/683dba754dc9e993bd9fc5de64e3e109/7cba18n/IzZodyrr8/tumblr_static_tumblr_static_8loe8h304e4gs004sgscs80o4_focused_v3.gif'
+            './assets/videos/Chitoge/chitoge-smile.mp4'
         ]
         let chitoge = n[Math.floor(Math.random() * n.length)]
         return void this.client.sendMessage(M.from, { url: chitoge }, MessageType.video, {
