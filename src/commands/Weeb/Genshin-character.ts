@@ -25,7 +25,7 @@ export default class Command extends BaseCommand {
             .then((res) => {
        // if (res.status !== 200) return void M.reply(`✖ Error: ${res.status}`)
                   let result = ``
-               // let index = 1
+                  let index = 1
                 for (const item of res.data?.items) {
                     result += `🌟 *Name: Albedo*\n💠 *Vision: ${res.data.vision}*\n🎋 *Nation: ${res.data.nation}\n📛 *Affiliation: ${res.data.affiliation}*\n♦️ *Rarity: ${res.data.rarity}* 🌟\n❄ *Constellation: ${res.data.constellation}\n🎁 *Birthday: ${res.data.birthday}\n📒 *Description: ${res.data.description}  `
                     index++
