@@ -18,17 +18,16 @@ export default class Command extends BaseCommand {
     // static count = 0
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
         if (!joined) return void M.reply('✖ Please provide the name of the character you wanna search.')
-        const term = joined.trim()
         await axios
             .get(
-                `https://api.genshin.dev/characters/${term}`
+                `https://api.genshin.dev/characters/albedo`
             )
             .then((res) => {
-        if (res.status !== 200) return void M.reply(`✖ Error: ${res.status}`)
-                let result = ``
-                let index = 1
+       // if (res.status !== 200) return void M.reply(`✖ Error: ${res.status}`)
+               // let result = ``
+               // let index = 1
                 for (const item of res.data?.items) {
-                    result += `🌟 *Name: ${data.name}*\n💠 *Vision: ${data.vision}*\n🎋 *Nation: ${data.nation}\n📛 *Affiliation: ${data.affiliation}*\n♦️ *Rarity: ${data.rarity}* 🌟\n❄ *Constellation: ${data.constellation}\n🎁 *Birthday: ${data.birthday}\n📒 *Description: ${data.description}  `
+                    result += `🌟 *Name: Albedo*\n💠 *Vision: ${res.data.vision}*\n🎋 *Nation: ${res.data.nation}\n📛 *Affiliation: ${res.data.affiliation}*\n♦️ *Rarity: ${res.data.rarity}* 🌟\n❄ *Constellation: ${res.data.constellation}\n🎁 *Birthday: ${res.data.birthday}\n📒 *Description: ${res.data.description}  `
                     index++
                 }
                 // return void M.reply(`🔍 Command Used : Result for *${term} character*\n\n\n ${result}`)
