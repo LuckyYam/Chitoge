@@ -10,11 +10,11 @@ import { MessageType } from '@adiwajshing/baileys'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'trapped-waifu',
-            description: 'Will send you random nsfw trapped waifu image.',
-            aliases: ['twaifu'],
+            command: 'trapped',
+            description: 'Will send you random nsfw trapped image.',
+            aliases: ['t'],
             category: 'nsfw',
-            usage: `${client.config.prefix}trapped-waifu`
+            usage: `${client.config.prefix}trapped`
         })
     }
 
