@@ -12,13 +12,13 @@ export default class MessageHandler {
 
     handleMessage = async (M: ISimplifiedMessage): Promise<void> => {
         if (!(M.chat === 'dm') && M.WAMessage.key.fromMe && M.WAMessage.status.toString() === '2') {
-            /* 
+            /*
             BUG : It receives message 2 times and processes it twice.
             https://github.com/adiwajshing/Baileys/blob/8ce486d/WAMessage/WAMessage.d.ts#L18529
             https://adiwajshing.github.io/Baileys/enums/proto.webmessageinfo.webmessageinfostatus.html#server_ack
             */
             M.sender.jid = this.client.user.jid
-            M.sender.username = this.client.user.name || this.client.user.vname || this.client.user.short || 'Chitoge'
+            M.sender.username = this.client.user.name || this.client.user.vname || this.client.user.short || 'Kaoi Bot'
         } else if (M.WAMessage.key.fromMe) return void null
 
         if (M.from.includes('status')) return void null
@@ -30,7 +30,9 @@ export default class MessageHandler {
                 await axios
                     .get(
                         `${encodeURI(
-                            `http://api.brainshop.ai/get?bid=${params.get('bid')}&key=${params.get('key')}&uid=${M.sender.jid}&msg=${M.args}`
+                            `http://api.brainshop.ai/get?bid=${params.get('bid')}&key=${params.get('key')}&uid=${
+                                M.sender.jid
+                            }&msg=${M.args}`
                         )}`
                     )
                     .then((res) => {
@@ -38,11 +40,10 @@ export default class MessageHandler {
                         return void M.reply(res.data.cnt)
                     })
                     .catch(() => {
-                        M.reply(`Well....`)
+                        M.reply(`Ummmmmmmmm.`)
                     })
             }
         }
-
         if (!M.groupMetadata && !(M.chat === 'dm')) return void null
 
         if ((await this.client.getGroupData(M.from)).mod && M.groupMetadata?.admins?.includes(this.client.user.jid))
@@ -50,22 +51,33 @@ export default class MessageHandler {
         if (!args[0] || !args[0].startsWith(this.client.config.prefix))
             return void this.client.log(
                 `${chalk.blueBright('MSG')} from ${chalk.green(sender.username)} in ${chalk.cyanBright(
-                    groupMetadata?.subject
+                    groupMetadata?.subject || ''
                 )}`
             )
         const cmd = args[0].slice(this.client.config.prefix.length).toLowerCase()
+        // If the group is set to muted, don't do anything
+        const allowedCommands = ['activate', 'deactivate', 'act', 'deact']
+        if (!(allowedCommands.includes(cmd) || (await this.client.getGroupData(M.from)).cmd))
+            return void this.client.log(
+                `${chalk.green('CMD')} ${chalk.yellow(`${args[0]}[${args.length - 1}]`)} from ${chalk.green(
+                    sender.username
+                )} in ${chalk.cyanBright(groupMetadata?.subject || 'DM')}`
+            )
         const command = this.commands.get(cmd) || this.aliases.get(cmd)
         this.client.log(
             `${chalk.green('CMD')} ${chalk.yellow(`${args[0]}[${args.length - 1}]`)} from ${chalk.green(
                 sender.username
             )} in ${chalk.cyanBright(groupMetadata?.subject || 'DM')}`
         )
-        if (!command) return void M.reply('No such command, Baka! Have you never seen someone use the command *:help*.')
+        if (!command) return void M.reply('No Command Found! Try using one from the help list.')
         const user = await this.client.getUser(M.sender.jid)
         if (user.ban) return void M.reply("You're Banned from using commands.")
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
-        if (state) return void M.reply(`✖ This command is disabled${state.reason ? ` for ${state.reason}` : ''}`)
+        if (state) return void M.reply(`❌ This command is disabled${state.reason ? ` for ${state.reason}` : ''}`)
         if (!command.config?.dm && M.chat === 'dm') return void M.reply('This command can only be used in groups')
+        if (command.config?.modsOnly && !this.client.config.mods?.includes(M.sender.jid)) {
+            return void M.reply(`Only MODS are allowed to use this command`)
+        }
         if (command.config?.adminOnly && !M.sender.isAdmin)
             return void M.reply(`Only admins are allowed to use this command`)
         try {
@@ -73,7 +85,8 @@ export default class MessageHandler {
             if (command.config.baseXp) {
                 await this.client.setXp(M.sender.jid, command.config.baseXp || 10, 50)
             }
-        } catch (err) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (err: any) {
             return void this.client.log(err.message, true)
         }
     }
@@ -90,7 +103,7 @@ export default class MessageHandler {
                         this.client.log(
                             `${chalk.blueBright('MOD')} ${chalk.green('Group Invite')} by ${chalk.yellow(
                                 M.sender.username
-                            )} in ${M.groupMetadata?.subject}`
+                            )} in ${M.groupMetadata?.subject || ''}`
                         )
                         return void (await this.client.groupRemove(M.from, [M.sender.jid]))
                     }
