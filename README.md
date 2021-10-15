@@ -35,5 +35,5 @@ Please give this repo a ⭐ if it helped you.
 
 
 ## 📢 Announcement
-This Project is no longer maintained. If you're still intrested in WhatsApp Bots, Please Check out [Kaoi](https://github.com/PrajjwalDatir/Kaoi) and [WhatsApp-Botto-Entropy] (https://github.com/Synthesized-Infinity/Whatsapp-Botto-Entropy) (Yet to be finished). Thank you.
+This Project is no longer maintained. If you're still intrested in WhatsApp Bots, Please Check out [Kaoi](https://github.com/PrajjwalDatir/Kaoi) and [WhatsApp-Botto-Entropy] (https://github.com/Synthesized-Infinity/Whatsapp-Botto-Entropy). Thank you.
  
