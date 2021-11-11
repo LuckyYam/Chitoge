@@ -36,7 +36,7 @@ export default class Command extends BaseCommand {
 					categories[info.config.category].push(info);
 				}
 			}
-			let text = `👋🏻 (💙ω💙) Konichiwa! *${M.sender.username}*, I'm Chitoge.\n\nMy prefix is - ":"\n\nThe usable commands are listed below.\n\n`;
+			let text = `👋🏻 (💙ω💙) Konichiwa! *${M.sender.username}*, I'm Chitoge.\n\nMy prefix is - "${this.client.config.prefix}"\n\nThe usable commands are listed below.\n\n`;
 			const keys = Object.keys(categories);
 			for (const key of keys)
 				text += `${
