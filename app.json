@@ -46,7 +46,7 @@
           "required": false
       },
       "WEATHER_APPID": {
-          "description": "A key used to see the weather updates",
+          "description": "A key used to check the weather updates",
           "required": false
       },
       "MAL_USERNAME": {
@@ -58,7 +58,7 @@
           "required": false
       },
       "GENIUS_KEY": {
-          "description": "Your Key of genius.com to make lyrics search",
+          "description": "Your access token of genius.com to fetch the lyrics",
           "required": false
       }
   },

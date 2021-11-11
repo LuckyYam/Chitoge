@@ -49,3 +49,7 @@
 
 Distributed under the GNU AFFERO GENERAL PUBLIC License. See [LICENSE](/LICENSE)
 for more information.
+
+## 🎗Help
+Please give this repo a ⭐ if it helped you.
+ 
