@@ -4,44 +4,31 @@ import BaseCommand from '../../lib/BaseCommand'
 import WAClient from '../../lib/WAClient'
 import { IParsedArgs, ISimplifiedMessage } from '../../typings'
 import yts from 'yt-search'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import Lyrics from 'lyrics-monarch-api'
+import { getSong, getLyrics } from 'ultra-lyrics'
+import axios from 'axios'
 
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'lyrics',
-            description: 'Gives you lyrics with song playable on WhatsApp',
+            description: 'Gives you the lyrics of the given song.',
             category: 'media',
             aliases: ['ly'],
-            usage: `${client.config.prefix}yts [term]`,
-            dm: false,
+            usage: `${client.config.prefix}lyrics [song_name]`,
             baseXp: 20
         })
     }
-
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!joined) return void M.reply('🔎 Provide a search term')
-        const term = joined.trim()
-        const { videos } = await yts(term + ' lyrics song')
-        if (!videos || videos.length <= 0) return void M.reply(`⚓ No Matching videos found for the term *${term}*`)
-        const lyrics = new Lyrics()
-        const response = await lyrics.getLyrics(term)
-        if (!((response as any).status === 200)) return
-        this.client
-            .sendMessage(M.from, (response as any)?.data?.result?.lirik, MessageType.extendedText, {
-                quoted: M.WAMessage,
-                contextInfo: {
-                    externalAdReply: {
-                        title: `Search Term: ${term}`,
-                        body: `🌟 Chitoge 🌟`,
-                        mediaType: 2,
-                        thumbnailUrl: videos[0].thumbnail,
-                        mediaUrl: videos[0].url
-                    }
-                }
-            })
-            .catch((reason: any) => M.reply(`✖ An error occupered, Reason: ${reason}`))
-    }
+        if (!joined) return void M.reply('Give me a song name, Baka!')
+        const chitoge = joined.trim()
+        await axios.get(`https://api.popcat.xyz/lyrics?song=${chitoge}`)
+        .then((response) => {
+                // console.log(response);
+                const text = `🎀 *Song Title: ${response.data.title}*\n🎗 *Artist: ${response.data.artist}*\n💫 *Lyrics:* ${response.data.lyrics}\n`
+                M.reply(text);
+            }).catch(err => {
+                M.reply(`Couldn't find the lyrics of *${chitoge}*\n `)
+            }
+            )
+    };
 }

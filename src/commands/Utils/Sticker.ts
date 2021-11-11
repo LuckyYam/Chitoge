@@ -41,59 +41,68 @@ export default class Command extends BaseCommand {
                 ? 100
                 : 50
         }
-        
-        let quality = getQuality()
-        if (quality > 100 || quality < 1) quality = 50
-        
-        parsedArgs.flags.forEach((flag) => (parsedArgs.joined = parsedArgs.joined.replace(flag, '')))
-        const getOptions = () => {
-            const pack = parsedArgs.joined.split('|')
-            const categories = (() => {
-                const categories = parsedArgs.flags.reduce((categories, flag) => {
-                    switch (flag) {
-                        case '--angry':
-                            categories.push('💢')
-                            break
-                        case '--love':
-                            categories.push('💕')
-                            break
-                        case '--sad':
-                            categories.push('😭')
-                            break
-                        case '--happy':
-                            categories.push('😂')
-                            break
-                        case '--greet':
-                            categories.push('👋')
-                            break
-                        case '--celebrate':
-                            categories.push('🎊')
-                            break
-                    }
-                    return categories
-                }, new Array<Categories>())
-                categories.length = 2
-                if (!categories[0]) categories.push('❤', '🌹')
-                return categories
-            })()
-            return {
-                categories,
-                pack: pack[1] || '🌟 Here you go ',
-                author: pack[2] || 'Chitoge 🌟',
-                quality,
-                type: StickerTypes[
-                    parsedArgs.flags.includes('--crop') || parsedArgs.flags.includes('--c')
-                        ? 'CROPPED'
-                        : parsedArgs.flags.includes('--stretch') || parsedArgs.flags.includes('--s')
-                        ? 'DEFAULT'
-                        : 'FULL'
-                ]
-            }
-        }
-        parsedArgs.flags.forEach((flag) => (parsedArgs.joined = parsedArgs.joined.replace(flag, '')))
-        if (!buffer) return void M.reply(`You didn't provide any Image/Video to convert`)
-        const sticker = await new Sticker(buffer, getOptions()).build().catch(() => null)
-        if (!sticker) return void M.reply(`✖ An error occurred while converting, please try again later.`)
+
+        let quality = getQuality();
+				if (quality > 100 || quality < 1) quality = 50;
+
+				parsedArgs.flags.forEach(
+					(flag) => (parsedArgs.joined = parsedArgs.joined.replace(flag, ""))
+				);
+				const getOptions = () => {
+					const pack = parsedArgs.joined.split("|");
+					const categories = (() => {
+						const categories = parsedArgs.flags.reduce((categories, flag) => {
+							switch (flag) {
+								case "--angry":
+									categories.push("💢");
+									break;
+								case "--love":
+									categories.push("💕");
+									break;
+								case "--sad":
+									categories.push("😭");
+									break;
+								case "--happy":
+									categories.push("😂");
+									break;
+								case "--greet":
+									categories.push("👋");
+									break;
+								case "--celebrate":
+									categories.push("🎊");
+									break;
+							}
+							return categories;
+						}, new Array<Categories>());
+						categories.length = 2;
+						if (!categories[0]) categories.push("❤", "🌹");
+						return categories;
+					})();
+					return {
+						categories,
+						pack: pack[1] || "🌟 Here you go ",
+						author: pack[2] || "Chitoge 🌟",
+						quality,
+						type: StickerTypes[
+							parsedArgs.flags.includes("--crop") ||
+							parsedArgs.flags.includes("--c")
+								? "CROPPED"
+								: parsedArgs.flags.includes("--stretch") ||
+								  parsedArgs.flags.includes("--s")
+								? "DEFAULT"
+								: "FULL"
+						],
+					};
+				};
+				parsedArgs.flags.forEach(
+					(flag) => (parsedArgs.joined = parsedArgs.joined.replace(flag, ""))
+				);
+				if (!buffer)
+					return void M.reply(`You didn't provide any Image/Video to convert`);
+				const sticker = await new Sticker(buffer, getOptions())
+					.build()
+					.catch(() => null);
+				if (!sticker) return void M.reply(`An Error Occurred While Converting`);
         await M.reply(sticker, MessageType.sticker, Mimetype.webp)
     }
 }

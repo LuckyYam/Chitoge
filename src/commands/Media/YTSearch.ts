@@ -8,10 +8,10 @@ import yts from 'yt-search'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'yts',
+            command: 'ytsearch',
             description: 'Searches YT',
             category: 'media',
-            aliases: ['ytsearch'],
+            aliases: ['yts'],
             usage: `${client.config.prefix}yts [term]`,
             baseXp: 20
         })
@@ -43,6 +43,6 @@ export default class Command extends BaseCommand {
                     }
                 }
             })
-            .catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+            .catch((reason: any) => M.reply(`✖  An error occurred, Reason: ${reason}`))
     }
 }

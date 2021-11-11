@@ -19,7 +19,7 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!joined) return void M.reply('🔎 Provide a search term')
+        if (!joined) return void M.reply(' Provide a search term, Baka!')
         const term = joined.trim()
         const { videos } = await yts(term)
         if (!videos || videos.length <= 0) return void M.reply(`⚓ No Matching videos found for the term : *${term}*`)
@@ -39,6 +39,6 @@ export default class Command extends BaseCommand {
                     }
                 }
             })
-            .catch((reason: Error) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+            .catch((reason: Error) => M.reply(`✖ An error occurred. Please try again later.`))
     }
 }

@@ -9,9 +9,10 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             command: 'fact',
             description: 'Will send you random fact.',
-            aliases: ['f'],
+            aliases: ['facts'],
             category: 'fun',
-            usage: `${client.config.prefix}fact`
+            usage: `${client.config.prefix}fact`,
+            baseXp: 30
         })
     }
 
@@ -20,11 +21,11 @@ export default class Command extends BaseCommand {
             .get(`https://nekos.life/api/v2/fact`)
             .then((response) => {
                 // console.log(response);
-                const text = `📛 *Fact* : ${response.data.fact}`
+                const text = `📛 *Fact:* ${response.data.fact}`
                 M.reply(text)
             })
             .catch((err) => {
-                M.reply(`✖ An error occurred: ${err}`)
+                M.reply(`✖  An error occurred.`)
             })
     }
 }

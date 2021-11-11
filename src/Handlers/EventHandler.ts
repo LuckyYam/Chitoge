@@ -17,16 +17,20 @@ export default class EventHandler {
         if (!data.events) return void null
         const add = event.action === 'add'
         const text = add
-            ? `- ${group.subject || '___'} -\n\n💠 *Group Description:*\n${
-                  group.desc
-              }\n\nHope you follow the rules and have fun!\n${event.participants
-                  .map((jid) => `@${jid.split('@')[0]}`)
-                  .join(', ')}`
-            : event.action === 'remove'
-            ? `Goodbye @${event.participants[0].split('@')[0]} 👋, we're probably not gonna miss you `
-            : `@${event.participants[0].split('@')[0]} got ${this.client.util.capitalize(event.action)}d${
-                  event.actor ? ` by @${event.actor.split('@')[0]}` : ''
-              }`
+					? `- ${group.subject || "___"} -\n\n💠 *Group Description:*\n${
+							group.desc
+					  }\n\nHope you follow the rules and have fun!\n\n${event.participants
+							.map((jid) => `@${jid.split("@")[0]}`)
+							.join(", ")}`
+					: event.action === "remove"
+					? `Goodbye *@${
+							event.participants[0].split("@")[0]
+					  }* 👋🏻, we're probably not gonna miss you.`
+					: `Ara Ara, looks like *@${
+							event.participants[0].split("@")[0]
+					  }* got ${this.client.util.capitalize(event.action)}d${
+							event.actor ? ` by @${event.actor.split("@")[0]}` : ""
+					  }`;
         const contextInfo = {
             mentionedJid: event.actor ? [...event.participants, event.actor] : event.participants
         }

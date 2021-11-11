@@ -10,10 +10,11 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'husbando',
-            description: 'Will send you random husbando image.',
+            description: `Will send you random husbando image. aka\nBoys you can't have`,
             aliases: ['husbu'],
             category: 'weeb',
-            usage: `${client.config.prefix}husbando`
+            usage: `${client.config.prefix}husbu`,
+            baseXp: 50
         })
     }
 
@@ -30,7 +31,7 @@ export default class Command extends BaseCommand {
                     MessageType.image,
                     undefined,
                     undefined,
-                    `🌟 Here you go\n`,
+                    `🌟 *Here you go.*\n`,
                     undefined
                 ).catch((e) => {
                     console.log(`This error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`)

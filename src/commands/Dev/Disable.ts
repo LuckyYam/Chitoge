@@ -7,15 +7,16 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'disable',
-            description: 'Disables the given command from being used',
+            description: 'Disables the given command from being used globally',
             category: 'dev',
             dm: true,
-            usage: `${client.config.prefix}disable [command] | (reason)`
+            usage: `${client.config.prefix}config [command] | (reason)`,
+            modsOnly: true,
+            baseXp: 0
         })
     }
 
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!this.client.config.mods?.includes(M.sender.jid)) return void null
         const split = joined.split('|')
         const key = split[0].toLowerCase().trim()
         if (!key) return void (await M.reply(`Provide the command you want to disable`))

@@ -8,10 +8,10 @@ import { ISimplifiedMessage } from '../../typings'
 export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
-            command: 'ytv',
+            command: 'ytvideo',
             description: 'Downloads given YT Video',
             category: 'media',
-            aliases: ['ytvideo'],
+            aliases: ['ytv'],
             usage: `${client.config.prefix}ytv [URL]`,
             baseXp: 10
         })
@@ -24,7 +24,7 @@ export default class Command extends BaseCommand {
         const { videoDetails } = await video.getInfo()
         M.reply('🌟 Sending...')
         if (Number(videoDetails.lengthSeconds) > 1800)
-            return void M.reply('⚓ Cannot Download videos longer than 30 Minutes')
+            return void M.reply('⚓ Cannot download videos longer than 30 minutes')
         M.reply(await video.getBuffer(), MessageType.video).catch((reason: Error) =>
             M.reply(`✖ An error occurred, Reason: ${reason}`)
         )

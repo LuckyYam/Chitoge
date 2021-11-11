@@ -1,7 +1,7 @@
 {
-    "name": "Chitoge",
-    "description": "Maintained Fork of Void",
-    "keywords": [
+  "name": "Chitoge",
+  "description": "A WhatsApp bot with rich anime features.",
+  "keywords": [
       "bot",
       "whatsapp",
       "stickers",
@@ -10,51 +10,70 @@
       "whatsapp-bot",
       "whatsapp-sticker-bot",
       "whatsapp-botto"
-    ],
-    "website": "https://github.com/ShinNouzen/Chitoge#readme",
-    "repository": "https://github.com/ShinNouzen/Chitoge.git",
-    "logo": "https://c4.wallpaperflare.com/wallpaper/67/362/530/anime-nisekoi-chitoge-kirisaki-wallpaper-preview.jpg",
-    "success_url": "/",
-    "env": {
+  ],
+  "website": "https://github.com/ShinNouzen/Chitoge#readme",
+  "repository": "https://github.com/ShinNouzen/Chitoge.git",
+  "logo": "https://wallpapermemory.com/uploads/711/chitoge-kirisaki-wallpaper-full-hd-323316.jpg",
+  "success_url": "/",
+  "env": {
       "PREFIX": {
-        "description": "Prefix of your bot"
+          "description": "Prefix of your bot"
       },
       "SESSION": {
-        "description": "A string for the session to be classified and to get access to the server endpoints"
+          "description": "A string for the session to be classified and to get access to the server endpoints"
       },
       "MODS": {
-        "description": "The phone numbers of the users who you want to be admin for the bot (should be in international format without + and multiple numbers must be separated by a comma \",\")",
-        "required": false
+          "description": "The phone numbers of the users who you want to be admin for the bot (should be in international format without + and multiple numbers must be separated by a comma \",\")",
+          "required": false
       },
       "CRON": {
-        "description": "Cron string to clear chats in a cycle",
-        "required": false
+          "description": "Cron string to clear chats in a cycle",
+          "required": false
       },
       "MONGO_URI": {
-        "description": "A secret String for Mongodb Connection.(Required)"
+          "description": "A secret String for Mongodb Connection.(Required)"
       },
       "GOOGLE_API_KEY": {
-        "description": "Google API key for Google searches for MODS (Not Required)",
-        "required": false
+          "description": "Google API key for Google searches (Not Required)",
+          "required": false
       },
-      "CHAT_BOT_URL" : {
-        "description": "BrainShop API Brain url",
-        "required" : false
+      "CHAT_BOT_URL": {
+          "description": "BrainShop API Brain url",
+          "required": false
+      },
+      "TENOR_API_KEY": {
+          "description": "A key used for gif searches",
+          "required": false
+      },
+      "WEATHER_APPID": {
+          "description": "A key used to see the weather updates",
+          "required": false
+      },
+      "MAL_USERNAME": {
+          "description": "Your Username of myanimelist.net to make manga search",
+          "required": false
+      },
+      "MAL_PASSWORD": {
+          "description": "Your Password of myanimelist.net to make manga search",
+          "required": false
+      },
+      "GENIUS_KEY": {
+          "description": "Your Key of genius.com to make lyrics search",
+          "required": false
       }
-    },
-    "buildpacks": [
+  },
+  "buildpacks": [
       {
-        "url": "heroku/nodejs"
+          "url": "heroku/nodejs"
       },
       {
-        "url": "https://github.com/PrajjwalDatir/heroku-buildpack-imagemagick.git"
-      },
-  
-      {
-        "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
+          "url": "https://github.com/PrajjwalDatir/heroku-buildpack-imagemagick.git"
       },
       {
-        "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
+      },
+      {
+          "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
       }
-    ]
-  }
+  ]
+}

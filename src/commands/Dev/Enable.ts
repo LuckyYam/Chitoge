@@ -7,15 +7,16 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'enable',
-            description: 'Enables the given command',
+            description: 'Enables the given command globally',
             category: 'dev',
             dm: true,
-            usage: `${client.config.prefix}enable [command]`
+            usage: `${client.config.prefix}enable [command]`,
+            modsOnly: true,
+            baseXp: 0
         })
     }
 
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!this.client.config.mods?.includes(M.sender.jid)) return void null
         const key = joined.toLowerCase().trim()
         if (!key) return void (await M.reply(`Provide the command you want to enable`))
         const command = this.handler.commands.get(key) || this.handler.aliases.get(key)
