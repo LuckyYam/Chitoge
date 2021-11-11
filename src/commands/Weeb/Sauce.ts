@@ -1,5 +1,3 @@
-/** @format */
-
 import { TraceMoe } from "trace.moe.ts";
 import anilist from "anilist-node";
 import { MessageType } from "@adiwajshing/baileys";
