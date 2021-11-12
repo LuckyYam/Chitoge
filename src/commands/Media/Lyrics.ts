@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
             category: 'media',
             aliases: ['ly'],
             usage: `${client.config.prefix}lyrics [song_name]`,
-            baseXp: 20
+            baseXp: 40
         })
     }
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
@@ -36,7 +36,7 @@ export default class Command extends BaseCommand {
                 text
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ).catch((reason: any) => M.reply(`${text}`))
-            await M.reply(text)
+            await M.reply(lyrics)
         };
     } 
 
