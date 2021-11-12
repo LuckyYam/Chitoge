@@ -22,7 +22,7 @@ export default class Command extends BaseCommand {
 	): Promise<void> => {
 		const random = await AnimeQuotes.randomQuote();
 		let randomText = "";
-		randomText += `*✏ Quote: ${random.quote}*\n`;
+		randomText += `*✏ Quote: ${random.quote}*\n\n`;
 		randomText += `*🎗 Said by: ${random.name}*\n\n`;
 		randomText += `*📛 Source: ${random.anime}*`;
 		if (!joined) return void (await M.reply(`${randomText}`));
