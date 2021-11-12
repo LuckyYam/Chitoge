@@ -36,7 +36,7 @@ export default class Command extends BaseCommand {
                 text
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ).catch((reason: any) => M.reply(`${text}`))
-            await M.reply(text)
+            await M.reply(lyrics)
         };
     } 
 
