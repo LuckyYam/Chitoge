@@ -1,5 +1,3 @@
-/** @format */
-
 import * as mwl from "mywaifulist-scraper";
 import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";

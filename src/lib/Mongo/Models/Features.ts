@@ -1,5 +1,3 @@
-/** @format */
-
 import { model, Schema } from "mongoose";
 import { IFeatureModel } from "../../../typings";
 
