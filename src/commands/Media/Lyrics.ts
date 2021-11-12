@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
             category: 'media',
             aliases: ['ly'],
             usage: `${client.config.prefix}lyrics [song_name]`,
-            baseXp: 20
+            baseXp: 40
         })
     }
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
