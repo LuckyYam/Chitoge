@@ -26,7 +26,9 @@ export default class Command extends BaseCommand {
 		if (!joined) return void (await M.reply(`Give me an anime title, Baka!`));
 		const chitoge = joined.trim();
 		const client = new Anime();
-		const ani = await client.anime(chitoge).catch(() => null);
+		const ani = await client.anime(chitoge).catch((err: any) => {
+			 return void M.reply(`No matching anime Found.`)
+		});
 		if (!ani) return void (await M.reply(`Couldn't find any matching term.`));
 		const buffer = await request
 			.buffer(ani.data.anime.results[0].coverImage.large)
