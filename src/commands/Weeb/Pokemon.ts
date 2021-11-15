@@ -27,7 +27,7 @@ export default class Command extends BaseCommand {
 			return void M.reply(
 				"Do you want me to give you the data of an unknown pokemon, Baka!"
 			);
-		const name = joined.trim().toLowerCase;
+		const name = joined.trim();
 		console.log(name);
 		const pkmon = new pokedex();
 		const data = await pkmon.getPokemonByName(name).catch(() => null);
