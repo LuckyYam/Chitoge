@@ -23,3 +23,4 @@ declare module "node-myanimelist";
 declare module "genius-lyrics";
 declare module "trace.moe.ts";
 declare module "anilist-node";
+declare module "pokedex-promise-v2";

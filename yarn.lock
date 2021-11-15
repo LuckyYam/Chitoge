@@ -4097,6 +4097,11 @@ memoizee@^0.4.3:
     next-tick "^1.1.0"
     timers-ext "^0.1.7"
 
+memory-cache@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/memory-cache/-/memory-cache-0.2.0.tgz#7890b01d52c00c8ebc9d533e1f8eb17e3034871a"
+  integrity sha1-eJCwHVLADI68nVM+H46xfjA0hxo=
+
 memory-pager@^1.0.2:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/memory-pager/-/memory-pager-1.5.0.tgz#d8751655d22d384682741c972f2c3d6dfa3e66b5"
@@ -5108,6 +5113,15 @@ pngjs@^3.0.0, pngjs@^3.3.3:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
   integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
+
+pokedex-promise-v2@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/pokedex-promise-v2/-/pokedex-promise-v2-3.3.2.tgz#298e3bfe069f2d3c288c9d9300f5f20726b08ded"
+  integrity sha512-Jz6ayPmJKtvOxB+jxAvF0auQBkiphOHITDkUpexR55ncx5EfHd+UHNN1r6ROl5A5s9NFoZ5eZU6tgxPjbGnOMQ==
+  dependencies:
+    axios "^0.21.1"
+    memory-cache "^0.2.0"
+    p-map "^4.0.0"
 
 prebuild-install@^6.1.2:
   version "6.1.4"
