@@ -45,8 +45,8 @@
           "description": "A key used for gif searches",
           "required": false
       },
-      "WEATHER_APPID": {
-          "description": "A key used to check the weather updates",
+      "SAUCENAO_KEY": {
+          "description": "A key used for reverse image search",
           "required": false
       },
       "MAL_USERNAME": {

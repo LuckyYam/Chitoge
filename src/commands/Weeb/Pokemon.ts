@@ -2,7 +2,6 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { IParsedArgs, ISimplifiedMessage } from "../../typings";
-import pokedex from "pokedex-promise-v2";
 import oakdexPokedex from "oakdex-pokedex";
 import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
@@ -29,33 +28,32 @@ export default class Command extends BaseCommand {
 			);
 		const name = joined.trim();
 		console.log(name);
-		const pkmon = new pokedex();
-		const data = await pkmon.getPokemonByName(name).catch(() => null);
-		if (!data) return void (await M.reply(`No such pokemon name or id, Baka!`));
-		const pkmn = await oakdexPokedex.findPokemon(data.id);
+		const pkmn = await oakdexPokedex.findPokemon(name).catch((err: any) => {
+			return void M.reply(`No such pokemon name or id, Baka!`);
+		});
 		let text = "";
 		text += `💫 *Name: ${pkmn.names.en}*\n`;
-		text += `〽️ *Pokedex ID: ${data.id}*\n`;
+		text += `〽️ *Pokedex ID: ${pkmn.national_id}*\n`;
 		text += `⚖ *Weight: ${pkmn.weight_eu}*\n`;
 		text += `🔆 *Height: ${pkmn.height_eu}*\n`;
-		text += `🌟 *Base Experience: ${data.base_experience}*\n`;
+		text += `🌟 *Base Experience: ${pkmn.base_exp_yield}*\n`;
 		text += `📛 *Abilities: ${pkmn.abilities[0].name}, ${pkmn.abilities[1].name}*\n`;
 		text += `🎀 *Type:  ${pkmn.types}*\n`;
 		text += `📈 *Leveling Rate: ${pkmn.leveling_rate}*\n`;
 		text += `💮 *Colour: ${pkmn.color}*\n`;
 		if (pkmn.evolution_from !== null)
 			text += `🌸 *Evolved from: ${pkmn.evolution_from}*\n`;
-		// if (pkmn.evolutions[0].to !== undefined) text += `🎗 *Evolves to: ${pkmn.evolutions[0].to}*\n`
-		text += `✳ *HP: ${data.stats[0].base_stat}*\n`;
-		text += `⚔ *Attack: ${data.stats[1].base_stat}*\n`;
-		text += `🔰 *Defense: ${data.stats[2].base_stat}*\n`;
-		text += `☄ *Special Attack: ${data.stats[3].base_stat}*\n`;
-		text += `🛡 *Special Defense:${data.stats[4].base_stat}*\n`;
-		text += `🎐 *Speed: ${data.stats[5].base_stat}*\n`;
+		text += `🎗 *Evolves to: ${pkmn.evolutions[0].to || "None"}*\n`;
+		text += `✳ *HP: ${pkmn.base_stats.hp}*\n`;
+		text += `⚔ *Attack: ${pkmn.base_stats.atk}*\n`;
+		text += `🔰 *Defense: ${pkmn.base_stats.def}*\n`;
+		text += `☄ *Special Attack: ${pkmn.base_stats.sp_atk}*\n`;
+		text += `🛡 *Special Defense:${pkmn.base_statd.sp_def}*\n`;
+		text += `🎐 *Speed: ${pkmn.base_stats.speed}*\n\n`;
 		text += `💬 *Summary: ${pkmn.pokedex_entries.Gold.en}*`;
 		const buffer = await request
 			.buffer(
-				`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
+				`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pkmn.national_id.id}.png`
 			)
 			.catch((e) => {
 				return void M.reply(e.message);

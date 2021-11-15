@@ -1,4 +1,6 @@
-import { AnimeWallpaper } from "anime-wallpaper";
+/** @format */
+
+import { AnimeWallpaper } from "anime-wallpapers";
 import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";

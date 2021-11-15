@@ -12,7 +12,7 @@ export interface IConfig {
 	gkey: string;
 	chatBotUrl: string;
 	gifApi: string;
-	weatherAppid: string;
+	gimmeSauce: string;
 	malUsername: string;
 	malPassword: string;
 	geniusKey: string;

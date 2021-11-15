@@ -22,22 +22,21 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
-		if (!this.client.config.weatherAppid)
-			return void M.reply("No weather api key set");
+		//if (!this.client.config.weatherAppid)
+		//	return void M.reply("No weather api key set");
 		if (!joined) return void M.reply("Provide me the place name, Baka!");
 		const place = joined.trim();
 		await axios
-			.get(
-				`http://api.openweathermap.org/data/2.5/weather?q=${this.client.config.weatherAppid}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273&language=tr`
-			)
-
-			.then((response) => {
+			.get(`https://api.popcat.xyz/weather?q=${place}`)
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			.then((response: any) => {
 				// console.log(response);
-				const text = `🔎 Weather for the place *${place}* found\n\n🌸 *Place:* ${response.data.name}\n*💮 Country:* ${response.data.sys.country}\n🌈 *Weather:* ${response.data.weather[0].description}\n🌡️ *Temperature:* ${response.data.main.temp}°C\n❄️ *Minimum Temperature:* ${response.data.main.temp_min}°C\n📛 *Maximum Temperature:* ${response.data.main.temp_max}°C\n💦 *Humidity:* ${response.data.main.humidity}%\n🎐 *Wind:* ${response.data.wind.speed} km/h\n`;
+				const text = `🔎 Weather for the place *${place}* found\n\n🌸 *Place:* ${response[0].location.name}*\n🌈 *Weather: ${response[0].current.skytext}*\n🌡️ *Temperature: ${response[0].current.temperature}°C*\n💦 *Humidity: ${response[0].current.humidity}%*\n🎐 *Wind:* ${response[0].current.windspeed}*\n`;
 				M.reply(text);
 			})
-			.catch((err) => {
-				M.reply(`${err}`);
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			.catch((err: any) => {
+				M.reply(`No such place name.`);
 			});
 	};
 }

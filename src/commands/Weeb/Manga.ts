@@ -19,10 +19,7 @@ export default class Command extends BaseCommand {
 		});
 	}
 
-	run = async (
-		M: ISimplifiedMessage,
-		{ joined }: IParsedArgs
-	): Promise<void> => {
+	run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
 		if (!this.client.config.malUsername && !this.client.config.malPassword)
 			return void M.reply("No Username and Password set for manga search. ");
 		if (!joined) return void (await M.reply(`Give me a manga title, Baka!`));
@@ -66,8 +63,11 @@ export default class Command extends BaseCommand {
 					.authors()
 			)
 			.call()
-			.catch(() => null);
-		if (!search) return void M.reply(`Couldn't find any matching manga title.`);
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			.catch((err: any) => {
+				return void M.reply(`Couldn't find any matching manga title.`);
+			});
+		//	if (!search) return void M.reply(`Couldn't find any matching manga title.`);
 		const buffer = await request
 			.buffer(search.data[0].node.main_picture.large)
 			.catch((e) => {
@@ -99,5 +99,5 @@ export default class Command extends BaseCommand {
 			}
 		}
 		return void null;
-	};
+	};;
 }

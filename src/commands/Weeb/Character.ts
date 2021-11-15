@@ -27,9 +27,11 @@ export default class Command extends BaseCommand {
 			return void (await M.reply(`Give me an anime character name, Baka!`));
 		const chitoge = joined.trim();
 		const client = new Character();
-		const chara = await client.character(chitoge).catch(() => null);
-		if (!chara)
-			return void (await M.reply(`Couldn't find any matching character.`));
+		const chara = await client.character(chitoge).catch((err: any) => {
+			return void M.reply(`Couldn't find any matching character.`)
+		});
+		//if (!chara)
+			//return void (await M.reply(`Couldn't find any matching character.`));
 		let text = "";
 		text += `💙 *Name: ${chara.data.characters.results[0].name.full}*\n`;
 		text += `💛 *Source: ${chara.data.characters.results[0].media.edges[0].node.title.userPreferred}*\n\n`;
