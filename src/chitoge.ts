@@ -23,7 +23,6 @@ const client = new WAClient({
 	gkey: process.env.GOOGLE_API_KEY || "",
 	chatBotUrl: process.env.CHAT_BOT_URL || "",
 	gifApi: process.env.TENOR_API_KEY || "",
-	gimmeSauce: process.env.SAUCENAO_KEY || "",
 	malUsername: process.env.MAL_USERNAME || "",
 	malPassword: process.env.MAL_PASSWORD || "",
 	geniusKey: process.env.GENIUS_KEY || "",

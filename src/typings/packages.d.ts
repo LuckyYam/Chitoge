@@ -21,3 +21,5 @@ declare module "oakdex-pokedex";
 declare module "ptable";
 declare module "node-myanimelist";
 declare module "genius-lyrics";
+declare module "trace.moe.ts";
+declare module "anilist-node";

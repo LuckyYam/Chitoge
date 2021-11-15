@@ -1135,7 +1135,7 @@ akaneko@^5.2.2:
   dependencies:
     node-fetch "^2.6.1"
 
-anilist-node@^1.10.0:
+anilist-node@^1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/anilist-node/-/anilist-node-1.11.0.tgz#2de52fafa9857bd3a514549d0999575cf3268a3d"
   integrity sha512-ekWVz51+P8BzEw/uRkrbHTtWLNzOUhHKD5H6BOcxQ+5eG9m5+pxTxCmkMRpJSBTK+dnUf8RnXyYo++UfFTEKOQ==
@@ -6146,6 +6146,13 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
+
+trace.moe.ts@^1.3.7-patch2:
+  version "1.3.7-patch2"
+  resolved "https://registry.yarnpkg.com/trace.moe.ts/-/trace.moe.ts-1.3.7-patch2.tgz#512798f898b82aeb9a33a8af55010d8d770edcbc"
+  integrity sha512-vCXLdZkqP5cBfmuARtl+TC/ck2Oa+Zi9dFI3zpPCoKdqWrz//fjKRli8bI7mB0PPMhwmyInTQjeA243vtBhBUg==
+  dependencies:
+    node-fetch "^2.6.1"
 
 translate-google@^1.5.0:
   version "1.5.0"

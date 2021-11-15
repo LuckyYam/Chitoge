@@ -45,10 +45,6 @@
           "description": "A key used for gif searches",
           "required": false
       },
-      "SAUCENAO_KEY": {
-          "description": "A key used for reverse image search",
-          "required": false
-      },
       "MAL_USERNAME": {
           "description": "Your Username of myanimelist.net to make manga search",
           "required": false
