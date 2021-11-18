@@ -19,6 +19,11 @@
 |----|--------|
 |Triggered| Tag a photo while commanding, given image would be triggered xD|
 |Chess| Launches a game of chess straight in the group chat, YES THIS IS THE FUTURE! EMBRACE IT!|
+| Reaction  | React using Pat,Hug, ... |
+| Ship      | Ship People              |
+| Triggered | Triggered Sticker        |
+| Why       | Asks you a why question  |
+| Chat      | Chats with user in group |
 
 |Misc| usage|
 |----|--------|
@@ -67,3 +72,24 @@
 |Google| Searches the given title in google (GOOGLE_API_KEY required to perform this activity)| 
 |Ban| Bans the given user from using the bot|
 |Unban| Unbans the given user, after this he/she can use the bot again|
+|Status| Updates status u like|
+
+| Bot      | usage                                 |
+| -------- | ------------------------------------- |
+| Entropy  | Gives you info about the Entropy Bot  |
+| Guide    | List of Guides to Use and Deploy Kaoi |
+| Infinity | Gives you info about the Infinity Bot |
+| Kaoi     | Gives you info about the Kaoi Bot     |
+| Void     | Gives you info about the Void Bot     |
+
+| Config  | usage                       |
+| ------- | --------------------------- |
+| Enable  | Enables a command globally  |
+| Disable | Disables a command globally |
+
+| Educative | usage                   |
+| --------- | ----------------------- |
+| Crypto    | Sends you crypto values |
+| github | sends github account and repo link |
+| weather | sends you weather report of a place|
+| calculator | calculates equations |
