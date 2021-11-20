@@ -23,29 +23,28 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
-		if (!joined)
-			return void M.reply(
-				"Do you want me to give you the data of an unknown pokemon, Baka!"
-			);
-		const name = joined.trim();
-		console.log(name);
-		const pkmon = new pokedex();
-		const data = await pkmon.getPokemonByName(name).catch(() => null);
-		if (!data) return void (await M.reply(`No such pokemon name or id, Baka!`));
-		const pkmn = await oakdexPokedex.findPokemon(data.id);
-		let text = "";
-		text += `💫 *Name: ${pkmn.names.en}*\n`;
-		text += `〽️ *Pokedex ID: ${data.id}*\n`;
-		text += `⚖ *Weight: ${pkmn.weight_eu}*\n`;
-		text += `🔆 *Height: ${pkmn.height_eu}*\n`;
-		text += `🌟 *Base Experience: ${data.base_experience}*\n`;
-		text += `📛 *Abilities: ${pkmn.abilities[0].name}, ${pkmn.abilities[1].name}*\n`;
-		text += `🎀 *Type:  ${pkmn.types}*\n`;
-		text += `📈 *Leveling Rate: ${pkmn.leveling_rate}*\n`;
-		text += `💮 *Colour: ${pkmn.color}*\n`;
-		if (pkmn.evolution_from !== null)
-			text += `🌸 *Evolved from: ${pkmn.evolution_from}*\n`;
-		text += `🎗 *Evolves to: ${pkmn.evolutions[0].to || "None"}*\n`;
+			const name = joined.trim().split(" ")[0].toLowerCase();
+			if (!name)
+				return void M.reply(
+					`Do you want me to give you the data of an unknown pokemon, Baka!`
+				);
+			const pkmon = new pokedex();
+			const data = await pkmon.getPokemonByName(name).catch(() => null);
+			if (!data)
+				return void (await M.reply(`No such pokemon name or id, Baka!`));
+			const pkmn = await oakdexPokedex.findPokemon(data.id);
+			let text = "";
+			text += `💫 *Name: ${pkmn.names.en}*\n`;
+			text += `〽️ *Pokedex ID: ${data.id}*\n`;
+			text += `⚖ *Weight: ${pkmn.weight_eu}*\n`;
+			text += `🔆 *Height: ${pkmn.height_eu}*\n`;
+			text += `🌟 *Base Experience: ${data.base_experience}*\n`;
+			text += `📛 *Abilities: ${pkmn.abilities[0].name}, ${pkmn.abilities[1].name}*\n`;
+			text += `🎀 *Type:  ${pkmn.types}*\n`;
+			text += `📈 *Leveling Rate: ${pkmn.leveling_rate}*\n`;
+			text += `💮 *Colour: ${pkmn.color}*\n`;
+			if (pkmn.evolution_from !== null)
+				text += `🌸 *Evolved from: ${pkmn.evolution_from}*\n`;
 		text += `✳ *HP: ${data.stats[0].base_stat}*\n`;
 		text += `⚔ *Attack: ${data.stats[1].base_stat}*\n`;
 		text += `🔰 *Defense: ${data.stats[2].base_stat}*\n`;

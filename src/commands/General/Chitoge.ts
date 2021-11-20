@@ -18,8 +18,8 @@ export default class Command extends BaseCommand {
 	}
 
 	run = async (M: ISimplifiedMessage): Promise<void> => {
-		const n = ["./assets/videos/Chitoge/chitoge-git.mp4"];
-		const chitoge = n[Math.floor(Math.random() * n.length)];
+		const chitoge =
+			"https://media.tenor.com/videos/80f557139bc3a0857f6a705da6990fdc/mp4";
 		return void this.client.sendMessage(
 			M.from,
 			{ url: chitoge },

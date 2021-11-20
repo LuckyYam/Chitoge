@@ -5,7 +5,7 @@ import { IParsedArgs, ISimplifiedMessage } from "../../typings";
 import { Anime } from "mailist";
 import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
-// import { MessageType, Mimetype } from '@adiwajshing/baileys'
+import malScraper from "mal-scraper";
 
 export default class Command extends BaseCommand {
 	constructor(client: WAClient, handler: MessageHandler) {
@@ -23,17 +23,42 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
-		if (!joined) return void (await M.reply(`Give me an anime title, Baka!`));
+		if (!joined)
+			return void (await M.reply(`Give me an anime title to search, Baka!`));
 		const chitoge = joined.trim();
-		const client = new Anime();
-		const ani = await client.anime(chitoge).catch((err: any) => {
-			 return void M.reply(`Couldn't find any matching anime.`)
-		});
-		const buffer = await request
-			.buffer(ani.data.anime.results[0].coverImage.large)
-			.catch((e) => {
-				return void M.reply(e.message);
+		const anime = await malScraper
+			.getInfoFromName(chitoge)
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			.catch((err: any) => {
+				return void M.reply(`Couldn't find any matching anime.`);
 			});
+		const client = new Anime();
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const ani = await client.anime(chitoge).catch((err: any) => {
+			return void M.reply(`Couldn't find any matching anime.`);
+		});
+		let text = "";
+		text += `🎀 *Title: ${ani.data.anime.results[0].title.romaji}*\n`;
+		text += `🎋 *Format: ${ani.data.anime.results[0].format}*\n`;
+		text += `📈 *Status: ${ani.data.anime.results[0].status}*\n`;
+		text += `💮 *Genres: ${ani.data.anime.results[0].genres.join(", ")}*\n`;
+		text += `✨ *Based on: ${anime.source}`;
+		text += `📍 *Studios: ${anime.studios.join(", ")}*\n`;
+		text += `🍥 *Producers: ${anime.producers.join(", ")}*\n`;
+		text += `🔅 *Premiered on: ${ani.data.anime.results[0].startDate.day}-${ani.data.anime.results[0].startDate.month}-${ani.data.anime.results[0].startDate.year}*\n`;
+		text += `🎐 *Season: ${ani.data.anime.results[0].season}*\n`;
+		text += `🌟 *Score: ${anime.score}*\n`;
+		text += `💎 *Rating: ${anime.rating}*\n`;
+		text += `🏅 *Rank: ${anime.ranked}*\n`;
+		text += `💫 *Popularity: ${anime.popularity}*\n`;
+		text += `🎗 *Duration: ${ani.data.anime.results[0].duration}/episode*\n`;
+		text += `🚫 *Eechi: ${ani.data.anime.results[0].isAdult}*\n\n`;
+		text += `♦️ *Trailer: ${anime.trailer}*\n\n`;
+		text += `🌐 *URL: ${anime.url}*\n\n`;
+		text += `❄ *Description:* ${anime.synopsis}`;
+		const buffer = await request.buffer(anime.picture).catch((e) => {
+			return void M.reply(e.message);
+		});
 		while (true) {
 			try {
 				M.reply(
@@ -41,7 +66,7 @@ export default class Command extends BaseCommand {
 					MessageType.image,
 					undefined,
 					undefined,
-					`🎀 *Title: ${ani.data.anime.results[0].title.romaji}*\n🎋 *Format: ${ani.data.anime.results[0].format}*\n📈 *Status: ${ani.data.anime.results[0].status}*\n💮 *Genres: ${ani.data.anime.results[0].genres}*\n🔅 *Premiered on: ${ani.data.anime.results[0].startDate.day}-${ani.data.anime.results[0].startDate.month}-${ani.data.anime.results[0].startDate.year}*\n🎐 *Season: ${ani.data.anime.results[0].season}*\n💠 *Total Episodes: ${ani.data.anime.results[0].episodes}*\n🎗 *Duration: ${ani.data.anime.results[0].duration}/min*\n🚫 *Eechi: ${ani.data.anime.results[0].isAdult}*\n🌟 *Score: ${ani.data.anime.results[0].meanScore}*\n\n🌐 *URL: ${ani.data.anime.results[0].siteUrl}*\n\n❄ *Description:* ${ani.data.anime.results[0].description}`,
+					`${text}`,
 					undefined
 				).catch((e) => {
 					console.log(

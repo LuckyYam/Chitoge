@@ -41,6 +41,12 @@ export default class Command extends BaseCommand {
 		text += `💛 *Source: ${haigusha.series.name}*\n\n`;
 		text += `🌐 *URL: ${haigusha.url}*\n\n`;
 		text += `❤ *Description:* ${haigusha.description}\n`;
+		if (haigusha === undefined) {
+			return void M.reply("✖ An error occurred. Please try again later.");
+		}
+		const thumbnail = await request.buffer(
+			`https://mocah.org/thumbs/192010-chitoge-kirisaki-1920x1080.png`
+		);
 		const buffer = await request.buffer(haigusha.display_picture).catch((e) => {
 			return void M.reply(e.message);
 		});
@@ -52,7 +58,7 @@ export default class Command extends BaseCommand {
 					undefined,
 					undefined,
 					`${text}`,
-					undefined
+					thumbnail
 				).catch((e) => {
 					console.log(
 						`This error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`

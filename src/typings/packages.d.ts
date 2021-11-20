@@ -15,7 +15,6 @@ declare module "translate-google";
 declare module "animequotes";
 declare module "mailist";
 declare module "@marsron/google-image";
-declare module "emoji-api";
 declare module "node-periodic-table";
 declare module "oakdex-pokedex";
 declare module "ptable";
@@ -24,3 +23,5 @@ declare module "genius-lyrics";
 declare module "trace.moe.ts";
 declare module "anilist-node";
 declare module "pokedex-promise-v2";
+declare module 'imgbb-uploader'
+declare module 'text-from-image'

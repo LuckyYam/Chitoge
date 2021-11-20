@@ -35,7 +35,10 @@ export default class Command extends BaseCommand {
 		const page = terms[1];
 		if (!page) return void M.reply("Give me the page, Baka!");
 		const o = evaluate(+terms[1] - +1);
-		const doujin = await sHentai.getDoujin(id);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const doujin = await sHentai.getDoujin(id).catch((err: any) => {
+			return void M.reply(`Invalid doujin id, Baka!.`);
+		});
 		let text = "";
 		text += `🎀 *Title: ${doujin.titles.english}*\n`;
 		text += `🎗 *Tags: ${doujin.tags}*\n`;

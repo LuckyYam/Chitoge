@@ -36,10 +36,16 @@
 
 ## 💪 Contribution
 
--   Feel free to open issues regarding any problems or if you have any feature
-    requests
+-   Feel free to open issues regarding any problems or if you have any feature requests
 -   Make sure to follow the ESLint Rules while editing the code and run
     `yarn run prettier-format` before opening PRs
+
+##  🚀 Our Amazing Contributors
+
+<a href="https://github.com/ShinNouzen/Chitoge/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ShinNouzen/Chitoge" />
+</a>
+
 
 ### 🟢 WhatsApp Group
 

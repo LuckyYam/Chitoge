@@ -2,7 +2,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { IParsedArgs, ISimplifiedMessage } from "../../typings";
-import { Mal } from "node-myanimelist";
+import { Manga } from "mailist";
 import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
 // import { MessageType, Mimetype } from '@adiwajshing/baileys'
@@ -19,57 +19,34 @@ export default class Command extends BaseCommand {
 		});
 	}
 
-	run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-		if (!this.client.config.malUsername && !this.client.config.malPassword)
-			return void M.reply("No Username and Password set for manga search. ");
+	run = async (
+		M: ISimplifiedMessage,
+		{ joined }: IParsedArgs
+	): Promise<void> => {
 		if (!joined) return void (await M.reply(`Give me a manga title, Baka!`));
 		const chitoge = joined.trim();
-		const auth = Mal.auth("6114d00ca681b7701d1e15fe11a4987e");
-		const acount = await auth.Unstable.login(
-			this.client.config.malUsername,
-			this.client.config.malPassword
-		);
-		const search = await acount.manga
-			.search(
-				chitoge,
-				Mal.Manga.fields()
-					.alternativeTitles()
-					.startDate()
-					.endDate()
-					.synopsis()
-					.mean()
-					.rank()
-					.popularity()
-					.numListUsers()
-					.numScoringUsers()
-					.nsfw()
-					.genres()
-					.createdAt()
-					.updatedAt()
-					.mediaType()
-					.status()
-					.myListStatus(
-						Mal.Manga.listStatusFields()
-							.startDate()
-							.finishDate()
-							.priority()
-							.numTimesReread()
-							.rereadValue()
-							.tags()
-							.comments()
-					)
-					.numVolumes()
-					.numChapters()
-					.authors()
-			)
-			.call()
+		const get = new Manga();
+		const search = await get
+			.manga(chitoge)
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			.catch((err: any) => {
 				return void M.reply(`Couldn't find any matching manga title.`);
 			});
+		let text = "";
+		text += `🎀 *Title: ${search.data.anime.results[0].title.romaji}*\n`;
+		text += `📈 *Status: ${search.data.anime.results[0].status}*\n`;
+		text += `🎋 *Format: ${search.data.anime.results[0].format}*\n`;
+		text += `💮 *Genres: ${search.data.anime.results[0].genres.join(", ")}*\n`;
+		text += `🌸 *Total Volumes: ${search.data.anime.results[0].volumes}*\n`;
+		text += `🎗 *Total Chapters: ${search.data.anime.results[0].chapters}*\n`;
+		text += `✨ *Published on: ${search.data.anime.results[0].startDate.day}-${search.data.anime.results[0].startDate.month}-${search.data.anime.results[0].startDate.year}*\n`;
+		text += `🚫 *Eechi: ${search.data.anime.results[0].isAdult}*\n`;
+		text += `🌟 *Score: ${search.data.anime.results[0].meanScore}\n\n`;
+		text += `🌐 *URL: ${search.data.anime.results[0].siteUrl}*\n\n`;
+		text += `❄️ *Description:* ${search.data.anime.results[0].description}`;
 		//	if (!search) return void M.reply(`Couldn't find any matching manga title.`);
 		const buffer = await request
-			.buffer(search.data[0].node.main_picture.large)
+			.buffer(search.data.anime.results[0].coverImage.medium)
 			.catch((e) => {
 				return void M.reply(e.message);
 			});
@@ -80,7 +57,7 @@ export default class Command extends BaseCommand {
 					MessageType.image,
 					undefined,
 					undefined,
-					`🎀 *Title: ${search.data[0].node.title}*\n📈 *Status: ${search.data[0].node.status}*\n🌸 *Total Volume: ${search.data[0].node.num_volumes}*\n🎗 *Total Chapters: ${search.data[0].node.num_chapters}*\n✨ *Published on: ${search.data[0].node.start_date}*\n🌟 *Score: ${search.data[0].node.mean}*\n💮 *Updated at: ${search.data[0].node.updated_at}*\n✍ *Author: ${search.data[0].node.authors[0].node.first_name} ${search.data[0].node.authors[0].node.last_name}*\n\n🌐 *MyAnimeList URL: https://myanimelist.net//manga//${search.data[0].node.id}*\n\n❄️ *Description:* ${search.data[0].node.synopsis}`,
+					`${text}`,
 					undefined
 				).catch((e) => {
 					console.log(
@@ -99,5 +76,5 @@ export default class Command extends BaseCommand {
 			}
 		}
 		return void null;
-	};;
+	};
 }

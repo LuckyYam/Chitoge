@@ -24,10 +24,11 @@ export default class Command extends BaseCommand {
 	): Promise<void> => {
 		if (!joined) return void M.reply("Provide a query, Baka!");
 		const query = joined.trim();
-		const results = await wiki.summary(query);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const results = await wiki.summary(query).catch((err: any) => {
+			return void M.reply(`No page with given query exist, Baka!`);
+		});
 		const text = `*🌐 URL: ${results.content_urls.mobile.page}*\n\n*🎀 Title: ${results.title}*\n *📜 Description: ${results.description}*\n\n*❄ Summary:* ${results.extract}`;
-		await M.reply(text)
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			.catch((reason: any) => M.reply(`${reason}`));
+		await M.reply(text);
 	};
 }

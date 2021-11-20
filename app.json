@@ -45,14 +45,6 @@
           "description": "A key used for gif searches",
           "required": false
       },
-      "MAL_USERNAME": {
-          "description": "Your Username of myanimelist.net to make manga search",
-          "required": false
-      },
-      "MAL_PASSWORD": {
-          "description": "Your Password of myanimelist.net to make manga search",
-          "required": false
-      },
       "GENIUS_KEY": {
           "description": "Your access token of genius.com to fetch the lyrics",
           "required": false

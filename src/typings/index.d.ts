@@ -12,8 +12,6 @@ export interface IConfig {
 	gkey: string;
 	chatBotUrl: string;
 	gifApi: string;
-	malUsername: string;
-	malPassword: string;
 	geniusKey: string;
 }
 
