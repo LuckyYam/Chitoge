@@ -46,7 +46,7 @@ export default class Command extends BaseCommand {
 		text += `❄️ *Description:* ${search.data.anime.results[0].description}`;
 		//	if (!search) return void M.reply(`Couldn't find any matching manga title.`);
 		const buffer = await request
-			.buffer(search.data.anime.results[0].coverImage.medium)
+			.buffer(search.data.anime.results[0].coverImage.large)
 			.catch((e) => {
 				return void M.reply(e.message);
 			});

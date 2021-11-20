@@ -39,7 +39,7 @@ export default class Command extends BaseCommand {
 		text += `❤ *Description:* ${chara.data.characters.results[0].description}\n`;
 
 		const buffer = await request
-			.buffer(chara.data.characters.results[0].image.medium)
+			.buffer(chara.data.characters.results[0].image.large)
 			.catch((e) => {
 				return void M.reply(e.message);
 			});

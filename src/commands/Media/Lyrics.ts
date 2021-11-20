@@ -29,13 +29,14 @@ export default class Command extends BaseCommand {
         let text = `🎀 *Title: ${search[0].title}*\n\n`
             text += `🌐 *URL: ${search[0].url}*\n`
             M.reply(
-                await request.buffer(search[0].image),
-                MessageType.image,
-                undefined,
-                undefined,
-                text
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ).catch((reason: any) => M.reply(`${text}`))
+							await request.buffer(search[0].image),
+							MessageType.image,
+							undefined,
+							undefined,
+							text,
+							undefined
+							// eslint-disable-next-line @typescript-eslint/no-explicit-any
+						).catch((reason: any) => M.reply(`${text}`));
             await M.reply(lyrics)
         };
     } 

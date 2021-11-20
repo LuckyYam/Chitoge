@@ -42,7 +42,7 @@ export default class Command extends BaseCommand {
 		text += `🎋 *Format: ${ani.data.anime.results[0].format}*\n`;
 		text += `📈 *Status: ${ani.data.anime.results[0].status}*\n`;
 		text += `💮 *Genres: ${ani.data.anime.results[0].genres.join(", ")}*\n`;
-		text += `✨ *Based on: ${anime.source}`;
+		text += `✨ *Based on: ${anime.source}*\n`;
 		text += `📍 *Studios: ${anime.studios.join(", ")}*\n`;
 		text += `🍥 *Producers: ${anime.producers.join(", ")}*\n`;
 		text += `🔅 *Premiered on: ${ani.data.anime.results[0].startDate.day}-${ani.data.anime.results[0].startDate.month}-${ani.data.anime.results[0].startDate.year}*\n`;
@@ -56,7 +56,7 @@ export default class Command extends BaseCommand {
 		text += `♦️ *Trailer: ${anime.trailer}*\n\n`;
 		text += `🌐 *URL: ${anime.url}*\n\n`;
 		text += `❄ *Description:* ${anime.synopsis}`;
-		const buffer = await request.buffer(anime.picture).catch((e) => {
+		const buffer = await request.buffer(ani.data.anime.results[0].coverImage.large).catch((e) => {
 			return void M.reply(e.message);
 		});
 		while (true) {
