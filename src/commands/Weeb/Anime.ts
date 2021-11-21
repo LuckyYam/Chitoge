@@ -51,7 +51,7 @@ export default class Command extends BaseCommand {
 		text += `💎 *Rating: ${anime.rating}*\n`;
 		text += `🏅 *Rank: ${anime.ranked}*\n`;
 		text += `💫 *Popularity: ${anime.popularity}*\n`;
-		text += `🎗 *Duration: ${ani.data.anime.results[0].duration}/episode*\n`;
+		text += `🎗 *Duration: ${ani.data.anime.results[0].duration}min/episode*\n`;
 		text += `🚫 *Eechi: ${ani.data.anime.results[0].isAdult}*\n\n`;
 		text += `♦️ *Trailer: ${anime.trailer}*\n\n`;
 		text += `🌐 *URL: ${anime.url}*\n\n`;
