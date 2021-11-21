@@ -64,11 +64,11 @@ export default class Command extends BaseCommand {
                 ? this.client.getProfilePicture(M.mentioned[0])
                 : this.client.getProfilePicture(M.sender.jid))
             const sticker = new Sticker(await getImage(image), {
-                pack: `Triggered`,
-                author: M.sender.username || `Kaoi`,
-                type: 'full',
-                categories: ['💢']
-            })
+							pack: `Triggered`,
+							author: M.sender.username || `Chitoge`,
+							type: "full",
+							categories: ["💢"],
+						});
             if (!sticker) return void M.reply(`I couldn't find an image to trigger.`)
             return void (await M.reply(await sticker.build(), MessageType.sticker, Mimetype.webp))
         } catch (err) {
