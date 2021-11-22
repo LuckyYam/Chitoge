@@ -30,7 +30,9 @@ export default class Command extends BaseCommand {
 		const term: string = chitoge[0];
 		const amount: number = chitoge[1];
 		if (!amount)
-			return void M.reply("Give me the number of wallpapers to send, Baka!");
+			return void M.reply(
+				`Give me the number of wallpapers to send, Baka!\n\nExample: *${this.client.config.prefix}wallpaper chitoge|5*`
+			);
 		if (amount > 20)
 			return void M.reply(`Do you want me to spam in this group?`);
 		const wall = new AnimeWallpaper();
@@ -50,7 +52,6 @@ export default class Command extends BaseCommand {
 					caption: `${res}`,
 				}
 			);
-			await M.reply(`Wait..`);
 		}
 	};
 }
