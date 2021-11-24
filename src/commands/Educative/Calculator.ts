@@ -25,11 +25,13 @@ export default class Command extends BaseCommand {
 		if (!joined)
 			return void M.reply("Provide me the value to calculate, Baka!");
 		const value = joined.trim();
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const calc = evaluate(value).catch((err: any) => {
-			return void M.reply(`✖️ An error occurred. Reason: *${err}*`);
-		});
-		const text = `💡 *Solution for ${value} = ${calc}*`;
-		await M.reply(text);
+		await evaluate(value)
+			.then((response: string) => {
+				const text = `💡 *Solution for ${value} = ${response}*`;
+				M.reply(text);
+			})
+			.catch((err: string) => {
+				M.reply(`✖️ An error occurred. Reason: *${err}*`);
+			});
 	};
 }

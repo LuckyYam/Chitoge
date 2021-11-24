@@ -27,12 +27,6 @@ export default class Command extends BaseCommand {
 			return void M.reply("Give me an element name/number/symbol, Baka!");
 		const chitoge = joined.trim();
 		const search = await pTable(chitoge);
-		if (search === undefined) {
-			return void M.reply(
-				`*https://en.m.wikipedia.org/wiki/Periodic_table*\n\nI think this might help you.\n`
-			);
-		}
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const response = await npt.getByNumber(search.number).catch((err: any) => {
 			return void M.reply(`✖ An error occurred. Reason: *${err}*`);
 		});
@@ -49,6 +43,7 @@ export default class Command extends BaseCommand {
 		text += `⚫ *Shells: ${response.shells.join(", ")}*\n`;
 		text += `🌐 *URL: ${response.source}*\n\n`;
 		text += `💬 *Summary: ${response.summary}*`;
-		await M.reply(text);
+		return void M.reply(text);
+        
 	};
 }

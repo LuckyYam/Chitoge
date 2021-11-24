@@ -14,7 +14,6 @@ declare module "anime-wallpapers";
 declare module "translate-google";
 declare module "animequotes";
 declare module "mailist";
-declare module "@marsron/google-image";
 declare module "node-periodic-table";
 declare module "oakdex-pokedex";
 declare module "ptable";
