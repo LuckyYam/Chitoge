@@ -27,6 +27,7 @@ export default class Command extends BaseCommand {
 			return void M.reply("Give me an element name/number/symbol, Baka!");
 		const chitoge = joined.trim();
 		const search = await pTable(chitoge);
+		console.log(search);
 		if (search === undefined) {
 			return void (await M.reply(
 				`*https://en.m.wikipedia.org/wiki/Periodic_table*\n\nI think this might help you.\n`
