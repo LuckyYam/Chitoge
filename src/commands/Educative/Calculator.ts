@@ -21,8 +21,8 @@ export default class Command extends BaseCommand {
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
         if (!joined) return void M.reply('Provide the value to calculate, Baka!')
         const value = joined.trim()
-        const cal = evaluate(value);
-				const text = `💡 *Solution for ${value} = ${cal}*`;
+        const calc = evaluate(value);
+				const text = `💡 *Solution for ${value} = ${calc}*`;
         await M.reply(text)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .catch((reason: any) => M.reply(`${reason}`))

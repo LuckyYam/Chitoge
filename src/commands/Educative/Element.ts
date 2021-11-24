@@ -27,6 +27,7 @@ export default class Command extends BaseCommand {
 			return void M.reply("Give me an element name/number/symbol, Baka!");
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const chitoge: any = joined.trim();
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const search = await pTable(chitoge);
 		console.log(search);
 		if (search === undefined) {
@@ -35,9 +36,7 @@ export default class Command extends BaseCommand {
 			));
 		}
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const response = await npt.getByNumber(search.number).catch((err: any) => {
-			return void M.reply(`✖ An error occurred. Reason: *${err}*`);
-		});
+		const response = await npt.getByNumber(search.number);
 		let text = "";
 		text += `🔴 *Elelment: ${response.name}*\n`;
 		text += `⬜ *Atomic Number: ${response.number}*\n`;
