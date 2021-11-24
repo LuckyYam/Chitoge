@@ -37,5 +37,6 @@ export default class CallHandler {
 					MessageType.text
 				);
 				await this.client.blockUser(caller);
+                await this.client.banUser(caller);
     }
 }
