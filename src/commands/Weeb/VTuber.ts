@@ -26,25 +26,53 @@ export default class Command extends BaseCommand {
 	): Promise<void> => {
 		if (!joined) return void (await M.reply(`Give me a vtuber name, Baka!`));
 		const name = joined.trim();
-		const vtuber = await wiki(name);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const vtuber = await wiki(name).catch((err: any) => {
+			return void M.reply(`Couldn't find any matching VTuber.`);
+		});
 		let text = "";
 		text += `💙 *Name: ${vtuber.title1}*\n`;
-		text += `💛 *Nickname: ${vtuber.nick_name}*\n`;
-		text += `💚 *Original Name: ${vtuber.original_name}*\n`;
-		text += `✨ *Debuted on: ${vtuber.debut_date}*\n`;
+		text += `💛 *Nickname: ${vtuber.nick_name
+			.replace(/\[/g, "")
+			.replace(/\]/g, "")
+			.replace(/\<ref>/g, "")
+			.replace(/\<br>/g, "")}*\n`;
+		if (vtuber.original_name !== "")
+			text += `💚 *Original Name: ${vtuber.original_name}*\n`;
+		text += `✨ *Debuted on: ${vtuber.debut_date
+			.replace(/\[/g, "")
+			.replace(/\]/g, "")
+			.replace(/\<ref>/g, "")
+			.replace(/\<br>/g, "")}*\n`;
 		text += `💫 *Gender: ${vtuber.gender}*\n`;
-		text += `🎂 *Age: ${vtuber.age}*\n`;
-		text += `🎁 *Birthday: ${vtuber.birthday}*\n`;
-		text += `📍 *Height: ${vtuber.height}*\n`;
-		text += `⚖ *Weight: ${vtuber.weight}*\n`;
-		text += `❄ *Zodiac Sign: ${vtuber.zodiac_sign}*\n`;
-		text += `🧧 *Emoji: ${vtuber.emoji}*\n\n`;
-		text += `♦️ *YouTube : ${vtuber.channel}*\n\n`;
+		if (vtuber.age !== "")
+			text += `🎂 *Age: ${vtuber.age
+				.replace(/\[/g, "")
+				.replace(/\]/g, "")
+				.replace(/\<ref>/g, "")
+				.replace(/\<br>/g, "")}*\n`;
+		if (vtuber.birthday !== "") text += `🎁 *Birthday: ${vtuber.birthday}*\n`;
+		if (vtuber.height !== "")
+			text += `📍 *Height: ${vtuber.height
+				.replace(/\[/g, "")
+				.replace(/\]/g, "")
+				.replace(/\<ref>/g, "")
+				.replace(/\<br>/g, "")
+				.replace(/\:File:Hololive VTuber Height Difference.jpg/g, "")}*\n`;
+		if (vtuber.weight !== "") text += `⚖ *Weight: ${vtuber.weight}*\n`;
+		if (vtuber.zodiac_sign !== "")
+			text += `❄ *Zodiac Sign: ${vtuber.zodiac_sign}*\n`;
+		if (vtuber.emoji !== "") text += `🧧 *Emoji: ${vtuber.emoji}*\n\n`;
+		text += `♦️ *YouTube : ${vtuber.channel
+			.replace(/\[/g, "")
+			.replace(/\]/g, "")
+			.replace(/\YouTube/g, "")}*\n\n`;
 		text += `🌐 *URL: ${vtuber.more}*\n\n`;
-		text += `❤ *Description:* ${vtuber.description}`;
-		if (vtuber == null) {
-			return void M.reply(`Couldn't find any matching VTuber.`);
-		}
+		text += `❤ *Description:* ${vtuber.description
+			.replace(/\[/g, "")
+			.replace(/\]/g, "")
+			.replace(/\<ref>/g, "")
+			.replace(/\<br>/g, "")}`;
 		const buffer = await request.buffer(vtuber.image_url).catch((e) => {
 			return void M.reply(e.message);
 		});
