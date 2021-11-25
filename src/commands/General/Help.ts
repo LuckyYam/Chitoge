@@ -30,6 +30,12 @@ export default class Command extends BaseCommand {
 				const info = this.handler.commands.get(command);
 				if (!command) continue;
 				if (!info?.config?.category || info.config.category === "dev") continue;
+				if (
+					!info?.config?.category ||
+					(info.config.category === "nsfw" &&
+						!(await this.client.getGroupData(M.from)).nsfw)
+				)
+					continue;
 				if (Object.keys(categories).includes(info.config.category))
 					categories[info.config.category].push(info);
 				else {
