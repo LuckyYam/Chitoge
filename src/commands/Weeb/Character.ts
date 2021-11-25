@@ -27,16 +27,19 @@ export default class Command extends BaseCommand {
 			return void (await M.reply(`Give me an anime character name, Baka!`));
 		const chitoge = joined.trim();
 		const client = new Character();
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const chara = await client.character(chitoge).catch((err: any) => {
-			return void M.reply(`Couldn't find any matching character.`)
+			return void M.reply(`Couldn't find any matching character.`);
 		});
 		//if (!chara)
-			//return void (await M.reply(`Couldn't find any matching character.`));
+		//return void (await M.reply(`Couldn't find any matching character.`));
 		let text = "";
 		text += `💙 *Name: ${chara.data.characters.results[0].name.full}*\n`;
 		text += `💛 *Source: ${chara.data.characters.results[0].media.edges[0].node.title.userPreferred}*\n\n`;
 		text += `🌐 *URL: ${chara.data.characters.results[0].siteUrl}*\n\n`;
-		text += `❤ *Description:* ${chara.data.characters.results[0].description}\n`;
+		text += `❤ *Description:* ${chara.data.characters.results[0].description
+			.replace(/\[/g, "")
+			.replace(/\]/g, "")}\n`;
 
 		const buffer = await request
 			.buffer(chara.data.characters.results[0].image.large)

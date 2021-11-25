@@ -35,29 +35,29 @@ export default class Command extends BaseCommand {
 		text += `💛 *Nickname: ${vtuber.nick_name
 			.replace(/\[/g, "")
 			.replace(/\]/g, "")
-			.replace(/\<ref>/g, "")
-			.replace(/\<br>/g, "")}*\n`;
+			.replace(/\<ref>/g, " ")
+			.replace(/\<br>/g, " ")}*\n`;
 		if (vtuber.original_name !== "")
 			text += `💚 *Original Name: ${vtuber.original_name}*\n`;
 		text += `✨ *Debuted on: ${vtuber.debut_date
 			.replace(/\[/g, "")
 			.replace(/\]/g, "")
-			.replace(/\<ref>/g, "")
-			.replace(/\<br>/g, "")}*\n`;
+			.replace(/\<ref>/g, " ")
+			.replace(/\<br>/g, " ")}*\n`;
 		text += `💫 *Gender: ${vtuber.gender}*\n`;
 		if (vtuber.age !== "")
 			text += `🎂 *Age: ${vtuber.age
 				.replace(/\[/g, "")
 				.replace(/\]/g, "")
-				.replace(/\<ref>/g, "")
-				.replace(/\<br>/g, "")}*\n`;
+				.replace(/\<ref>/g, " ")
+				.replace(/\<br>/g, " ")}*\n`;
 		if (vtuber.birthday !== "") text += `🎁 *Birthday: ${vtuber.birthday}*\n`;
 		if (vtuber.height !== "")
 			text += `📍 *Height: ${vtuber.height
 				.replace(/\[/g, "")
 				.replace(/\]/g, "")
-				.replace(/\<ref>/g, "")
-				.replace(/\<br>/g, "")
+				.replace(/\<ref>/g, " ")
+				.replace(/\<br>/g, " ")
 				.replace(/\:File:Hololive VTuber Height Difference.jpg/g, "")}*\n`;
 		if (vtuber.weight !== "") text += `⚖ *Weight: ${vtuber.weight}*\n`;
 		if (vtuber.zodiac_sign !== "")
@@ -71,8 +71,8 @@ export default class Command extends BaseCommand {
 		text += `❤ *Description:* ${vtuber.description
 			.replace(/\[/g, "")
 			.replace(/\]/g, "")
-			.replace(/\<ref>/g, "")
-			.replace(/\<br>/g, "")}`;
+			.replace(/\<ref>/g, " ")
+			.replace(/\<br>/g, " ")}`;
 		const buffer = await request.buffer(vtuber.image_url).catch((e) => {
 			return void M.reply(e.message);
 		});

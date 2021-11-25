@@ -5,7 +5,6 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { IParsedArgs, ISimplifiedMessage } from "../../typings";
-import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
 
 export default class Command extends BaseCommand {
@@ -24,11 +23,14 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
-		if (!joined)
-			return void (await M.reply(`Give me a wallpaper term to search, Baka!`));
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const chitoge: any = joined.trim().split("|");
 		const term: string = chitoge[0];
 		const amount: number = chitoge[1];
+		if (term === "")
+			return void M.reply(
+				`Give me the wallpaper term and page to search, Baka!`
+			);
 		if (!amount)
 			return void M.reply(
 				`Give me the number of wallpapers to send, Baka!\n\nExample: *${this.client.config.prefix}wallpaper chitoge|5*`

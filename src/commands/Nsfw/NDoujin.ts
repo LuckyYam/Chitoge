@@ -26,28 +26,39 @@ export default class Command extends BaseCommand {
 		{ joined }: IParsedArgs
 	): Promise<void> => {
 		const sHentai = new nHentai();
-		const terms = joined.trim().split("|");
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const terms: any = joined.trim().split("|");
 		if (terms[0] === "")
 			return void M.reply(
 				`Give me the id and page of the nhentai doujin, Baka!`
 			);
-		const id = terms[0];
-		const page = terms[1];
+		const id: string = terms[0];
+		const page: number = terms[1];
 		if (!page) return void M.reply("Give me the page, Baka!");
-		const o = evaluate(+terms[1] - +1);
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const doujin = await sHentai.getDoujin(id).catch((err: any) => {
-			return void M.reply(`Invalid doujin id, Baka!.`);
-		});
-		let text = "";
-		text += `🎀 *Title: ${doujin.titles.english}*\n`;
-		text += `🎗 *Tags: ${doujin.tags}*\n`;
-		text += `✍ *Author: ${doujin.author}*\n`;
-		text += `📒 *Reading Progress: ${page} out of ${doujin.pages.length}*`;
+		const o = evaluate(page - 1);
 		if (!(await this.client.getGroupData(M.from)).nsfw)
 			return void M.reply(
 				`Don't be a pervert, Baka! This is not an NSFW group.`
 			);
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const doujin = await sHentai.getDoujin(id).catch((err: any) => {
+			return void M.reply(`Invalid doujin id, Baka!.`);
+		});
+		if (page > doujin.pages.length)
+			return void M.reply(
+				`I think you should check the total pages of the doujin.`
+			);
+		if (page == undefined) {
+			return void M.reply(
+				`*https://en.wikipedia.org/wiki/Number*\nI think this might help you.`
+			);
+		}
+
+		let text = "";
+		text += `🎀 *Title: ${doujin.titles.english}*\n`;
+		text += `🎗 *Tags: ${doujin.tags.join(", ")}*\n`;
+		text += `✍ *Author: ${doujin.author}*\n`;
+		text += `📒 *Reading Progress: ${page} out of ${doujin.pages.length}*`;
 		const buffer = await request.buffer(doujin.pages[o]).catch((e) => {
 			return void M.reply(e.message);
 		});
