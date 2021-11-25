@@ -41,7 +41,7 @@ export default class Command extends BaseCommand {
 		text += `💛 *Source: ${haigusha.series.name}*\n\n`;
 		text += `🌐 *URL: ${haigusha.url}*\n\n`;
 		text += `❤ *Description:* ${haigusha.description}\n`;
-		if (haigusha === undefined) {
+		if (haigusha == undefined) {
 			return void M.reply("✖ An error occurred. Please try again later.");
 		}
 		//const thumbnail = await request.buffer(
