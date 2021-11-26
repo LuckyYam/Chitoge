@@ -25,8 +25,9 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
+		/*eslint-disable @typescript-eslint/no-explicit-any*/
+		/*eslint-disable @typescript-eslint/no-unused-vars*/
 		const sHentai = new nHentai();
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const terms: any = joined.trim().split("|");
 		if (terms[0] === "")
 			return void M.reply(

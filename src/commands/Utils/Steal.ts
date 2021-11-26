@@ -42,7 +42,7 @@ export default class Command extends BaseCommand {
 		if (M.quoted?.message?.message?.stickerMessage)
 			buffer = await this.client.downloadMediaMessage(M.quoted.message);
 		if (!buffer)
-			return void M.reply(`You didn't provide any sticker to format, Baka!`);
+			return void M.reply(`Provide a sticker to format, Baka!`);
 		const filename = `${tmpdir()}/${Math.random().toString(36)}`;
 		const getQuality = (): number => {
 			const qualityFlag = parsedArgs.joined.match(/--(\d+)/g) || "";

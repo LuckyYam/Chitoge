@@ -1,3 +1,10 @@
+/**
+ * /*eslint-disable @typescript-eslint/no-explicit-any
+ *
+ * @format
+ */
+
+/*eslint-disable @typescript-eslint/no-unused-vars */
 import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
@@ -23,6 +30,8 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
+		/*eslint-disable @typescript-eslint/no-explicit-any*/
+		/*eslint-disable @typescript-eslint/no-unused-vars*/
 		if (!joined)
 			return void (await M.reply(`Give me an anime character name, Baka!`));
 		const chitoge = joined.trim();

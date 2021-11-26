@@ -2,7 +2,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { IParsedArgs, ISimplifiedMessage } from "../../typings";
-import { Manga } from "mailist";
+import { Mal } from "node-myanimelist";
 import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
 // import { MessageType, Mimetype } from '@adiwajshing/baileys'
@@ -23,30 +23,35 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
+		/*eslint-disable @typescript-eslint/no-explicit-any*/
+		/*eslint-disable @typescript-eslint/no-unused-vars*/
+		if (!this.client.config.malLogin)
+			return void M.reply(`Username and Password not set for myanimelist.net.`);
 		if (!joined) return void (await M.reply(`Give me a manga title, Baka!`));
 		const chitoge = joined.trim();
-		const get = new Manga();
-		const search = await get
-			.manga(chitoge)
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const auth = Mal.auth("6114d00ca681b7701d1e15fe11a4987e");
+		const logIn = await auth.Unstable.login(this.client.config.malLogin);
+		const search = await logIn.manga
+			.search(chitoge, Mal.Manga.fields().all())
+			.call()
 			.catch((err: any) => {
-				return void M.reply(`Couldn't find any matching manga title.`);
+				return void M.reply(`Couldn't find any matching manga.`);
 			});
 		let text = "";
-		text += `🎀 *Title: ${search.data.anime.results[0].title.romaji}*\n`;
-		text += `📈 *Status: ${search.data.anime.results[0].status}*\n`;
-		text += `🎋 *Format: ${search.data.anime.results[0].format}*\n`;
-		text += `💮 *Genres: ${search.data.anime.results[0].genres.join(", ")}*\n`;
-		text += `🌸 *Total Volumes: ${search.data.anime.results[0].volumes}*\n`;
-		text += `🎗 *Total Chapters: ${search.data.anime.results[0].chapters}*\n`;
-		text += `✨ *Published on: ${search.data.anime.results[0].startDate.day}-${search.data.anime.results[0].startDate.month}-${search.data.anime.results[0].startDate.year}*\n`;
-		text += `🚫 *Eechi: ${search.data.anime.results[0].isAdult}*\n`;
-		text += `🌟 *Score: ${search.data.anime.results[0].meanScore}\n\n`;
-		text += `🌐 *URL: ${search.data.anime.results[0].siteUrl}*\n\n`;
-		text += `❄️ *Description:* ${search.data.anime.results[0].description}`;
-		//	if (!search) return void M.reply(`Couldn't find any matching manga title.`);
+		text += `🎀 *Title: ${search.data[0].node.title}*\n`;
+		text += `📈 *Status: ${search.data[0].node.status}*\n`;
+		text += `🌸 *Total Volumes: ${search.data[0].node.num_volumes}*\n`;
+		text += `🎗 *Total Chapters: ${search.data[0].node.num_chapters}*\n`;
+		text += `✨ *Published on: ${search.data[0].node.start_date}*\n`;
+		text += `🌟 *Score: ${search.data[0].node.mean}*\n`;
+		text += `✍ *Author: ${search.data[0].node.authors[0].node.first_name} ${search.data[0].node.authors[0].node.last_name}*\n\n`;
+		text += `🌐 *MyAnimeList URL: https://myanimelist.net/manga/${search.data[0].node.id}/${search.data[0].node.title}*\n\n`;
+		text += `❄️ *Description:* ${search.data[0].node.synopsis.replace(
+			/\[Written by MAL Rewrite]/g,
+			""
+		)}`;
 		const buffer = await request
-			.buffer(search.data.anime.results[0].coverImage.large)
+			.buffer(search.data[0].node.main_picture.large)
 			.catch((e) => {
 				return void M.reply(e.message);
 			});

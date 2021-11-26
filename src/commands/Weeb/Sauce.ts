@@ -21,6 +21,8 @@ export default class Command extends BaseCommand {
 	}
 
 	run = async (M: ISimplifiedMessage): Promise<void> => {
+		/*eslint-disable @typescript-eslint/no-explicit-any*/
+		/*eslint-disable @typescript-eslint/no-unused-vars*/
 		let buffer;
 		if (M.quoted?.message?.message?.imageMessage)
 			buffer = await this.client.downloadMediaMessage(M.quoted.message);
