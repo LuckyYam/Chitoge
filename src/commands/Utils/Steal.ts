@@ -66,7 +66,9 @@ export default class Command extends BaseCommand {
 		const getOptions = () => {
 			const pack = parsedArgs.joined.split("|");
 			if (pack[0] == '') 
-			return void M.reply(`Provide the new name and author of this sticker, Baka!\nExample: ${this.client.config.prefix}steal | By | Chitoge`
+			return void M.reply(
+				`Provide the new name and author of the sticker, Baka!\nExample: ${this.client.config.prefix}steal | By | Chitoge`
+			);
 			const categories = (() => {
 				const categories = parsedArgs.flags.reduce((categories, flag) => {
 					switch (flag) {
