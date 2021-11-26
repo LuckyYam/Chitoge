@@ -50,7 +50,7 @@
           "required": false
       },
       "MAL_LOGIN": {
-          "description": "Your username and password for myanimelist.net to make Anime and Manga search(It must be in the format of \"your_email\", \"your_password\"",
+          "description": "Your username and password for myanimelist.net to make Anime and Manga search(It must be in the format of \"your_username\", \"your_password\"",
           "required": false
       }
   },
