@@ -13,7 +13,8 @@ export interface IConfig {
 	chatBotUrl: string;
 	gifApi: string;
 	geniusKey: string;
-	malLogin: string[];
+	malUsername: string;
+	malPassword: string;
 }
 
 export interface IParsedArgs {

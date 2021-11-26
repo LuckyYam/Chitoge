@@ -25,12 +25,17 @@ export default class Command extends BaseCommand {
 	): Promise<void> => {
 		/*eslint-disable @typescript-eslint/no-explicit-any*/
 		/*eslint-disable @typescript-eslint/no-unused-vars*/
-		if (!this.client.config.malLogin)
-			return void M.reply(`Username and Password not set for myanimelist.net.`);
+		if (!this.client.config.malUsername)
+			return void M.reply(`Username not set for myanimelist.net.`);
+		if (!this.client.config.malPassword)
+			return void M.reply(`Password not set for myanimelist.net.`);
 		if (!joined) return void (await M.reply(`Give me a manga title, Baka!`));
 		const chitoge = joined.trim();
 		const auth = Mal.auth("6114d00ca681b7701d1e15fe11a4987e");
-		const logIn = await auth.Unstable.login(this.client.config.malLogin);
+		const logIn = await auth.Unstable.login(
+			this.client.config.malUsername,
+			this.client.config.malPassword
+		);
 		const search = await logIn.manga
 			.search(chitoge, Mal.Manga.fields().all())
 			.call()
