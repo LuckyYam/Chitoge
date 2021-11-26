@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
 	constructor(client: WAClient, handler: MessageHandler) {
 		super(client, handler, {
 			command: "info",
-			description: "Will display the info the bot",
+			description: "Will display the info of the bot",
 			category: "general",
 			usage: `${client.config.prefix}info`,
 			baseXp: 0,
@@ -35,7 +35,7 @@ export default class Command extends BaseCommand {
 		await M.reply(
 			`*━━━❰ 💙 CHITOGE 💙 ❱━━━*\n\n🔮 *Groups: ${
 				chats.length
-			}*\n\n🚦 *Uptime:${uptime()}*`
+			}*\n\n🚦 *Uptime: ${uptime()}*`
 		);
 	};
 }
