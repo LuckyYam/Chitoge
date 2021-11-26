@@ -65,6 +65,8 @@ export default class Command extends BaseCommand {
 		);
 		const getOptions = () => {
 			const pack = parsedArgs.joined.split("|");
+			if (pack[0] == '') 
+			return void M.reply(`Provide the new name and author of this sticker, Baka!\nExample: ${this.client.config.prefix}steal | By | Chitoge`
 			const categories = (() => {
 				const categories = parsedArgs.flags.reduce((categories, flag) => {
 					switch (flag) {
@@ -95,8 +97,8 @@ export default class Command extends BaseCommand {
 			})();
 			return {
 				categories,
-				pack: pack[1] || "🌟 Here you go ",
-				author: pack[2] || "Chitoge 🌟",
+				pack: pack[1],
+				author: pack[2] || M.sender.username,
 				quality,
 				type: StickerTypes[
 					parsedArgs.flags.includes("--crop") ||
