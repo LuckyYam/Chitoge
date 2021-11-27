@@ -50,9 +50,9 @@ export default class Command extends BaseCommand {
 			}"\n\nThe usable commands are listed below.\n\n`;
 			const keys = Object.keys(categories);
 			for (const key of keys)
-				text += `${
-					this.emojis[keys.indexOf(key)]
-				} *${this.client.util.capitalize(key)}*\n❐ \`\`\`${categories[key]
+				text += `*━━━❰ ${this.client.util.capitalize(
+					key
+				)} ❱━━━*\n❐ \`\`\`${categories[key]
 					.map((command) => command.config?.command)
 					.join(" \n ")}\`\`\`\n\n`;
 			return void this.client.sendMessage(
@@ -94,6 +94,4 @@ export default class Command extends BaseCommand {
 			}`
 		);
 	};
-
-	emojis = ["❄", "📚", "🌈", "♟", "📍", "🎵", "👑", "🚫", "♻️", "✨"];
 }
