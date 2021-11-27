@@ -45,6 +45,10 @@ export default class Command extends BaseCommand {
 		if (!buffer)
 			return void M.reply(`Provide a sticker to format, Baka!`);
 			const pack = parsedArgs.joined.split("|");
+			if (!pack[1])
+				return void M.reply(
+					`Give me the new name and author of the sticker, Baka!\nExample: ${this.client.config.prefix}steal | By | Chitoge`
+				);
 			const filename = `${tmpdir()}/${Math.random().toString(36)}`;
 			const getQuality = (): number => {
 				const qualityFlag = parsedArgs.joined.match(/--(\d+)/g) || "";
@@ -97,7 +101,7 @@ export default class Command extends BaseCommand {
 				return {
 					categories,
 					pack: pack[1],
-					author: pack[2] || M.sender.username,
+					author: pack[2] || `${M.sender.username}`,
 					quality,
 					type: StickerTypes[
 						parsedArgs.flags.includes("--crop") ||
@@ -116,10 +120,6 @@ export default class Command extends BaseCommand {
 			const sticker: any = await new Sticker(buffer, getOptions()).build();
 			fs.writeFileSync(`${filename}.webp`, sticker);
 			const stickerbuffer = fs.readFileSync(`${filename}.webp`);
-			if (pack[0] == "")
-				return void M.reply(
-					`Provide the new name and author of the sticker, Baka!\nExample: ${this.client.config.prefix}steal | By | Chitoge`
-				);
 		await M.reply(stickerbuffer, MessageType.sticker, Mimetype.webp);
 	};
 }

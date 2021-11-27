@@ -24,6 +24,8 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
+		/*eslint-disable @typescript-eslint/no-explicit-any */
+		/*eslint-disable @typescript-eslint/no-unused-vars */
 		if (!joined) return void (await M.reply(`Give me a vtuber name, Baka!`));
 		const name = joined.trim();
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,15 +51,15 @@ export default class Command extends BaseCommand {
 			text += `🎂 *Age: ${vtuber.age
 				.replace(/\[/g, "")
 				.replace(/\]/g, "")
-				.replace(/\<ref>/g, " ")
-				.replace(/\<br>/g, " ")}*\n`;
+				.replace(/\<ref>/g, "")
+				.replace(/\<br>/g, "")}*\n`;
 		if (vtuber.birthday !== "") text += `🎁 *Birthday: ${vtuber.birthday}*\n`;
 		if (vtuber.height !== "")
 			text += `📍 *Height: ${vtuber.height
 				.replace(/\[/g, "")
 				.replace(/\]/g, "")
-				.replace(/\<ref>/g, " ")
-				.replace(/\<br>/g, " ")
+				.replace(/\<ref>/g, "")
+				.replace(/\<br>/g, "")
 				.replace(/\:File:Hololive VTuber Height Difference.jpg/g, "")}*\n`;
 		if (vtuber.weight !== "") text += `⚖ *Weight: ${vtuber.weight}*\n`;
 		if (vtuber.zodiac_sign !== "")
