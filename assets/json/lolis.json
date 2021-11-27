@@ -1,0 +1,212 @@
+{
+    "lolis": [
+        {
+            "id": 0,
+            "url": "https://wallpaperaccess.com/full/3457089.png"
+        },
+        {
+            "id": 1,
+            "url": "https://wallpaperaccess.com/full/5282407.png"
+        },
+        {
+            "id": 2,
+            "url": "https://wallpaperaccess.com/full/6765505.jpg"
+        },
+        {
+            "id": 3,
+            "url": "https://wallpaperaccess.com/full/2024450.jpg"
+        },
+        {
+            "id": 4,
+            "url": "https://www.itl.cat/pngfile/big/172-1721482_cute-anime-wallpapers-hd-cute-anime-wallpaper-hd.jpg"
+        },
+        {
+            "id": 5,
+            "url": "https://wallpaperaccess.com/full/951502.jpg"
+        },
+        {
+            "id": 6,
+            "url": "https://cutewallpaper.org/22/anime-loli-wallpapers/2391014113.jpg"
+        },
+        {
+            "id": 7,
+            "url": "https://wallpaperaccess.com/full/6765512.png"
+        },
+        {
+            "id": 8,
+            "url": "https://wallpaperaccess.com/full/6765504.jpg"
+        },
+        {
+            "id": 9,
+            "url": "https://i.pinimg.com/736x/a3/02/e2/a302e29d5da3e7d1218c5915764395a8.jpg"
+        },
+        {
+            "id": 10,
+            "url": "https://wallpaperaccess.com/full/6155490.png"
+        },
+        {
+            "id": 11,
+            "url": "https://cutewallpaper.org/22/loli-anime-android-wallpapers/2784124399.jpg"
+        },
+        {
+            "id": 12,
+            "url": "https://wallpapercave.com/wp/wp6051933.jpg"
+        },
+        {
+            "id": 13,
+            "url": "https://wallpapercave.com/wp/wp6117221.jpg"
+        },
+        {
+            "id": 14,
+            "url": "https://wallpapercave.com/wp/wp4534403.jpg"
+        },
+        {
+            "id": 15,
+            "url": "https://wallpapercave.com/wp/wp6044290.jpg"
+        },
+        {
+            "id": 16,
+            "url": "https://wallpapercave.com/wp/wp6079798.jpg"
+        },
+        {
+            "id": 17,
+            "url": "https://wallpapercave.com/wp/wp6117403.jpg"
+        },
+        {
+            "id": 18,
+            "url": "https://wallpapercave.com/wp/wp6117408.jpg"
+        },
+        {
+            "id": 19,
+            "url": "https://wallpapercave.com/wp/wp5843979.jpg"
+        },
+        {
+            "id": 20,
+            "url": "https://wallpapercave.com/wp/wp6117561.png"
+        },
+        {
+            "id": 21,
+            "url": "https://wallpapercave.com/wp/wp2263080.jpg"
+        },
+        {
+            "id": 22,
+            "url": "https://wallpapercave.com/wp/wp4534403.jpg"
+        },
+        {
+            "id": 23,
+            "url": "https://wallpapercave.com/wp/wp5752501.png"
+        },
+        {
+            "id": 24,
+            "url": "https://wallpapercave.com/wp/wp5114711.png"
+        },
+        {
+            "id": 25,
+            "url": "https://wallpapercave.com/wp/wp4747935.jpg"
+        },
+        {
+            "id": 26,
+            "url": "https://wallpapercave.com/wp/wp5114740.jpg"
+        },
+        {
+            "id": 27,
+            "url": "https://wallpapercave.com/wp/wp4747958.jpg"
+        },
+        {
+            "id": 28,
+            "url": "https://wallpapercave.com/wp/wp5286580.jpg"
+        },
+        {
+            "id": 29,
+            "url": "https://wallpapercave.com/wp/wp6873117.jpg"
+        },
+        {
+            "id": 30,
+            "url": "https://wallpapercave.com/wp/wp6873123.jpg"
+        },
+        {
+            "id": 31,
+            "url": "https://wallpapercave.com/wp/wp6032920.jpg"
+        },
+        {
+            "id": 32,
+            "url": "https://wallpapercave.com/wp/wp5286588.jpg"
+        },
+        {
+            "id": 33,
+            "url": "https://wallpapercave.com/wp/wp5232979.jpg"
+        },
+        {
+            "id": 34,
+            "url": "https://wallpapercave.com/wp/wp6873195.jpg"
+        },
+        {
+            "id": 35,
+            "url": "https://wallpapercave.com/wp/wp5683683.jpg"
+        },
+        {
+            "id": 36,
+            "url": "https://wallpapercave.com/wp/wp6271446.jpg"
+        },
+        {
+            "id": 37,
+            "url": "https://wallpapercave.com/wp/wp6220040.jpg"
+        },
+        {
+            "id": 38,
+            "url": "https://wallpapercave.com/wp/wp6778710.jpg"
+        },
+        {
+            "id": 39,
+            "url": "https://wallpapercave.com/wp/wp4580620.png"
+        },
+        {
+            "id": 40,
+            "url": "https://wallpapercave.com/wp/wp6117551.jpg"
+        },
+        {
+            "id": 41,
+            "url": "https://wallpapercave.com/wp/wp6873377.jpg"
+        },
+        {
+            "id": 42,
+            "url": "https://wallpapercave.com/wp/wp6625308.jpg"
+        },
+        {
+            "id": 43,
+            "url": "https://wallpapercave.com/wp/wp6873513.jpg"
+        },
+        {
+            "id": 44,
+            "url": "https://wallpapercave.com/wp/wp5580868.jpg"
+        },
+        {
+            "id": 45,
+            "url": "https://wallpapercave.com/wp/wp6335158.jpg"
+        },
+        {
+            "id": 46,
+            "url": "https://wallpapercave.com/wp/wp6033038.jpg"
+        },
+        {
+            "id": 47,
+            "url": "https://wallpapercave.com/wp/wp6873522.jpg"
+        },
+        {
+            "id": 48,
+            "url": "https://wallpapercave.com/wp/wp6873554.jpg"
+        },
+        {
+            "id": 49,
+            "url": "https://wallpapercave.com/wp/wp6117334.jpg"
+        },
+        {
+            "id": 50,
+            "url": "https://wallpapercave.com/wp/wp5581063.png"
+        },
+        {
+            "id": 51,
+            "url": "https://wallpapercave.com/wp/wp6873600.jpg"
+        }
+    ]
+}

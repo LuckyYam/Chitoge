@@ -50,7 +50,7 @@ export default class Command extends BaseCommand {
 		text += `✨ *Published on: ${search.data[0].node.start_date}*\n`;
 		text += `🌟 *Score: ${search.data[0].node.mean}*\n`;
 		text += `✍ *Author: ${search.data[0].node.authors[0].node.first_name} ${search.data[0].node.authors[0].node.last_name}*\n\n`;
-		text += `🌐 *MyAnimeList URL: https://myanimelist.net/manga/${search.data[0].node.id}/${search.data[0].node.title}*\n\n`;
+		text += `🌐 *MyAnimeList URL: https://myanimelist.net/manga/${search.data[0].node.id}*\n\n`;
 		text += `❄️ *Description:* ${search.data[0].node.synopsis.replace(
 			/\[Written by MAL Rewrite]/g,
 			""

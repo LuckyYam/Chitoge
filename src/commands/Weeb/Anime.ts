@@ -67,7 +67,7 @@ export default class Command extends BaseCommand {
 		text += `🎗 *Ended on: ${result.end_date}*\n`;
 		text += `🎐 *Popularity:* ${result.popularity}*\n`;
 		text += `🏅 *Rank: ${result.rank}*\n\n`;
-		text += `🌐 *URL: https://myanimelist.net/anime/${result.id}/${result.title}*\n\n`;
+		text += `🌐 *URL: https://myanimelist.net/anime/${result.id}*\n\n`;
 		text += `❄ *Description:* ${result.synopsis.replace(
 			/\[Written by MAL Rewrite]/g,
 			""

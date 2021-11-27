@@ -2,7 +2,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { ISimplifiedMessage } from "../../typings";
-import axios from "axios";
+//import axios from "axios";
 import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
 // import { MessageType, Mimetype } from '@adiwajshing/baileys'
@@ -20,9 +20,15 @@ export default class Command extends BaseCommand {
 	}
 
 	run = async (M: ISimplifiedMessage): Promise<void> => {
-		const { data } = await axios.get(`https://api.lolicon.app/setu/v2`);
+		const images = JSON.parse((this.client.assets.get('lolis') as Buffer).toString()) as unknown as {
+			lolis: {
+				id: number,
+				url: string
+			}[]
+		}
+		const loli = images.lolis[Math.floor(Math.random() * images.lolis.length)]
 		const buffer = await request
-			.buffer(data.data[0].urls.original)
+			.buffer(loli.url)
 			.catch((e) => {
 				return void M.reply(e.message);
 			});
@@ -41,14 +47,14 @@ export default class Command extends BaseCommand {
 					);
 					// console.log('Failed')
 					M.reply(
-						`Could not fetch image. Here's the URL: ${data.data[0].urls.original}`
+						`Could not fetch image. Here's the URL: ${loli.url}`
 					);
 				});
 				break;
 			} catch (e) {
 				// console.log('Failed2')
 				M.reply(
-					`Could not fetch image. Here's the URL : ${data.data[0].urls.original}`
+					`Could not fetch image. Here's the URL : ${loli.url}`
 				);
 				console.log(
 					`This Error occurs when an image is sent via M.reply()\n Parent Catch Block : \n${e}`
