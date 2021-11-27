@@ -1,7 +1,6 @@
 /** @format */
 
 declare module "akaneko";
-declare module "lolis.life";
 declare module "go-image-go";
 declare module "mathjs";
 declare module "node-fetch";
@@ -23,7 +22,6 @@ declare module "trace.moe.ts";
 declare module "anilist-node";
 declare module "pokedex-promise-v2";
 declare module "imgbb-uploader";
-declare module "text-from-image";
 declare module "emoji-api";
 declare module "vtuber-wiki";
 declare module "node-myanimelist";

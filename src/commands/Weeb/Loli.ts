@@ -2,7 +2,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { ISimplifiedMessage } from "../../typings";
-import Loli from "lolis.life";
+import axios from "axios";
 import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
 // import { MessageType, Mimetype } from '@adiwajshing/baileys'
@@ -20,12 +20,12 @@ export default class Command extends BaseCommand {
 	}
 
 	run = async (M: ISimplifiedMessage): Promise<void> => {
-		// fetch result of https://www.npmjs.com/package/lolis.life
-		const loli = new Loli();
-		const i = await loli.getSFWLoli();
-		const buffer = await request.buffer(i.url).catch((e) => {
-			return void M.reply(e.message);
-		});
+		const { data } = await axios.get(`https://api.lolicon.app/setu/v2`);
+		const buffer = await request
+			.buffer(data.data[0].urls.original)
+			.catch((e) => {
+				return void M.reply(e.message);
+			});
 		while (true) {
 			try {
 				M.reply(
@@ -40,12 +40,16 @@ export default class Command extends BaseCommand {
 						`This Error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`
 					);
 					// console.log('Failed')
-					M.reply(`Could not fetch image. Here's the URL: ${i.url}`);
+					M.reply(
+						`Could not fetch image. Here's the URL: ${data.data[0].urls.original}`
+					);
 				});
 				break;
 			} catch (e) {
 				// console.log('Failed2')
-				M.reply(`Could not fetch image. Here's the URL : ${i.url}`);
+				M.reply(
+					`Could not fetch image. Here's the URL : ${data.data[0].urls.original}`
+				);
 				console.log(
 					`This Error occurs when an image is sent via M.reply()\n Parent Catch Block : \n${e}`
 				);

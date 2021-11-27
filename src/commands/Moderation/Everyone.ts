@@ -30,7 +30,7 @@ export default class Command extends BaseCommand {
 			"https://data.whicdn.com/images/304776416/original.jpg",
 			"https://i.pinimg.com/564x/ca/e7/8a/cae78ad7f8e6459ad20bde350e2eb78b.jpg",
 		];
-		const option = ["--s"];
+		const option = ["--s", "--sticker"];
 		const random = stickers[Math.floor(Math.random() * stickers.length)];
 		if (!joined)
 			return void (await M.reply(
