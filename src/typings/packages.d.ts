@@ -9,7 +9,7 @@ declare module "shentai";
 declare module "mywaifulist-scraper";
 declare module "mal-scraper";
 declare module "wikipedia";
-declare module "anime-wallpapers";
+declare module "anime-wallpaper";
 declare module "translate-google";
 declare module "animequotes";
 declare module "mailist";
