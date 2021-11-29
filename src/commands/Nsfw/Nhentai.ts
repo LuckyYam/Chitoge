@@ -25,6 +25,10 @@ export default class Command extends BaseCommand {
 	): Promise<void> => {
 		/*eslint-disable @typescript-eslint/no-explicit-any*/
 		/*eslint-disable @typescript-eslint/no-unused-vars*/
+		if (!(await this.client.getGroupData(M.from)).nsfw)
+			return void M.reply(
+				`Don't be a pervert, Baka! This is not an NSFW group.`
+			);
 		if (!joined)
 			return void (await M.reply(
 				`Give me an nhentai doujin title to search, Baka!`
