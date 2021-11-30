@@ -114,7 +114,7 @@ export default class Command extends BaseCommand {
 			.setProgressBar("#FFFFFF", "COLOR")
 			.setOverlay("#000000")
 			.setUsername(username)
-			.setDiscriminator(10)
+			.setDiscriminator("0007")
 			.setBackground(
 				"IMAGE",
 				"https://i.pinimg.com/originals/bb/4c/c3/bb4cc3b2fae7978db32f35b4519cc0f8.jpg"
