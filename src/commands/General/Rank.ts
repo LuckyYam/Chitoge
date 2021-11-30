@@ -24,9 +24,17 @@ export default class Command extends BaseCommand {
 		const user = M.mentioned[0] ? M.mentioned[0] : M.sender.jid;
 		let username = user === M.sender.jid ? M.sender.username : "";
 		if (!username) {
-			// const contact = this.client.getContact(user)
-			// username = contact.notify || contact.vname || contact.name || user.split('@')[0]
-			username = user.split("@")[0];
+			const contact = this.client.getContact(user);
+			username =
+				contact.notify || contact.vname || contact.name || user.split("@")[0];
+		}
+		let pfp: string;
+		try {
+			pfp = await this.client.getProfilePicture(user);
+		} catch (err) {
+			M.reply(`Profile Picture not Accessible of ${username}`);
+			pfp =
+				"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
 		}
 		const exp = (await this.client.getUser(user)).Xp;
 		let role: string;
@@ -97,7 +105,7 @@ export default class Command extends BaseCommand {
 			required = 0;
 		}
 		const rank = new Canvacord.Rank()
-			.setAvatar(await this.client.getProfilePicture(user))
+			.setAvatar(pfp)
 			.setCurrentXP(exp || 0)
 			.setRequiredXP(required)
 			.setStatus("online", true)

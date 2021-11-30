@@ -34,51 +34,51 @@ export default class Command extends BaseCommand {
                 'https://wallpaperaccess.com/full/5304840.png'
         }
         const exp = (await this.client.getUser(user)).Xp
-        let role
-        if (exp < 500) {
-            role = '🌸 Citizen'
-        } else if (exp < 1000) {
-            role = '🔎 Cleric'
-        } else if (exp < 2000) {
-            role = '🔮 Wizard'
-        } else if (exp < 5000) {
-            role = '♦️ Mage'
-        } else if (exp < 10000) {
-            role = '🎯 Noble'
-        } else if (exp < 25000) {
-            role = '✨ Elite'
-        } else if (exp < 50000) {
-            role = '🔶️ Ace'
-        } else if (exp < 75000) {
-            role = '🌀 Hero'
-        } else if (exp < 100000) {
-            role = '💎 Supreme'
-        } else {
-            role = '❄️ Mystic'
-        }
-
-        let level
-        if (exp < 500) {
-            level = '1'
-        } else if (exp < 1000) {
-            level = '2'
-        } else if (exp < 2000) {
-            level = '3'
-        } else if (exp < 5000) {
-            level = '4'
-        } else if (exp < 10000) {
-            level = '5'
-        } else if (exp < 25000) {
-            level = '6'
-        } else if (exp < 50000) {
-            level = '7'
-        } else if (exp < 75000) {
-            level = '8'
-        } else if (exp < 100000) {
-            level = '9'
-        } else {
-            level = 'Max'
-        }
+        let role: string;
+				if (exp < 500) {
+					role = "🌸 Citizen";
+				} else if (exp < 1000) {
+					role = "🔎 Cleric";
+				} else if (exp < 2000) {
+					role = "🔮 Wizard";
+				} else if (exp < 5000) {
+					role = "♦️ Mage";
+				} else if (exp < 10000) {
+					role = "🎯 Noble";
+				} else if (exp < 25000) {
+					role = "✨ Elite";
+				} else if (exp < 50000) {
+					role = "🔶️ Ace";
+				} else if (exp < 75000) {
+					role = "🌀 Hero";
+				} else if (exp < 100000) {
+					role = "💎 Supreme";
+				} else {
+					role = "❄️ Mystic";
+				}
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				let level: number;
+				if (exp < 500) {
+					level = 1;
+				} else if (exp < 1000) {
+					level = 2;
+				} else if (exp < 2000) {
+					level = 3;
+				} else if (exp < 5000) {
+					level = 4;
+				} else if (exp < 10000) {
+					level = 5;
+				} else if (exp < 25000) {
+					level = 6;
+				} else if (exp < 50000) {
+					level = 7;
+				} else if (exp < 75000) {
+					level = 8;
+				} else if (exp < 100000) {
+					level = 9;
+				} else {
+					level = 10;
+				}
         
         await M.reply(
             await request.buffer(
