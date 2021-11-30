@@ -113,7 +113,7 @@ export default class Command extends BaseCommand {
 		ctx.strokeRect(0, 0, canvas.width, canvas.height);
 		ctx.font = '35px "Roboto"';
 		ctx.fillStyle = "#fff";
-		ctx.fillText(`${username}`, 215, 125);
+		ctx.fillText(`${username}`, 215, 150);
 		ctx.font = '28px "Roboto Black"';
 		ctx.fillStyle = "#fff";
 		ctx.fillText(`Exp: ${exp} / ${required} `, 500, 100);
@@ -153,7 +153,7 @@ export default class Command extends BaseCommand {
 		ctx.closePath();
 		ctx.clip();
 		const profile = await Canvas.loadImage(pfp);
-		ctx.drawImage(profile, 199, 112, 235, 235);
+		ctx.drawImage(profile, 25, 50, 200, 200);
 		const text = `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
 			exp || 0
 		} / ${required}*\n\n💫 *Role: ${role}*\n\n`;
