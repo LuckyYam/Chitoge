@@ -138,7 +138,7 @@ export default class Command extends BaseCommand {
 		ctx.beginPath();
 		ctx.lineWidth = 2;
 		ctx.fillStyle = "#000000";
-		ctx.moveTo(220, 135);
+		ctx.moveTo(200, 125);
 		ctx.lineTo(220 + required - 20, 135);
 		ctx.quadraticCurveTo(220 + required, 135, 220 + required, 152.5);
 		ctx.quadraticCurveTo(220 + required, 170, 220 + required - 20, 170);
