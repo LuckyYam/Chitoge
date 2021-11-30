@@ -4,7 +4,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { ISimplifiedMessage } from "../../typings";
-import Canvacord from "canvacord";
+import Canvas from "canvas";
 import { MessageType } from "@adiwajshing/baileys";
 
 export default class Command extends BaseCommand {
@@ -101,34 +101,67 @@ export default class Command extends BaseCommand {
 			pfp = await this.client.getProfilePicture(user);
 		} catch (err) {
 			M.reply(`Profile Picture not Accessible of ${username}`);
-			pfp =
-				"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
+			pfp = "https://wallpaperaccess.com/full/5304840.png";
 		}
-		const rank = new Canvacord.Rank()
-			.setAvatar(pfp)
-			.setCurrentXP(exp || 0)
-			.setRequiredXP(required)
-			.setStatus("dnd", false)
-			.setLevel(level)
-			.setRank(1, "RANK", false)
-			.setProgressBar("#FFFFFF", "COLOR")
-			.setOverlay("#000000")
-			.setUsername(username)
-			.setDiscriminator("0007")
-			.setBackground(
-				"IMAGE",
-				"https://i.pinimg.com/originals/bb/4c/c3/bb4cc3b2fae7978db32f35b4519cc0f8.jpg"
-			);
-		rank.build({}).then((rankcard) => {
-			const text = `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
-				exp || 0
-			}/${required}*\n\n💫 *Role: ${role}*\n\n`;
-			this.client.sendMessage(
-				M.from,
-				{ url: rankcard.toString() },
-				MessageType.image,
-				{ quoted: M.WAMessage, caption: `${text}` }
-			);
-		});
+		const xp = ((required - exp) / required) * 490;
+		const canvas = Canvas.createCanvas(800, 300);
+		const ctx = canvas.getContext("2d");
+		const background = await Canvas.loadImage(
+			"https://i.pinimg.com/originals/bb/4c/c3/bb4cc3b2fae7978db32f35b4519cc0f8.jpg"
+		);
+		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+		ctx.strokeStyle = "#FFFFF";
+		ctx.strokeRect(0, 0, canvas.width, canvas.height);
+		ctx.font = '35px "Roboto"';
+		ctx.fillStyle = "#fff";
+		ctx.fillText(`${username}`, 215, 125);
+		ctx.font = '38px "Roboto"';
+		ctx.fillStyle = "#fff";
+		ctx.fillText(`Level: ${level}`, 215, 230);
+		ctx.font = '38px "Roboto"';
+		ctx.fillStyle = "#fff";
+		ctx.fillText(`Role: ${role}`, 440, 230);
+		ctx.beginPath();
+		ctx.lineWidth = 2;
+		ctx.fillStyle = "#fff";
+		ctx.moveTo(220, 135);
+		ctx.lineTo(690, 135);
+		ctx.quadraticCurveTo(710, 135, 710, 152.5);
+		ctx.quadraticCurveTo(710, 170, 690, 170);
+		ctx.lineTo(220, 170);
+		ctx.lineTo(220, 135);
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.lineWidth = 2;
+		ctx.fillStyle = "#000000";
+		ctx.moveTo(220, 135);
+		ctx.lineTo(220 + xp - 20, 135);
+		ctx.quadraticCurveTo(220 + xp, 135, 220 + xp, 152.5);
+		ctx.quadraticCurveTo(220 + xp, 170, 220 + xp - 20, 170);
+		ctx.lineTo(220, 170);
+		ctx.lineTo(220, 135);
+		ctx.fill();
+		ctx.font = "30px calibri";
+		ctx.fillStyle = "#000";
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.arc(125, 150, 100, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.clip();
+		const profile = await Canvas.loadImage(pfp);
+		ctx.drawImage(profile, 25, 50, 200, 200);
+		const text = `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
+			exp || 0
+		}/${required}*\n\n💫 *Role: ${role}*\n\n`;
+		await M.reply(
+			canvas.toBuffer(),
+			MessageType.image,
+			undefined,
+			undefined,
+			text,
+			undefined
+		);
 	};
 }
+	
