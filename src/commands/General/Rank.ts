@@ -4,6 +4,8 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { ISimplifiedMessage } from "../../typings";
+import Canvacord from "canvacord";
+import { MessageType } from "@adiwajshing/baileys";
 
 export default class Command extends BaseCommand {
 	constructor(client: WAClient, handler: MessageHandler) {
@@ -20,14 +22,14 @@ export default class Command extends BaseCommand {
 	run = async (M: ISimplifiedMessage): Promise<void> => {
 		if (M.quoted?.sender) M.mentioned.push(M.quoted.sender);
 		const user = M.mentioned[0] ? M.mentioned[0] : M.sender.jid;
-		let username = user === M.sender.jid ? M.sender.username : "Your";
+		let username = user === M.sender.jid ? M.sender.username : "";
 		if (!username) {
 			// const contact = this.client.getContact(user)
 			// username = contact.notify || contact.vname || contact.name || user.split('@')[0]
 			username = user.split("@")[0];
 		}
 		const exp = (await this.client.getUser(user)).Xp;
-		let role;
+		let role: string;
 		if (exp < 500) {
 			role = "🌸 Citizen";
 		} else if (exp < 1000) {
@@ -49,8 +51,8 @@ export default class Command extends BaseCommand {
 		} else {
 			role = "❄️ Mystic";
 		}
-
-		let level;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		let level: any;
 		if (exp < 500) {
 			level = "1";
 		} else if (exp < 1000) {
@@ -72,11 +74,62 @@ export default class Command extends BaseCommand {
 		} else {
 			level = "Max";
 		}
-
-		return void (await M.reply(
-			`*${username}'s Rank:*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
+		let required: number;
+		if (exp < 500) {
+			required = 500;
+		} else if (exp < 1000) {
+			required = 1000;
+		} else if (exp < 2000) {
+			required = 2000;
+		} else if (exp < 5000) {
+			required = 5000;
+		} else if (exp < 10000) {
+			required = 10000;
+		} else if (exp < 25000) {
+			required = 25000;
+		} else if (exp < 50000) {
+			required = 50000;
+		} else if (exp < 75000) {
+			required = 75000;
+		} else if (exp < 100000) {
+			required = 100000;
+		} else {
+			required = 0;
+		}
+		let pfp: string;
+		try {
+			pfp = await this.client.getProfilePicture(user);
+		} catch (err) {
+			M.reply(`Profile Picture not Accessible of ${username}`);
+			pfp =
+				"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
+		}
+		const discriminator = Math.floor(Math.random() * 2000);
+		const rank = new Canvacord.Rank()
+			.setAvatar(pfp)
+			.setCurrentXP(exp || 0)
+			.setRequiredXP(required)
+			.setStatus("dnd", false)
+			.setLevel(level)
+			.setRank(1, "RANK", false)
+			.setProgressBar("#FFFFFF", "COLOR")
+			.setOverlay("#000000")
+			.setUsername(username)
+			.setDiscriminator(discriminator)
+			.setBackground(
+				"IMAGE",
+				"https://i.pinimg.com/originals/bb/4c/c3/bb4cc3b2fae7978db32f35b4519cc0f8.jpg"
+			);
+		rank.build({}).then((rankcard) => {
+			const text = `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
 				exp || 0
-			}*\n\n💫 *Role: ${role}*`
-		));
+			}/${required}*\n\n💫 *Role: ${role}*\n\n`;
+			this.client.sendMessage(
+				M.from,
+				{ url: rankcard.toString() },
+				MessageType.image,
+				{ quoted: M.WAMessage, caption: `${text}` }
+			);
+		});
 	};
 }

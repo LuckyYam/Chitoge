@@ -48,6 +48,7 @@
         "anime-wallpaper": "^1.0.2",
         "animequotes": "^2.0.0",
         "axios": "^0.24.0",
+        "canvacord": "^5.2.3",
         "canvas": "^2.8.0",
         "carbon-components": "^10.46.0",
         "chalk": "^4.1.1",

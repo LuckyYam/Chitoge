@@ -3,7 +3,7 @@
 declare module "akaneko";
 declare module "go-image-go";
 declare module "mathjs";
-declare module "node-fetch";
+declare module "canvacord";
 declare module "genshin-db";
 declare module "shentai";
 declare module "mywaifulist-scraper";

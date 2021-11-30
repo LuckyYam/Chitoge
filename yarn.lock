@@ -157,6 +157,18 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
+"@canvacord/assets@^2.0.5":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@canvacord/assets/-/assets-2.1.0.tgz#4d11644256dadcd47ac11cf59ae3d42d7ef30be2"
+  integrity sha512-VwPVQrMz/nVLiAlkqUuWI+wuOBptpik2g+eIj2ADOsiK2yiLN/4ZSL+V0SQUidB3OLfAmuY949kCJ788CD5P9g==
+
+"@canvacord/emoji-parser@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@canvacord/emoji-parser/-/emoji-parser-1.0.1.tgz#b33049320e01dc5290751df5b6279d99fe2f2437"
+  integrity sha512-Lb3xatdd91MR9tU4sicgrxxKg+/rVD1zKTOh55bmVF2Ri5X8vHTV+jNHTvRzkomGpyepGM+7qA4xMvG8ZqtO8g==
+  dependencies:
+    twemoji-parser "^13.0.0"
+
 "@carbon/telemetry@0.0.0-alpha.6":
   version "0.0.0-alpha.6"
   resolved "https://registry.yarnpkg.com/@carbon/telemetry/-/telemetry-0.0.0-alpha.6.tgz#1d11e64f310e98f32c3db0c55f02e047f2398087"
@@ -1656,6 +1668,18 @@ camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
   integrity sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
+
+canvacord@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/canvacord/-/canvacord-5.2.3.tgz#efad0375022f05097b81bfee863bbbaa82ee0b5b"
+  integrity sha512-aYxGA7tVQi3NCa7Qxg2b9u+wAeek2xE5q+nJjiReZofeUx0d1Xq731UerKf+iVIPBrCAcjbv/yflJL0qVwPuMQ==
+  dependencies:
+    "@canvacord/assets" "^2.0.5"
+    "@canvacord/emoji-parser" "^1.0.1"
+    canvas "^2.8.0"
+    gifencoder "^2.0.1"
+    moment "^2.29.1"
+    moment-duration-format "^2.3.2"
 
 canvas-to-buffer@^1.1.0:
   version "1.1.1"
@@ -4346,6 +4370,11 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
+moment-duration-format@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/moment-duration-format/-/moment-duration-format-2.3.2.tgz#5fa2b19b941b8d277122ff3f87a12895ec0d6212"
+  integrity sha512-cBMXjSW+fjOb4tyaVHuaVE/A5TqkukDWiOfxxAjY+PEqmmBQlLwn+8OzwPiG3brouXKY5Un4pBjAeB6UToXHaQ==
+
 moment-timezone@^0.5.31:
   version "0.5.33"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.33.tgz#b252fd6bb57f341c9b59a5ab61a8e51a73bbd22c"
@@ -6344,6 +6373,11 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
+
+twemoji-parser@^13.0.0:
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/twemoji-parser/-/twemoji-parser-13.1.0.tgz#65e7e449c59258791b22ac0b37077349127e3ea4"
+  integrity sha512-AQOzLJpYlpWMy8n+0ATyKKZzWlZBJN+G0C+5lhX7Ftc2PeEVdUU/7ns2Pn2vVje26AIZ/OHwFoUbdv6YYD/wGg==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
