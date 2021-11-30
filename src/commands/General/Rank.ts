@@ -101,7 +101,7 @@ export default class Command extends BaseCommand {
 			.setCurrentXP(exp || 0)
 			.setRequiredXP(required)
 			.setStatus("online", true)
-			.setLevel(level)
+			.setLevel(level, "Level:", true)
 			.setRank(1, "ROLE", false)
 			.setProgressBar("#000000", "COLOR")
 			.setOverlay("#fff")
