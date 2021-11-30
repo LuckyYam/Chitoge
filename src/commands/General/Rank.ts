@@ -115,6 +115,10 @@ export default class Command extends BaseCommand {
 		ctx.font = '35px "Roboto"';
 		ctx.fillStyle = "#fff";
 		ctx.fillText(`${username}`, 215, 125);
+		ctx.font = '28px "Roboto Black"';
+		ctx.fillStyle = "#fff";
+		ctx.fillText(`Exp: ${exp}/${xp} `, 575, 150);
+		ctx.closePath();
 		ctx.font = '38px "Roboto"';
 		ctx.fillStyle = "#fff";
 		ctx.fillText(`Level: ${level}`, 215, 230);
