@@ -153,7 +153,7 @@ export default class Command extends BaseCommand {
 		ctx.closePath();
 		ctx.clip();
 		const profile = await Canvas.loadImage(pfp);
-		ctx.drawImage(profile, 50, 50, 200, 200);
+		ctx.drawImage(profile, 25, 50, 150, 150);
 		const text = `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
 			exp || 0
 		} / ${required}*\n\n💫 *Role: ${role}*\n\n`;
