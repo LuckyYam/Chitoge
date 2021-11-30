@@ -104,7 +104,6 @@ export default class Command extends BaseCommand {
 			pfp =
 				"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
 		}
-		const discriminator = Math.floor(Math.random() * 2000);
 		const rank = new Canvacord.Rank()
 			.setAvatar(pfp)
 			.setCurrentXP(exp || 0)
@@ -115,7 +114,7 @@ export default class Command extends BaseCommand {
 			.setProgressBar("#FFFFFF", "COLOR")
 			.setOverlay("#000000")
 			.setUsername(username)
-			.setDiscriminator(discriminator)
+			.setDiscriminator(10)
 			.setBackground(
 				"IMAGE",
 				"https://i.pinimg.com/originals/bb/4c/c3/bb4cc3b2fae7978db32f35b4519cc0f8.jpg"
