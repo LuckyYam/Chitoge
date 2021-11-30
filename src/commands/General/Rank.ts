@@ -103,7 +103,6 @@ export default class Command extends BaseCommand {
 			M.reply(`Profile Picture not Accessible of ${username}`);
 			pfp = "https://wallpaperaccess.com/full/5304840.png";
 		}
-		const xp = ((required - exp) / required) * 490;
 		const canvas = Canvas.createCanvas(800, 300);
 		const ctx = canvas.getContext("2d");
 		const background = await Canvas.loadImage(
@@ -117,7 +116,7 @@ export default class Command extends BaseCommand {
 		ctx.fillText(`${username}`, 215, 125);
 		ctx.font = '28px "Roboto Black"';
 		ctx.fillStyle = "#fff";
-		ctx.fillText(`Exp: ${exp}/${xp} `, 500, 100);
+		ctx.fillText(`Exp: ${exp}/${required} `, 500, 100);
 		ctx.closePath();
 		ctx.font = '38px "Roboto"';
 		ctx.fillStyle = "#fff";
@@ -140,9 +139,9 @@ export default class Command extends BaseCommand {
 		ctx.lineWidth = 2;
 		ctx.fillStyle = "#000000";
 		ctx.moveTo(220, 135);
-		ctx.lineTo(220 + xp - 20, 135);
-		ctx.quadraticCurveTo(220 + xp, 135, 220 + xp, 152.5);
-		ctx.quadraticCurveTo(220 + xp, 170, 220 + xp - 20, 170);
+		ctx.lineTo(220 + required - 20, 135);
+		ctx.quadraticCurveTo(220 + required, 135, 220 + required, 152.5);
+		ctx.quadraticCurveTo(220 + required, 170, 220 + required - 20, 170);
 		ctx.lineTo(220, 170);
 		ctx.lineTo(220, 135);
 		ctx.fill();
