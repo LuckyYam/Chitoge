@@ -111,17 +111,18 @@ export default class Command extends BaseCommand {
 				"IMAGE",
 				"https://i.pinimg.com/originals/bb/4c/c3/bb4cc3b2fae7978db32f35b4519cc0f8.jpg"
 			);
-		rank.build({});
-		const text = `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
-			exp || 0
-		} / ${required}*\n\n💫 *Role: ${role}*\n\n`;
-		await M.reply(
-			rank.toString(),
-			MessageType.image,
-			undefined,
-			undefined,
-			text,
-			undefined
-		);
+		rank.build({}).then((rankcard) => {
+			const text = `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
+				exp || 0
+			} / ${required}*\n\n💫 *Role: ${role}*\n\n`;
+			M.reply(
+				rankcard,
+				MessageType.image,
+				undefined,
+				undefined,
+				text,
+				undefined
+			);
+		});
 	};
 }
