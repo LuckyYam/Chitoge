@@ -41,35 +41,14 @@ export default class Command extends BaseCommand {
 		text += `💛 *Source: ${chara?.data.animeography[0].name}*\n\n`;
 		text += `🌐 *URL: ${chara?.data.url}*\n\n`;
 		text += `❤ *Description:* ${chara?.data.about}`;
-
-		const buffer = await request.buffer(chara?.data.image_url).catch((e) => {
-			return void M.reply(e.message);
-		});
-		while (true) {
-			try {
-				M.reply(
-					buffer || "✖ An error occurred. Please try again later.",
-					MessageType.image,
-					undefined,
-					undefined,
-					`${text}`,
-					undefined
-				).catch((e) => {
-					console.log(
-						`This error occurs when an image is sent via M.reply()\n Child Catch Block : \n${e}`
-					);
-					// console.log('Failed')
-					M.reply(`✖ An error occurred. Please try again later.`);
-				});
-				break;
-			} catch (e) {
-				// console.log('Failed2')
-				M.reply(`✖ An error occurred. Please try again later.`);
-				console.log(
-					`This error occurs when an image is sent via M.reply()\n Parent Catch Block : \n${e}`
-				);
-			}
-		}
-		return void null;
+		const buffer = await request.buffer(chara?.data.image_url);
+		await M.reply(
+			buffer,
+			MessageType.image,
+			undefined,
+			undefined,
+			text,
+			undefined
+		);
 	};
 }
