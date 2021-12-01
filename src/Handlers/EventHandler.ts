@@ -15,8 +15,7 @@ export default class EventHandler {
         )
         const data = await this.client.getGroupData(event.jid)
         if (!data.events) return void null
-        const add = event.action === 'add'
-        const pfp = await this.client.getProfilePicture(event.participants[0]);
+        const add = event.action === "add";
 				const text = add
 					? `- ${group.subject || "___"} -\n\n💠 *Group Description:*\n${
 							group.desc
@@ -45,7 +44,7 @@ export default class EventHandler {
 					if (image)
 						return void (await this.client.sendMessage(
 							event.jid,
-							pfp,
+							image,
 							MessageType.image,
 							{
 								caption: text,
