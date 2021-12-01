@@ -11,11 +11,11 @@ import { MessageType } from "@adiwajshing/baileys";
 export default class Command extends BaseCommand {
 	constructor(client: WAClient, handler: MessageHandler) {
 		super(client, handler, {
-			command: "character",
-			description: `Searches the given character.`,
-			aliases: ["chara"],
+			command: "characterid",
+			description: `Gives you the data of the given character id.`,
+			aliases: ["charaid"],
 			category: "weeb",
-			usage: `${client.config.prefix}chara [name]`,
+			usage: `${client.config.prefix}charaid [id]`,
 			baseXp: 50,
 		});
 	}
@@ -26,26 +26,25 @@ export default class Command extends BaseCommand {
 	): Promise<void> => {
 		/*eslint-disable @typescript-eslint/no-explicit-any*/
 		/*eslint-disable @typescript-eslint/no-unused-vars*/
-		if (!joined) return void (await M.reply(`Give me a character name, Baka!`));
-		const chitoge = joined.trim();
+		if (!joined) return void (await M.reply(`Give me a character id, Baka!`));
+		const chitoge: any = joined.trim();
 		const chara = await axios
-			.get(`https://api.jikan.moe/v3/search/character?q=${chitoge}`)
+			.get(`https://api.jikan.moe/v3/character/${chitoge}`)
 			.catch((err: any) => {
-				return void M.reply(`Couldn't find any matching character.`);
+				return void M.reply(`Couldn't find any character id.`);
 			});
 
 		let text = "";
-		for (let i = 0; i < 10; i++) {
-			text += `💙 *Name: ${chara?.data.results[i].name}*\n`;
-			text += `🌐 *URL: ${chara?.data.results[i].url}*\n\n`;
-			text += `Use ${this.client.config.prefix}charaid ${chara?.data.results[i].mal_id} to get the full info of this character.\n\n`;
-		}
+		text += `💙 *Name: ${chara?.data.name}*\n`;
+		text += `🤍 *Kanji name: ${chara?.data.name_kanji}\n`;
+		text += `💚 *Nicknames: ${chara?.data.nicknames.join(", ")}*\n`;
+		text += `💛 *Source: ${chara?.data.animeography[0].name}*\n\n`;
+		text += `🌐 *URL: ${chara?.data.url}*\n\n`;
+		text += `❤ *Description:* ${chara?.data.about}`;
 
-		const buffer = await request
-			.buffer(chara?.data.results[0].image_url)
-			.catch((e) => {
-				return void M.reply(e.message);
-			});
+		const buffer = await request.buffer(chara?.data.image_url).catch((e) => {
+			return void M.reply(e.message);
+		});
 		while (true) {
 			try {
 				M.reply(
