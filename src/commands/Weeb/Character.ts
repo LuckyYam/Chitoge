@@ -33,7 +33,7 @@ export default class Command extends BaseCommand {
 			.catch((err: any) => {
 				return void M.reply(`Couldn't find any matching character.`);
 			});
-		const amount = 10 || chara?.data.results.length;
+		const amount = chara?.data.results.length;
 		let text = "";
 		for (let i = 0; i < amount; i++) {
 			text += `💙 *Name: ${chara?.data.results[i].name}*\n`;
