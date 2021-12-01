@@ -36,7 +36,7 @@ export default class Command extends BaseCommand {
 
 		let text = "";
 		text += `💙 *Name: ${chara?.data.name}*\n`;
-		text += `🤍 *Kanji name: ${chara?.data.name_kanji}\n`;
+		text += `🤍 *Kanji name: ${chara?.data.name_kanji}*\n`;
 		text += `💚 *Nicknames: ${chara?.data.nicknames.join(", ")}*\n`;
 		text += `💛 *Source: ${chara?.data.animeography[0].name}*\n\n`;
 		text += `🌐 *URL: ${chara?.data.url}*\n\n`;
