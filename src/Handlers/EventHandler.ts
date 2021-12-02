@@ -15,13 +15,15 @@ export default class EventHandler {
         )
         const data = await this.client.getGroupData(event.jid)
         if (!data.events) return void null
-        const add = event.action === 'add'
-        const text = add
+        const user = event.participants[0];
+				const contact = this.client.getContact(user);
+				const username =
+					contact.notify || contact.vname || contact.name || user.split("@")[0];
+				const add = event.action === "add";
+				const text = add
 					? `- ${group.subject || "___"} -\n\n💠 *Group Description:*\n${
 							group.desc
-					  }\n\nHope you follow the rules and have fun!\n${
-							event.participants[0]
-					  }\n*‣ ${event.participants
+					  }\n\nHope you follow the rules and have fun!\n${username}\n*‣ ${event.participants
 							.map((jid) => `@${jid.split("@")[0]}`)
 							.join(", ")}*`
 					: event.action === "remove"
