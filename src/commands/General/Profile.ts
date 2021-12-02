@@ -56,7 +56,7 @@ export default class Command extends BaseCommand {
 				} else {
 					role = "❄️ Mystic";
 				}
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 				let level: number;
 				if (exp < 500) {
 					level = 1;
@@ -79,7 +79,6 @@ export default class Command extends BaseCommand {
 				} else {
 					level = 10;
 				}
-        
         await M.reply(
             await request.buffer(
                 pfp ||
