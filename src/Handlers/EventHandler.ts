@@ -54,7 +54,7 @@ export default class EventHandler {
 		if (add) {
 			const canvas = Canvas.createCanvas(1772, 633);
 			const ctx = canvas.getContext("2d");
-			const background = await Canvas.loadImage(this.client.assets.get('WelcomeCard') || Buffer.from(''));
+			const background = await Canvas.loadImage(`./assets/images/WelcomeCard.png`);
 			ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 			ctx.strokeStyle = "#f2f2f2";
 			ctx.strokeRect(0, 0, canvas.width, canvas.height);
