@@ -19,7 +19,9 @@ export default class EventHandler {
 		const data = await this.client.getGroupData(event.jid);
 		if (!data.events) return void null;
 		const user = event.participants[0];
-		const username = user.split("@")[0];
+		const contact = this.client.getContact(user);
+		const username =
+				contact.notify || contact.vname || contact.name || user.split("@")[0];
 		let pfp: string;
 		try {
 			pfp = await this.client.getProfilePicture(user);
