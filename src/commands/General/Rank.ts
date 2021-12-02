@@ -25,8 +25,7 @@ export default class Command extends BaseCommand {
 		let username = user === M.sender.jid ? M.sender.username : "";
 		if (!username) {
 			const contact = this.client.getContact(user);
-			username =
-				contact.notify || contact.vname || contact.name || user.split("@")[0];
+			username = user.split("@")[0];
 		}
 		let pfp: string;
 		try {

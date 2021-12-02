@@ -20,11 +20,10 @@ export default class Command extends BaseCommand {
     run = async (M: ISimplifiedMessage): Promise<void> => {
         if (M.quoted?.sender) M.mentioned.push(M.quoted.sender)
         const user = M.mentioned[0] ? M.mentioned[0] : M.sender.jid
-        let username = user === M.sender.jid ? M.sender.username : ''
-        if (!username) {
-            const contact = this.client.getContact(user)
-            username = contact.notify || contact.vname || contact.name || user.split('@')[0]
-        }
+        const username = user === M.sender.jid ? M.sender.username : "";
+				if (!username) {
+					user.split("@")[0];
+				}
         let pfp: string
         try {
             pfp = await this.client.getProfilePicture(user)
