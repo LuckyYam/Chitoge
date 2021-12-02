@@ -56,7 +56,7 @@
         "cron": "^1.8.2",
         "currency-system": "^2.6.31",
         "discord-image-generation": "^1.4.9",
-        "discord-canvas": "^1.4.1",
+        "discord-welcome-card": "^4.0.3",
         "dotenv": "^10.0.0",
         "emoji-api": "^2.0.1",
         "express": "^4.17.1",
