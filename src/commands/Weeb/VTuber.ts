@@ -1,6 +1,6 @@
 /** @format */
 
-import { wiki } from "vtuber-wiki";
+import vTuberWiki, { IVTuber } from "../../lib/vTuberWiki";
 import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
@@ -24,14 +24,11 @@ export default class Command extends BaseCommand {
 		M: ISimplifiedMessage,
 		{ joined }: IParsedArgs
 	): Promise<void> => {
-		/*eslint-disable @typescript-eslint/no-explicit-any */
-		/*eslint-disable @typescript-eslint/no-unused-vars */
-		if (!joined) return void (await M.reply(`Give me a vtuber name, Baka!`));
-		const name = joined.trim();
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const vtuber = await wiki(name).catch((err: any) => {
-			return void M.reply(`Couldn't find any matching VTuber.`);
-		});
+		if (!joined) return void (await M.reply(`Give me a vTuber, Baka!`));
+		const result = await vTuberWiki(joined.toLowerCase().trim());
+		if ((result as { error: string }).error)
+			return void (await M.reply("No such vTuber, Baka!"));
+		const vtuber = result as IVTuber;
 		let text = "";
 		text += `💙 *Name: ${vtuber.title1}*\n`;
 		text += `💛 *Nickname: ${vtuber.nick_name
@@ -45,7 +42,8 @@ export default class Command extends BaseCommand {
 			.replace(/\[/g, "")
 			.replace(/\]/g, "")
 			.replace(/\<ref>/g, " ")
-			.replace(/\<br>/g, " ")}*\n`;
+			.replace(/\<br>/g, " ")
+			.replace(/\<\/ref>/g, "")}*\n`;
 		text += `💫 *Gender: ${vtuber.gender}*\n`;
 		if (vtuber.age !== "")
 			text += `🎂 *Age: ${vtuber.age
@@ -65,10 +63,11 @@ export default class Command extends BaseCommand {
 		if (vtuber.zodiac_sign !== "")
 			text += `❄ *Zodiac Sign: ${vtuber.zodiac_sign}*\n`;
 		if (vtuber.emoji !== "") text += `🧧 *Emoji: ${vtuber.emoji}*\n\n`;
-		text += `♦️ *YouTube : ${vtuber.channel
+		text += `♦️ *Channels : ${vtuber.channel
 			.replace(/\[/g, "")
 			.replace(/\]/g, "")
-			.replace(/\YouTube/g, "")}*\n\n`;
+			.replace(/\YouTube/g, "")
+			.replace(/\<br>/g, "")}*\n\n`;
 		text += `🌐 *URL: ${vtuber.more}*\n\n`;
 		text += `❤ *Description:* ${vtuber.description
 			.replace(/\[/g, "")

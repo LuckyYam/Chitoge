@@ -25,4 +25,6 @@ declare module "emoji-api";
 declare module "vtuber-wiki";
 declare module "node-myanimelist";
 declare module "discord-image-generation";
-declare module "discord-welcome-card";
+declare module "discord-canvas";
+declare module "ordinal";
+declare module "kaori";

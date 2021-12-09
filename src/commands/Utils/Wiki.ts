@@ -1,6 +1,6 @@
 /** @format */
 
-import wiki from "wikipedia";
+import wikiScraper, { IWiki } from "../../lib/wikiScraper";
 import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
@@ -23,10 +23,15 @@ export default class Command extends BaseCommand {
 		{ joined }: IParsedArgs
 	): Promise<void> => {
 		if (!joined) return void M.reply("Provide a query, Baka!");
-		const query = joined.trim();
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const results = await wiki.summary(query);
-		const text = `*🌐 URL: ${results.content_urls.mobile.page}*\n\n*🎀 Title: ${results.title}*\n *📜 Description: ${results.description}*\n\n*❄ Summary:* ${results.extract}`;
+		const result = await wikiScraper(joined.toLowerCase().trim());
+		if ((result as { error: string }).error)
+			return void (await M.reply("Invalid wikipedia page, Baka!"));
+		const wiki = result as IWiki;
+		let text = "";
+		text += `*🎀 Title: ${wiki.title}*\n\n`;
+		text += `*📜 Description: ${wiki.description}*\n\n`;
+		text += `*🌐 URL: ${wiki.content_urls.desktop.page}*\n\n`;
+		text += `*❄ Summary:* ${wiki.extract}`;
 		await M.reply(text);
 	};
 }

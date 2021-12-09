@@ -2,6 +2,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { IParsedArgs, ISimplifiedMessage } from "../../typings";
+import animeQuotes, { IQuotes } from "../../lib/animeQuotes";
 import AnimeQuotes from "animequotes";
 
 export default class Command extends BaseCommand {
@@ -26,17 +27,16 @@ export default class Command extends BaseCommand {
 		randomText += `*🎗 Said by: ${random.name}*\n\n`;
 		randomText += `*📛 Source: ${random.anime}*`;
 		if (!joined) return void (await M.reply(`${randomText}`));
-		const chara = joined.trim();
-		const byChara = await AnimeQuotes.getRandomQuoteByCharacter(chara);
-		if (byChara === " ") {
-			return void M.reply("Couldn't find any quote of the given character.");
-		}
+		const result = await animeQuotes(joined.toLowerCase().trim());
+		if ((result as { error: string }).error)
+			return void (await M.reply(
+				"Couldn't find any quote for the given character."
+			));
+		const chara = result as IQuotes;
 		let charaText = "";
-		charaText += `*✏ Quote: ${byChara.quote}*\n`;
-		charaText += `*🎗 Said by: ${byChara.name}*\n\n`;
-		charaText += `*📛 Source: ${byChara.anime}*`;
-		await M.reply(charaText)
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			.catch((reason: any) => M.reply(`${reason}`));
+		charaText += `*✏ Quote: ${chara.quote}*\n\n`;
+		charaText += `*🎗 Said by: ${chara.name}*\n\n`;
+		charaText += `*📛 Source: ${chara.anime}*`;
+		await M.reply(charaText);
 	};
 }

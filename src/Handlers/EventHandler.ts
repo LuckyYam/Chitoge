@@ -1,10 +1,9 @@
 import { MessageType, WAParticipantAction } from '@adiwajshing/baileys'
 import chalk from 'chalk'
-import request from '../lib/request'
-import WAClient from '../lib/WAClient'
-import { drawCard } from "discord-welcome-card";
-import Canvas from "canvas";
-
+import { evaluate } from "mathjs";
+import WAClient from "../lib/WAClient";
+import Canvas from "discord-canvas";
+import ordinal from "ordinal";
 export default class EventHandler {
 	constructor(public client: WAClient) {}
 
@@ -30,6 +29,8 @@ export default class EventHandler {
 			pfp =
 				"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
 		}
+		const just = await evaluate(event.participants.length + 1);
+		const memberCount = await ordinal(just);
 		const add = event.action === "add";
 		const text = add
 			? `- ${group.subject || "___"} -\n\n💠 *Group Description:*\n${
@@ -52,57 +53,27 @@ export default class EventHandler {
 				: event.participants,
 		};
 		if (add) {
-			const canvas = Canvas.createCanvas(1772, 633);
-			const ctx = canvas.getContext("2d");
-			const background = await Canvas.loadImage(`./welcome.png`);
-			ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-			ctx.strokeStyle = "#f2f2f2";
-			ctx.strokeRect(0, 0, canvas.width, canvas.height);
-			const name = `${username}`;
-			if (name.length >= 14) {
-				ctx.font = "bold 100px Genta";
-				ctx.fillStyle = "#f2f2f2";
-				ctx.fillText(name, 720, canvas.height / 2 + 20);
-			} else {
-				ctx.font = "bold 150px Genta";
-				ctx.fillStyle = "#f2f2f2";
-				ctx.fillText(name, 720, canvas.height / 2 + 20);
-			}
-			const memberCount = `${event.participants.length}TH MEMBER`;
-			ctx.font = "bold 60px Genta";
-			ctx.fillStyle = "#f2f2f2";
-			ctx.fillText(memberCount, 750, canvas.height / 2 + 125);
-			const subject = `${group.subject}`;
-			ctx.font = "bold 60px Genta";
-			ctx.fillStyle = "#f2f2f2";
-			ctx.fillText(subject, 700, canvas.height / 2 - 150);
-			ctx.beginPath();
-			ctx.arc(315, canvas.height / 2, 250, 0, Math.PI * 2, true); //position of img
-			ctx.closePath();
-			ctx.clip();
-			ctx.drawImage(pfp, 65, canvas.height / 2 - 250, 500, 500);
-			/*const welcome = await drawCard({
-				theme: "circuit",
-				text: {
-					title: "Hello",
-					text: username,
-					subtitle: `Welcome to ${group.subject}`,
-					color: `#FFFFFF`,
-				},
-				avatar: {
-					image: pfp,
-					outlineWidth: 5,
-				},
-				background:
-					"https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80",
-				blur: 1,
-				border: true,
-				rounded: true,
-			});*/
-			if (canvas)
+			const welcome = await new Canvas.Welcome()
+				.setUsername(username)
+				.setDiscriminator(just)
+				.setMemberCount(memberCount)
+				.setGuildName(group.subject)
+				.setAvatar(pfp)
+				.setColor("border", "#FFC0CB")
+				.setColor("username-box", "#FFFFFF")
+				.setColor("discriminator-box", "#FFFFFF")
+				.setColor("message-box", "#FFFFFF")
+				.setColor("title", "#FFFFFF")
+				.setColor("avatar", "#00FF00")
+				.setText("member-count", `- ${memberCount} member !`)
+				.setText("title", "hello")
+				.setText("message", `welcome to ${group.subject}`)
+				.setBackground("https://i.ibb.co/8B6Q84n/LTqHsfYS.jpg")
+				.toAttachment();
+			if (welcome)
 				return void (await this.client.sendMessage(
 					event.jid,
-					canvas.toBuffer(),
+					welcome.toBuffer(),
 					MessageType.image,
 					{
 						caption: text,
@@ -110,12 +81,33 @@ export default class EventHandler {
 					}
 				));
 		}
-		return void this.client.sendMessage(
+		const goodbye = await new Canvas.Goodbye()
+			.setUsername(username)
+			.setDiscriminator(just)
+			.setMemberCount(memberCount)
+			.setGuildName(group.subject)
+			.setAvatar(pfp)
+			.setColor("border", "#FF0000")
+			.setColor("username-box", "#FF0000")
+			.setColor("discriminator-box", "#FF0000")
+			.setColor("message-box", "#FF0000")
+			.setColor("title", "#FF0000")
+			.setColor("avatar", "#FF0000")
+			.setText("member-count", `- ${memberCount} member !`)
+			.setText("message", `we're probably not gonna miss you`)
+			.setBackground(
+				"https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"
+			)
+			.toAttachment();
+		return void (await this.client.sendMessage(
 			event.jid,
-			text,
-			MessageType.extendedText,
-			{ contextInfo }
-		);
+			goodbye.toBuffer(),
+			MessageType.image,
+			{
+				caption: text,
+				contextInfo,
+			}
+		));
 	};
 }
 

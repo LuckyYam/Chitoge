@@ -2,7 +2,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import { IParsedArgs, ISimplifiedMessage } from "../../typings";
-import genshindb from "genshin-db";
+import genshinFandom, { IGenshin } from "../../lib/genshinFandom";
 import request from "../../lib/request";
 import { MessageType } from "@adiwajshing/baileys";
 
@@ -23,11 +23,10 @@ export default class Command extends BaseCommand {
 		{ joined }: IParsedArgs
 	): Promise<void> => {
 		if (!joined) return void (await M.reply(`Give me a character name, Baka!`));
-		const chitoge = joined.trim();
-		const genshin = await genshindb.characters(chitoge);
-		if (genshin === undefined) {
-			return void M.reply("No such character, Baka!");
-		}
+		const result = await genshinFandom(joined.toLowerCase().trim());
+		if ((result as { error: string }).error)
+			return void (await M.reply("No such character, Baka!"));
+		const genshin = result as IGenshin;
 		let text = "";
 		text += `💎 *Name: ${genshin.name}*\n`;
 		text += `💠 *Elemnent: ${genshin.element}*\n`;
