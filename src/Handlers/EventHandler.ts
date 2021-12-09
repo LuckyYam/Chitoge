@@ -1,5 +1,5 @@
 import { MessageType, WAParticipantAction } from '@adiwajshing/baileys'
-import chalk from 'chalk'
+import chalk from "chalk";
 import { evaluate } from "mathjs";
 import WAClient from "../lib/WAClient";
 import Canvas from "discord-canvas";
