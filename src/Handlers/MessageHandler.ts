@@ -3,8 +3,7 @@ import chalk from 'chalk'
 import { join } from 'path'
 import BaseCommand from '../lib/BaseCommand'
 import WAClient from '../lib/WAClient'
-import { ICommand, IParsedArgs, ISimplifiedMessage } from '../typings'
-import { MessageType } from "@adiwajshing/baileys";
+import { ICommand, IParsedArgs, ISimplifiedMessage } from "../typings";
 
 export default class MessageHandler {
 	commands = new Map<string, ICommand>();
@@ -68,25 +67,7 @@ export default class MessageHandler {
 				)} in ${chalk.cyanBright(groupMetadata?.subject || "")}`
 			);
 		const cmd = args[0].slice(this.client.config.prefix.length).toLowerCase();
-		const buttons = [
-			{
-				buttonId: "id1",
-				buttonText: { displayText: `${this.client.config.prefix}help` },
-				type: 1,
-			},
-		];
-		interface buttonMessage {
-			contentText: string;
-			footerText: string;
-			buttons: string[];
-			headerType: number;
-		}
-		const buttonMessage: any = {
-			contentText: `No such command, Baka! Have you never seen someone use the command *${this.client.config.prefix}help*.`,
-			footerText: "💙 Chitoge 💙",
-			buttons: buttons,
-			headerType: 1,
-		};
+		// If the group is set to muted, don't do anything
 		const allowedCommands = ["activate", "deactivate", "act", "deact"];
 		if (
 			!(
@@ -110,7 +91,9 @@ export default class MessageHandler {
 			)}`
 		);
 		if (!command)
-			return void M.reply(buttonMessage, MessageType.buttonsMessage);
+			return void M.reply(
+				`No such command, Baka! Have you never seen someone use the command *${this.client.config.prefix}help*.`
+			);
 		const user = await this.client.getUser(M.sender.jid);
 		if (user.ban) return void M.reply("You're Banned from using commands.");
 		const state = await this.client.DB.disabledcommands.findOne({
