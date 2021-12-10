@@ -19,7 +19,7 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        
+
         const rnekol = ["wholesomeanimemes", "Animemes", "animememes", "goodanimemes"];
         const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
         const { data } = await axios.get('https://meme-api.herokuapp.com/gimme/' + rnekolc)
