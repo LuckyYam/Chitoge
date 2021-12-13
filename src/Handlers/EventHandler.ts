@@ -1,6 +1,6 @@
 import { MessageType, WAParticipantAction } from '@adiwajshing/baileys'
 import chalk from "chalk";
-import { evaluate } from "mathjs";
+//import { evaluate } from "mathjs";
 import WAClient from "../lib/WAClient";
 import Canvas from "discord-canvas";
 import ordinal from "ordinal";
@@ -29,10 +29,14 @@ export default class EventHandler {
 			pfp =
 				"https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
 		}
-		const just = await evaluate(event.participants.length + 1);
-		const memberCount = await ordinal(just);
+		console.log(event.action);
+		const groupData = await this.client.groupMetadata(event.jid);
+		const memberCount = await ordinal(groupData.participants.length);
 		const add = event.action === "add";
-		const text = add
+		const bye = event.action === "remove";
+		const promote = event.action === "promote";
+		const demote = event.action === "demote";
+		/*const text = add
 			? `- ${group.subject || "___"} -\n\n💠 *Group Description:*\n${
 					group.desc
 			  }\n\nHope you follow the rules and have fun!\n\n*‣ ${event.participants
@@ -46,7 +50,7 @@ export default class EventHandler {
 					event.participants[0].split("@")[0]
 			  }* got ${this.client.util.capitalize(event.action)}d${
 					event.actor ? ` by *@${event.actor.split("@")[0]}*` : ""
-			  }`;
+			  }`;*/
 		const contextInfo = {
 			mentionedJid: event.actor
 				? [...event.participants, event.actor]
@@ -55,7 +59,7 @@ export default class EventHandler {
 		if (add) {
 			const welcome = await new Canvas.Welcome()
 				.setUsername(username)
-				.setDiscriminator(just)
+				.setDiscriminator(memberCount)
 				.setMemberCount(memberCount)
 				.setGuildName(group.subject)
 				.setAvatar(pfp)
@@ -70,44 +74,73 @@ export default class EventHandler {
 				.setText("message", `welcome to ${group.subject}`)
 				.setBackground("https://i.ibb.co/8B6Q84n/LTqHsfYS.jpg")
 				.toAttachment();
-			if (welcome)
-				return void (await this.client.sendMessage(
-					event.jid,
-					welcome.toBuffer(),
-					MessageType.image,
-					{
-						caption: text,
-						contextInfo,
-					}
-				));
+			return void (await this.client.sendMessage(
+				event.jid,
+				welcome.toBuffer(),
+				MessageType.image,
+				{
+					caption: `- ${group.subject || "___"} -\n\n💠 *Group Description:*\n${
+						group.desc
+					}\n\nHope you follow the rules and have fun!\n\n*‣ ${event.participants
+						.map((jid) => `@${jid.split("@")[0]}`)
+						.join(", ")}*`,
+					contextInfo,
+				}
+			));
 		}
-		const goodbye = await new Canvas.Goodbye()
-			.setUsername(username)
-			.setDiscriminator(just)
-			.setMemberCount(memberCount)
-			.setGuildName(group.subject)
-			.setAvatar(pfp)
-			.setColor("border", "#FF0000")
-			.setColor("username-box", "#FF0000")
-			.setColor("discriminator-box", "#FF0000")
-			.setColor("message-box", "#FF0000")
-			.setColor("title", "#FF0000")
-			.setColor("avatar", "#FF0000")
-			.setText("member-count", `- ${memberCount} member !`)
-			.setText("message", `we're probably not gonna miss you`)
-			.setBackground(
-				"https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"
-			)
-			.toAttachment();
-		return void (await this.client.sendMessage(
-			event.jid,
-			goodbye.toBuffer(),
-			MessageType.image,
-			{
-				caption: text,
-				contextInfo,
-			}
-		));
+		if (bye) {
+			const goodbye = await new Canvas.Goodbye()
+				.setUsername(username)
+				.setDiscriminator(memberCount)
+				.setMemberCount(memberCount)
+				.setGuildName(group.subject)
+				.setAvatar(pfp)
+				.setColor("border", "#FF0000")
+				.setColor("username-box", "#FF0000")
+				.setColor("discriminator-box", "#FF0000")
+				.setColor("message-box", "#FF0000")
+				.setColor("title", "#FF0000")
+				.setColor("avatar", "#FF0000")
+				.setText("member-count", `- ${memberCount} member !`)
+				.setText("message", `we're probably not gonna miss you`)
+				.setBackground(
+					"https://images.unsplash.com/photo-1554050857-c84a8abdb5e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"
+				)
+				.toAttachment();
+			return void (await this.client.sendMessage(
+				event.jid,
+				goodbye.toBuffer(),
+				MessageType.image,
+				{
+					caption: `Goodbye *@${
+						event.participants[0].split("@")[0]
+					}* 👋🏻, we're probably not gonna miss you.`,
+					contextInfo,
+				}
+			));
+		}
+		if (promote) {
+			const text = `Congratulations *@${
+				event.participants[0].split("@")[0]
+			}*, you're now an admin.`;
+			return void this.client.sendMessage(
+				event.jid,
+				text,
+				MessageType.extendedText,
+				{ contextInfo }
+			);
+		}
+		if (demote) {
+			const text = `Ara Ara looks like *@${
+				event.participants[0].split("@")[0]
+			}* got demoted.`;
+			return void this.client.sendMessage(
+				event.jid,
+				text,
+				MessageType.extendedText,
+				{ contextInfo }
+			);
+		}
 	};
 }
 
