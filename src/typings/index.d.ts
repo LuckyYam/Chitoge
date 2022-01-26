@@ -1,67 +1,70 @@
-import { WAGroupMetadata } from '@adiwajshing/baileys'
+import { WAGroupMetadata } from "@adiwajshing/baileys";
 
-export * from './message'
-export * from './command'
-export * from './mongo'
+export * from "./message";
+export * from "./command";
+export * from "./mongo";
 export interface IConfig {
-	name: string;
-	mods?: string[];
-	prefix: string;
-	session: string;
-	mods: string[];
-	gkey: string;
-	chatBotUrl: string;
-	gifApi: string;
-	geniusKey: string;
-	malUsername: string;
-	malPassword: string;
+  name: string;
+  mods?: string[];
+  prefix: string;
+  session: string;
+  mods: string[];
+  gkey: string;
+  chatBotUrl: string;
+  gifApi: string;
+  geniusKey: string;
+  malUsername: string;
+  malPassword: string;
 }
 
 export interface IParsedArgs {
-	args: string[];
-	flags: string[];
-	joined: string;
+  args: string[];
+  flags: string[];
+  joined: string;
 }
 
 export interface IExtendedGroupMetadata extends WAGroupMetadata {
-	admins?: string[];
+  admins?: string[];
 }
 
 export interface ISession {
-	clientID: string;
-	serverToken: string;
-	clientToken: string;
-	encKey: string;
-	macKey: string;
+  clientID: string;
+  serverToken: string;
+  clientToken: string;
+  encKey: string;
+  macKey: string;
 }
 
 export interface IGroup {
-	jid: string;
-	events: boolean;
-	nsfw: boolean;
-	safe: boolean;
-	mod: boolean;
-	cmd: boolean;
-	invitelink: boolean;
+  jid: string;
+  events: boolean;
+  nsfw: boolean;
+  safe: boolean;
+  mod: boolean;
+  cmd: boolean;
+  invitelink: boolean;
+  news: boolean;
 }
 
 export interface IUser {
-	jid: string;
-	ban: boolean;
-	warnings: number;
-	Xp: number;
+  jid: string;
+  ban: boolean;
+  warnings: number;
+  Xp: number;
 }
 
 export interface IFeature {
-	feature: string;
-	state: boolean;
+  feature: string;
+  state: boolean;
+  jids: string[];
+  id: string;
 }
 
 export interface IPackage {
-    description: string
-    dependencies: { [key: string]: string }
-    homepage: string
-    repository: {
-        url: string
-    }
+  description: string;
+  dependencies: { [key: string]: string };
+  homepage: string;
+  repository: {
+    url: string;
+  };
 }
