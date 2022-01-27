@@ -14,26 +14,23 @@ export default class NewsHandler {
       for (let i = 0; i < data.jids.length; i++) {
         const text = `*━━━━━❰ JUST IN ❱━━━━━━*\n\n\t\t\t\t\t\t\t📰 *News* 📰\n\n🎀 *Title: ${news[0].title}*\n\n❄ *Short Details*: ${news[0].text}\n\n🌐 *URL: ${news[0].link}*`;
         const image = await this.client.getBuffer(news[0].image);
-        await this.client.DB.feature.updateOne(
-          { feature: "news" },
-          { $set: { id: news[0].newsNumber } }
-        );
-        return void (await this.client.sendMessage(
-          data.jids[i],
-          image,
-          MessageType.image,
-          {
-            caption: text,
-            contextInfo: {
-              externalAdReply: {
-                title: news[0].title,
-                body: news[0].text,
-                thumbnail: image,
-                sourceUrl: news[0].link,
-              },
+        await this.client.sendMessage(data.jids[i], image, MessageType.image, {
+          caption: text,
+          contextInfo: {
+            externalAdReply: {
+              title: news[0].title,
+              body: news[0].text,
+              thumbnail: image,
+              sourceUrl: news[0].link,
             },
-          }
-        ));
+          },
+        });
+        setTimeout(async () => {
+          await this.client.DB.feature.updateOne(
+            { feature: "news" },
+            { $set: { id: news[0].newsNumber } }
+          );
+        }, 300000);
       }
     });
   };
