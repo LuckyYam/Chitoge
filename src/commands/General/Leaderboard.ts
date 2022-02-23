@@ -46,9 +46,9 @@ export default class Command extends BaseCommand {
     const placeOrdinal = await ordinal(place + 1);
     if (place < 10) text += `\t*(You are in the ${placeOrdinal} place)*`;
     let n = 10;
-    if (users.length < 9) n = users.length;
+    if (users.length < 10) n = users.length;
     for (let i = 0; i < n; i++) {
-      text += `\n\n*${i + 1}*\n`;
+      text += `\n\n*#${i + 1}*\n`;
       const user = await this.client.getUser(users[i].jid);
       const exp = user.Xp;
       let role: string;
