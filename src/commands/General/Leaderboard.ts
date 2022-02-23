@@ -43,12 +43,12 @@ export default class Command extends BaseCommand {
     }
     users.sort((a, b) => (a.Xp < b.Xp ? 1 : b.Xp < a.Xp ? -1 : 0));
     const place = users.findIndex((x: IUser) => x.jid === M.sender.jid);
-    const placeOrdinal = await ordinal(place);
+    const placeOrdinal = await ordinal(place + 1);
     if (place < 10) text += `\t*(You are in the ${placeOrdinal} place)*`;
     let n = 10;
     if (users.length < 9) n = users.length;
     for (let i = 0; i < n; i++) {
-      text += `\n\n${i + 1}\n\n`;
+      text += `\n\n*${i + 1}*\n`;
       const user = await this.client.getUser(users[i].jid);
       const exp = user.Xp;
       let role: string;
@@ -97,9 +97,9 @@ export default class Command extends BaseCommand {
       }
       const q = this.client.getContact(users[i].jid);
       const username = q.notify || q.vname || q.name || "User";
-      text += `🏮 *Username: ${username}*\n\n〽️ *Level: ${level}*\n\n⭐ *Exp: ${
+      text += `🏮 *Username: ${username}*\n〽️ *Level: ${level}*\n⭐ *Exp: ${
         exp || 0
-      }*\n\n💫 *Role: ${role}*`;
+      }*\n💫 *Role: ${role}*`;
     }
     return void M.reply(
       await this.client.getBuffer(
