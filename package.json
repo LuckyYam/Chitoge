@@ -40,6 +40,7 @@
     },
     "dependencies": {
         "@adiwajshing/baileys": "^3.5.3",
+        "@shineiichijo/marika": "^2.0.2",
         "@types/node-cron": "^2.0.3",
         "@types/qr-image": "^3.2.3",
         "akaneko": "^5.2.2",
