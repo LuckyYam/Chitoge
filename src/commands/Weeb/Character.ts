@@ -34,14 +34,11 @@ export default class Command extends BaseCommand {
     } catch (error) {
       return void M.reply("Couldn't find any matching character");
     }
-    const amount = chara?.data.length;
-    let n = 10;
-    if (amount < 10) n = amount;
     let text = "";
-    for (let i = 0; i < n; i++) {
-      text += `💙 *Name: ${chara.data[i].name}*\n`;
-      text += `🌐 *URL: ${chara.data[i].url}*\n\n`;
-      text += `Use ${this.client.config.prefix}charaid ${chara.data[i].mal_id} to get the full info of this character.\n\n`;
+    for (const Chara of chara.data) {
+      text += `💙 *Name: ${Chara.name}*\n`;
+      text += `🌐 *URL: ${Chara.url}*\n\n`;
+      text += `Use ${this.client.config.prefix}charaid ${Chara.mal_id} to get the full info of this character.\n\n`;
     }
     return void M.reply(await this.client.getBuffer(chara.data[0].images.jpg.image_url), MessageType.image, undefined, undefined, text)
   };

@@ -43,10 +43,11 @@ export default class Command extends BaseCommand {
     }
     let text = "";
     text += `💙 *Name: ${chara.name}*\n`;
-    text += `💚 *Nicknames: ${chara.nicknames.join(", ")}*\n`;
+    if (chara.nicknames.length > 0)
+      text += `💚 *Nicknames: ${chara.nicknames.join(", ")}*\n`;
     text += `💛 *Source: ${source.data[0].anime.title}*\n\n`;
     text += `🌐 *URL: ${chara.url}*\n\n`;
-    text += `❤ *Description:* ${chara.about}`;
+    if (chara.about !== null) text += `❤ *Description:* ${chara.about}`;
     const buffer = await request.buffer(chara.images.jpg.image_url);
     await M.reply(
       buffer,

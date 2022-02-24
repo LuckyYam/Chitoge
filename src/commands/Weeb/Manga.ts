@@ -28,7 +28,7 @@ export default class Command extends BaseCommand {
     const client = new Manga();
     let search;
     try {
-      search = await client.searchManga(chitoge, { page: 1, limit: 10 });
+      search = await client.searchManga(chitoge);
     } catch (error) {
       return void M.reply("Couldn't find any manga");
     }
@@ -47,7 +47,7 @@ export default class Command extends BaseCommand {
     text += `🎏 *Favorites: ${search.data[0].favorites}*\n`;
     text += `✍ *Authors:*\n`;
     for (let i = 0; i < search.data[0].authors.length; i++) {
-      text += `\t\t\t\t\t\t\t\t\t${search.data[0].authors[i].name}*\n`;
+      text += `\t\t\t\t\t\t\t\t\t*${search.data[0].authors[i].name}* *(${search.data[0].authors[0].type})*\n`;
     }
     text += `\n🌐 *URL: ${search.data[0].url}*\n\n`;
     if (search.data[0].background !== null)
@@ -56,6 +56,12 @@ export default class Command extends BaseCommand {
       /\[Written by MAL Rewrite]/g,
       ""
     )}`;
-    return void M.reply(await this.client.getBuffer(search.data[0].images.jpg.image_url), MessageType.image, undefined, undefined, text);
+    return void M.reply(
+      await this.client.getBuffer(search.data[0].images.jpg.large_image_url),
+      MessageType.image,
+      undefined,
+      undefined,
+      text
+    );
   };
 }

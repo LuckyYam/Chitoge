@@ -56,18 +56,19 @@ export default class Command extends BaseCommand {
     }
     text += `🎴 *Producers:*\n`;
     for (let i = 0; i < result.producers.length; i++) {
-      text += `\t\t\t\t\t\t\t\t\t\t${result.producers[i].name}\n`;
+      text += `\t\t\t\t\t\t\t\t\t\t*${result.producers[i].name}*\n`;
     }
     text += `💫 *Premiered on: ${result.aired.from}*\n`;
     text += `🎗 *Ended on: ${result.aired.to}*\n`;
-    text += `🎐 *Popularity:* ${result.popularity}*\n`;
+    text += `🎐 *Popularity: ${result.popularity}*\n`;
     text += `🎏 *Favorites: ${result.favorites}*\n`;
     text += `🎇 *Rating: ${result.rating}*\n`;
     text += `🏅 *Rank: ${result.rank}*\n\n`;
-    text += `♦ *Trailer: ${result.trailer.url}*\n\n`;
+    if (result.trailer.url !== null)
+      text += `♦ *Trailer: ${result.trailer.url}*\n\n`;
     text += `🌐 *URL: ${result.url}*\n\n`;
     if (result.background !== null)
-      text += `🎆 *Background:* ${result.background}*n\n`;
+      text += `🎆 *Background:* ${result.background}*\n\n`;
     text += `❄ *Description:* ${result.synopsis.replace(
       /\[Written by MAL Rewrite]/g,
       ""
