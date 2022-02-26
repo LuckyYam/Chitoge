@@ -3,7 +3,7 @@ import MessageHandler from "../../Handlers/MessageHandler";
 import BaseCommand from "../../lib/BaseCommand";
 import WAClient from "../../lib/WAClient";
 import YT from "../../lib/YT";
-import { ISimplifiedMessage } from "../../typings";
+import { ISimplifiedMessage, IParsedArgs } from "../../typings";
 
 export default class Command extends BaseCommand {
   constructor(client: WAClient, handler: MessageHandler) {
@@ -17,22 +17,14 @@ export default class Command extends BaseCommand {
     });
   }
 
-  run = async (M: ISimplifiedMessage): Promise<void> => {
-    if (!M.urls.length)
-      return void M.reply(
-        "🔎 Provide the URL of the YT video you want to download"
-      );
-    const video = new YT(M.urls[0], "video");
-    if (!video.validateURL()) return void M.reply(`Provide a Valid YT URL`);
-    const { videoDetails } = await video.getInfo();
-    M.reply("🌟 Sending...");
-    if (Number(videoDetails.lengthSeconds) > 1800)
-      return void M.reply("⚓ Cannot download videos longer than 30 minutes");
+  run = async (
+    M: ISimplifiedMessage,
+    { joined }: IParsedArgs
+  ): Promise<void> => {
+    if (!joined) return void M.reply("Provide a url, Baka!");
     M.reply(
-      await this.client.util.getYoutubeVideo(M.urls[0]),
+      await this.client.util.getYoutubeVideo(joined.trim()),
       MessageType.video
-    ).catch((reason: Error) =>
-      M.reply(`✖ An error occurred, Reason: ${reason}`)
     );
   };
 }
