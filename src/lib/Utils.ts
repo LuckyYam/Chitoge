@@ -60,7 +60,7 @@ export default class {
       quality: "480p",
       type: "videoandaudio",
     });
-    video.pipe(filename);
+    video.pipe(createWriteStream(filename));
     filename = await new Promise((resolve, reject) => {
       video.on("end", () => resolve(filename));
       video.on("error", (err: any) => reject(err && console.log(err)));
@@ -76,7 +76,7 @@ export default class {
     const audio = yt.download(url, {
       type: "audio",
     });
-    audio.pipe(filename);
+    audio.pipe(createWriteStream(filename));
     filename = await new Promise((resolve, reject) => {
       audio.on("end", () => resolve(filename));
       audio.on("error", (err: any) => reject(err && console.log(err)));
