@@ -27,4 +27,4 @@ declare module "node-myanimelist";
 declare module "discord-image-generation";
 declare module "discord-canvas";
 declare module "ordinal";
-declare module "kaori";
+declare module "youtubei.js";
