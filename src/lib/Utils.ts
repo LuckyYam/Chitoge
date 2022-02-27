@@ -22,7 +22,7 @@ export default class {
   Mp4ToMp3 = async (video: Buffer): Promise<Buffer> => {
     const filename = `${tmpdir()}/${Math.random().toString(36)}`;
     await writeFile(`${filename}.mp4`, video);
-    await this.exec(`ffmpeg -i ${filename}.mp4 ${filename}.mp3`);
+    await this.exec(`ffmpeg -i ${filename}.mp4 -vn ${filename}.mp3`);
     const result = await readFile(`${filename}.mp3`);
     Promise.all([unlink(`${filename}.mp3`), unlink(`${filename}.mp4`)]);
     return result;
