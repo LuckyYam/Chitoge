@@ -77,6 +77,7 @@
         "moment": "^2.29.1",
         "mongoose": "^5.12.12",
         "mywaifulist-scraper": "^0.0.1",
+        "nhentai-pdf": "^1.0.0",
         "node-cron": "^3.0.0",
         "node-fetch": "^3.0.0",
         "node-myanimelist": "^3.0.4",

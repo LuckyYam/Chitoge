@@ -37,7 +37,7 @@ export default class Command extends BaseCommand {
         contextInfo: {
           externalAdReply: {
             title: videos[0].title.substr(0, 30),
-            body: `author : ${videos[0].author.name.substr(
+            body: `Author : ${videos[0].author.name.substr(
               0,
               20
             )}\n🌟 Chitoge 🌟`,
