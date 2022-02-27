@@ -44,7 +44,6 @@ export default class Command extends BaseCommand {
               thumbnail: await this.client.getBuffer(
                 `https://i.ytimg.com/vi/${videos[0].id}/hqdefault.jpg`
               ),
-              thumbnailUrl: `https://i.ytimg.com/vi/${videos[0].id}/hqdefault.jpg`,
               mediaUrl: videos[0].url,
             },
           },
