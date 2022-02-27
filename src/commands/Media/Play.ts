@@ -30,7 +30,9 @@ export default class Command extends BaseCommand {
     this.client
       .sendMessage(
         M.from,
-        await this.client.util.getYoutubeAudio(videos[0].url),
+        await this.client.util.Mp4ToMp3(
+          await this.client.util.getYoutubeVideo(videos[0].id)
+        ),
         MessageType.audio,
         {
           quoted: M.WAMessage,

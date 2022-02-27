@@ -32,7 +32,9 @@ export default class Command extends BaseCommand {
       .replace(/\https:\/\/youtube.com\/watch?v=/g, "");
     if (!validateID(url)) return void M.reply("⚓ Provide a Valid YT URL");
     await M.reply(
-      await this.client.util.getYoutubeAudio(url),
+      await this.client.util.Mp4ToMp3(
+        await this.client.util.getYoutubeVideo(url)
+      ),
       MessageType.audio
     ).catch((reason: Error) =>
       M.reply(`✖ An error occurred, Reason: ${reason}`)

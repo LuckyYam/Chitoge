@@ -94,6 +94,15 @@ export default class {
     return buffer;
   };
 
+  Mp4ToMp3 = async (video: Buffer): Promise<Buffer> => {
+    const filename = `${tmpdir()}/${Math.random().toString(36)}`;
+    await writeFile(`${filename}.mp4`, video);
+    await this.exec(`ffmpeg -i ${filename}.mp4 ${filename}.mp3`);
+    const result = await readFile(`${filename}.mp3`);
+    Promise.all([unlink(`${filename}.mp3`), unlink(`${filename}.mp4`)]);
+    return result;
+  };
+
   readdirRecursive = (directory: string): string[] => {
     const results: string[] = [];
 
@@ -149,22 +158,6 @@ export default class {
     filename = await new Promise((resolve, reject) => {
       video.on("end", () => resolve(filename));
       video.on("error", (err: any) => reject(err && console.log(err)));
-    });
-    return await readFile(filename);
-  };
-
-  getYoutubeAudio = async (
-    url: string,
-    filename = `${tmpdir()}/${Math.random().toString(36)}.mp3`
-  ): Promise<Buffer> => {
-    const yt = await new YT();
-    const audio = yt.download(url, {
-      type: "audio",
-    });
-    audio.pipe(createWriteStream(filename));
-    filename = await new Promise((resolve, reject) => {
-      audio.on("end", () => resolve(filename));
-      audio.on("error", (err: any) => reject(err && console.log(err)));
     });
     return await readFile(filename);
   };
