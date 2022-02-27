@@ -670,14 +670,14 @@
   dependencies:
     axios "^0.26.0"
 
-"@shineiichijo/nhentai-pdf@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@shineiichijo/nhentai-pdf/-/nhentai-pdf-1.0.0.tgz#e13faecfb91884ffc57359162728519038accdc6"
-  integrity sha512-bXvGhN3vJdK33I5EAyyzMdGkj1gxoZbiFf20DpWwjpjFVJuFxioLamQrsP4uvdZYlUFxXN56qCaAxqAku8v9Jg==
+"@shineiichijo/nhentai-pdf@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@shineiichijo/nhentai-pdf/-/nhentai-pdf-1.0.2.tgz#714198ba768690057c8573a19bbd25ab0153db3f"
+  integrity sha512-ublNzNg0m44Sblpb9JSkJyJZn8hME0hs3an5DRy4aBfPksDRjaIUzw3bARf93h9ypu4KHkZmc3ov5GNj3dHRSQ==
   dependencies:
     axios "^0.21.1"
     cheerio "^1.0.0-rc.10"
-    pdfkit "^0.12.1"
+    pdfkit "^0.13.0"
 
 "@sindresorhus/is@^4.0.0":
   version "4.0.1"
@@ -5220,10 +5220,10 @@ path@^0.12.7:
     process "^0.11.1"
     util "^0.10.3"
 
-pdfkit@^0.12.1:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/pdfkit/-/pdfkit-0.12.3.tgz#527da4a4bad9a6b456a6939037d63d5ff9306302"
-  integrity sha512-+qDLgm2yq6WOKcxTb43lDeo3EtMIDQs0CK1RNqhHC9iT6u0KOmgwAClkYh9xFw2ATbmUZzt4f7KMwDCOfPDluA==
+pdfkit@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/pdfkit/-/pdfkit-0.13.0.tgz#da4c2becd63a129e3aae448fdaed4ee7be790f8f"
+  integrity sha512-AW79eHU5eLd2vgRDS9z3bSoi0FA+gYm+100LLosrQQMLUzOBGVOhG7ABcMFpJu7Bpg+MT74XYHi4k9EuU/9EZw==
   dependencies:
     crypto-js "^4.0.0"
     fontkit "^1.8.1"
