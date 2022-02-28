@@ -55,7 +55,7 @@ export default class Command extends BaseCommand {
       return void (await M.reply(
         `*🎀 Group: ${M.groupMetadata?.subject}*\n🎏 *Members: ${
           members.length
-        }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}\n🧧 *Tags: HIDDEN*`,
+        }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}*\n🧧 *Tags: HIDDEN*`,
         undefined,
         undefined,
         M.groupMetadata?.participants.map((user) => user.jid)
@@ -75,36 +75,39 @@ export default class Command extends BaseCommand {
         others: [],
       };
       for (const i of members) {
-        if (this.client.config.mods?.includes(i.jid)) continue;
+        if (i.jid === M.sender.jid) continue;
+        if (!this.client.config.mods?.includes(i.jid)) continue;
         metadata.mods.push(i.jid);
       }
       for (const a of members) {
         if (a.jid === M.sender.jid) continue;
-        if (!a.isAdmin) continue;
+        if (this.client.config.mods?.includes(a.jid)) if (!a.isAdmin) continue;
         metadata.admins.push(a.jid);
       }
       for (const k of members) {
         if (k.jid === M.sender.jid) continue;
-        if (k.isAdmin) continue;
         if (this.client.config.mods?.includes(k.jid)) continue;
+        if (k.isAdmin) continue;
         metadata.others.push(k.jid);
       }
       let text = `*🎀 Group: ${M.groupMetadata?.subject}*\n🎏 *Members: ${
         members.length
-      }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}\n🧧 *Tags:*\n`;
+      }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}*\n🧧 *Tags:*\n`;
       if (metadata.mods.length > 0) {
         for (const Mods of metadata.mods) {
-          text += `\n🏅 *@${Mods}*`;
+          text += `\n🏅 *@${Mods.split("@")[0]}*`;
         }
       }
       text += `\n`;
-      for (const admins of metadata.admins) {
-        text += `\n👑 *@${admins}*`;
+      if (metadata.admins.length > 0) {
+        for (const admins of metadata.admins) {
+          text += `\n👑 *@${admins.split("@")[0]}*`;
+        }
       }
       text += `\n`;
       if (metadata.others.length > 0) {
         for (const others of metadata.others) {
-          text += `\n🎗 *@${others}*`;
+          text += `\n🎗 *@${others.split("@")[0]}*`;
         }
       }
       return void M.reply(
