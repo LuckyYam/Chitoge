@@ -81,7 +81,8 @@ export default class Command extends BaseCommand {
       }
       for (const a of members) {
         if (a.jid === M.sender.jid) continue;
-        if (this.client.config.mods?.includes(a.jid)) if (!a.isAdmin) continue;
+        if (this.client.config.mods?.includes(a.jid)) continue;
+        if (!a.isAdmin) continue;
         metadata.admins.push(a.jid);
       }
       for (const k of members) {
