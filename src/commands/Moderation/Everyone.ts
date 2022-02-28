@@ -93,20 +93,22 @@ export default class Command extends BaseCommand {
       }
       let text = `*🎀 Group: ${M.groupMetadata?.subject}*\n🎏 *Members: ${
         members.length
-      }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}*\n🧧 *Tags:*\n`;
+      }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}*\n🧧 *Tags:*`;
       if (metadata.mods.length > 0) {
         for (const Mods of metadata.mods) {
           text += `\n🏅 *@${Mods.split("@")[0]}*`;
         }
       }
-      text += `\n`;
+     // text += `\n`;
       if (metadata.admins.length > 0) {
+        text += `\n`;
         for (const admins of metadata.admins) {
           text += `\n👑 *@${admins.split("@")[0]}*`;
         }
       }
-      text += `\n`;
+     // text += `\n`;
       if (metadata.others.length > 0) {
+        text += `\n`;
         for (const others of metadata.others) {
           text += `\n🎗 *@${others.split("@")[0]}*`;
         }
