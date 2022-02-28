@@ -25,6 +25,9 @@ export default class Command extends BaseCommand {
     { joined, flags }: IParsedArgs
   ): Promise<void> => {
     flags.forEach((flag) => (joined = joined.replace(flag, "")));
+    const members = await (
+      await this.client.groupMetadata(M.from)
+    ).participants;
     const stickers = [
       "https://wallpapercave.com/wp/wp3144753.jpg",
       "https://wallpapercave.com/wp/wp4782018.jpg",
@@ -48,11 +51,11 @@ export default class Command extends BaseCommand {
         Mimetype.webp,
         M.groupMetadata?.participants.map((user) => user.jid)
       ));
-    } else {
+    } else if (flags.includes("--h") || flags.includes("--hide")) {
       return void (await M.reply(
-        `${
-          M.groupMetadata?.subject || "*EVERYONE*"
-        }\n*READ QUOTED MESSAGE*\n*[TAGGED MAGICALLY]*`,
+        `*🎀 Group: ${M.groupMetadata?.subject}*\n🎏 *Members: ${
+          members.length
+        }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}\n🧧 *Tags: HIDDEN*`,
         undefined,
         undefined,
         M.groupMetadata?.participants.map((user) => user.jid)
@@ -60,6 +63,56 @@ export default class Command extends BaseCommand {
       ).catch((reason: any) =>
         M.reply(`✖️ An error occurred, Reason: ${reason}`)
       ));
+    } else {
+      interface metadata {
+        mods: string[];
+        admins: string[];
+        others: string[];
+      }
+      const metadata: metadata = {
+        mods: [],
+        admins: [],
+        others: [],
+      };
+      for (const i of members) {
+        if (this.client.config.mods?.includes(i.jid)) continue;
+        metadata.mods.push(i.jid);
+      }
+      for (const a of members) {
+        if (a.jid === M.sender.jid) continue;
+        if (!a.isAdmin) continue;
+        metadata.admins.push(a.jid);
+      }
+      for (const k of members) {
+        if (k.jid === M.sender.jid) continue;
+        if (k.isAdmin) continue;
+        if (this.client.config.mods?.includes(k.jid)) continue;
+        metadata.others.push(k.jid);
+      }
+      let text = `*🎀 Group: ${M.groupMetadata?.subject}*\n🎏 *Members: ${
+        members.length
+      }*\n📢 *Announcer: @${M.sender.jid.split("@")[0]}\n🧧 *Tags:*\n`;
+      if (metadata.mods.length > 0) {
+        for (const Mods of metadata.mods) {
+          text += `\n🏅 *@${Mods}*`;
+        }
+      }
+      text += `\n`;
+      for (const admins of metadata.admins) {
+        text += `\n👑 *@${admins}*`;
+      }
+      text += `\n`;
+      if (metadata.others.length > 0) {
+        for (const others of metadata.others) {
+          text += `\n🎗 *@${others}*`;
+        }
+      }
+      return void M.reply(
+        text,
+        MessageType.text,
+        undefined,
+        M.groupMetadata?.participants.map((user) => user.jid)
+      );
     }
   };
 }
