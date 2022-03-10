@@ -39,7 +39,7 @@ export interface IWaifuResponse {
       series: ISeries
 }
 
-export default async (url = "https://reina-api.herokuapp.com/api/mwl/random"): Promise<IWaifuResponse | { error: string }> => {
+export default async (url = "https://reina-api.vercel.app/api/mwl/random"): Promise<IWaifuResponse | { error: string }> => {
  try {
    const { data } = await axios.get(url)
    return data
