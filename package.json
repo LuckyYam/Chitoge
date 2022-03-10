@@ -41,7 +41,7 @@
     "dependencies": {
         "@adiwajshing/baileys": "^3.5.3",
         "@shineiichijo/marika": "^2.0.2",
-        "@shineiichijo/nhentai-pdf": "^1.0.4",
+        "@shineiichijo/nhentai-pdf": "^1.0.5",
         "@types/node-cron": "^2.0.3",
         "@types/qr-image": "^3.2.3",
         "akaneko": "^5.2.2",

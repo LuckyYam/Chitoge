@@ -670,10 +670,10 @@
   dependencies:
     axios "^0.26.0"
 
-"@shineiichijo/nhentai-pdf@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@shineiichijo/nhentai-pdf/-/nhentai-pdf-1.0.4.tgz#9b0d8e821efc3892b4f92e2154d897497b4da99f"
-  integrity sha512-T4crki3dobSK+SI6X1aQdiNiVztU+dJFch1uQGlMMoSohYWhyGETbVKYi84OsK4b6v7cC7GY5lSXDUwE5BDQVg==
+"@shineiichijo/nhentai-pdf@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@shineiichijo/nhentai-pdf/-/nhentai-pdf-1.0.5.tgz#673e63277dc5d4aecd8c4e4eb4988ffbe8149b5f"
+  integrity sha512-h7XLRhoPgtRqemIEBY8fSC4bD1YeCFADzyqzFSXgGzizzKPSTe7noBI+xdJhZ1U5enxrfG/pauJZkyd8QceLHA==
   dependencies:
     axios "^0.21.1"
     cheerio "^1.0.0-rc.10"
